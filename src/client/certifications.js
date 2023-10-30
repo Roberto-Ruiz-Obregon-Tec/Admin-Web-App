@@ -8,5 +8,6 @@ const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
 export async function getCertifications() {
     const endpoint = `${baseApiEndpoint}/certifications`;
 
-    await axios.get(endpoint);
+    const response = await axios.get(endpoint);
+    return response.data.data.documents;
 }
