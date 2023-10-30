@@ -12,6 +12,7 @@ import Topics from './screens/Topics';
 import Payments from './screens/Payments';
 import Admins from './screens/Admins';
 import Dashboard from './screens/dashboard';
+import Usuarios from './screens/Usuarios';
 
 const routes = [
     { path: '/', name: 'Inicio', Component: Dashboard, isPrivate: true, inNavbar: true },
@@ -75,6 +76,13 @@ const routes = [
         path: '/intereses',
         name: 'Intereses',
         Component: Topics,
+        isPrivate: true,
+        inNavbar: true,
+    },
+    {
+        path: '/usuarios',
+        name: 'Usuarios',
+        Component: Usuarios,
         isPrivate: true,
         inNavbar: true,
     },
