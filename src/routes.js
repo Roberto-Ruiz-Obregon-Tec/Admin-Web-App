@@ -12,6 +12,7 @@ import Topics from './screens/Topics';
 import Payments from './screens/Payments';
 import Admins from './screens/Admins';
 import Dashboard from './screens/dashboard';
+import ConsultProjects from './screens/ConsultProjects';
 
 const routes = [
     { path: '/', name: 'Inicio', Component: Dashboard, isPrivate: true, inNavbar: true },
@@ -19,77 +20,92 @@ const routes = [
         path: '/enviarAnuncio',
         name: 'Anuncios',
         Component: SendMail,
-        isPrivate: true,
+        isPrivate: false,
         inNavbar: true,
     },
     {
         path: '/agregarCursos',
         name: 'Agregar curso',
         Component: AddCourse,
-        isPrivate: true,
+        isPrivate: false,
         inNavbar: false,
     },
     {
         path: '/cursos/:id',
         name: 'Editar curso',
         Component: EditCourse,
-        isPrivate: true,
+        isPrivate: false,
         inNavbar: false,
     },
     {
         path: '/inscripciones/:id',
         name: 'Ver inscripciones al curso',
         Component: Inscriptions,
-        isPrivate: true,
+        isPrivate: false,
         inNavbar: false,
     },
     {
         path: '/cursos',
         name: 'Cursos',
         Component: Courses,
-        isPrivate: true,
+        isPrivate: false,
         inNavbar: true,
     },
     {
         path: '/programs/program/',
         name: 'Crear programa',
         Component: EditProgram,
-        isPrivate: true,
+        isPrivate: false,
         inNavbar: false,
     },
     {
         path: '/programs/program/:id',
         name: 'Editar programa',
         Component: EditProgram,
-        isPrivate: true,
+        isPrivate: false,
         inNavbar: false,
     },
     {
         path: '/programs',
         name: 'Programas',
         Component: Programs,
-        isPrivate: true,
+        isPrivate: false,
         inNavbar: true,
     },
+    {
+        path: '/enviarAnuncio',
+        name: 'Anuncios',
+        Component: SendMail,
+        isPrivate: false,
+        inNavbar: true,
+    },
+    
     {
         path: '/intereses',
         name: 'Intereses',
         Component: Topics,
-        isPrivate: true,
+        isPrivate: false,
         inNavbar: true,
     },
     {
         path: '/admins',
         name: 'Administradores',
         Component: Admins,
-        isPrivate: true,
+        isPrivate: false,
+        inNavbar: true,
+    },
+    {
+        path: '/consultprojects',
+        name: 'Consultar Proyectos Disponibles',
+        Component: ConsultProjects,
+        isPrivate: false,
         inNavbar: true,
     },
     {
         path: '/pagos',
         name: 'Pagos pendientes',
         Component: Payments,
-        isPrivate: true,
+        isPrivate: false,
         inNavbar: true,
     },
     {
