@@ -1,12 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CourseCard from '../components/CourseCard';
-import { getPrograms } from '../client/programs';
-import Button from '../components/Button';
-import Select from '../components/Select';
-import Pagination from '../components/Pagination';
-import Input from '../components/Input';
 import '../styles/verCursos.css';
+import '../styles/availableProj.css'
 
 const ConsultProjects = () => {
 
@@ -17,85 +12,47 @@ const ConsultProjects = () => {
     const [getLength, setLength] = useState('');
     const [getCategory, setCategory] = useState('');
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const data = await getPrograms();
-                setPrograms(data);
-                setLength(data.length);
-            } catch (error) {
-                console.error(error);
-            }
-        })();
-    }, []);
-
-    useEffect(() => {
-        getPrograms(getName, getPage, 8, getCategory).then((data) => {
-            setPrograms(data);
-            setLength(data.length);
-        });
-    }, [getPage, getName, getCategory]);
+    const [datos, setDatos] = useState ([
+        { nombre: 'Juan', fechaInicio: "2023-10-30T00:00:00.000Z", fechaFin: "2023-11-01T00:00:00.000Z", fechaLímite: "2023-10-31T00:00:00.000Z", codigoP: 76100, descripcion: "Proyecto3"},
+        { nombre: 'Juan', fechaInicio: "2023-10-30T00:00:00.000Z", fechaFin: "2023-11-01T00:00:00.000Z", fechaLímite: "2023-10-31T00:00:00.000Z", codigoP: 76100, descripcion: "Proyecto3"},
+        { nombre: 'Juan', fechaInicio: "2023-10-30T00:00:00.000Z", fechaFin: "2023-11-01T00:00:00.000Z", fechaLímite: "2023-10-31T00:00:00.000Z", codigoP: 76100, descripcion: "Proyecto3"},
+    ])
 
     return (
         <Fragment>
 
             <div className='header-container'>
                 <h4>Inicio / Proyectos Disponibles</h4>
-                <Button
-                    action={() => navigate('/programs/program/')}
-                    text='Agregar nuevo programa'
-                    type='create'
-                />
             </div>
 
-            <div className='search-container'>
-                <div className='input-container'>
-                    <Input
-                        label='Buscar programa por nombre:'
-                        placeholder='Buscar'
-                        getVal={getName}
-                        setVal={setName}
-                        type='text'
-                    />
-                </div>
+            <table className='availableTable'>
+                <thead>
+                    <tr>
+                    <th>Nombre</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Fecha Limite</th>
+                    <th>Fecha Postal</th>
+                    <th>Descripcion</th>
+                    </tr>
+                </thead>
 
-                <div className='input-container'>
-                    <Select
-                        className='input-general'
-                        label='Categoría'
-                        getVal={getCategory}
-                        setVal={setCategory}
-                        options={['Beca', 'Programa', 'Evento', 'Apoyo', 'Otro']}
-                    />
-                </div>
-
-            </div>
-
-            <div id='course-container'>
-                {programs.map((program) => (
-                    <CourseCard
-                        key={program._id}
-                        imgSrc={program.imageUrl}
-                        title={program.programName}
-                        description={(() => {
-                            const desc = program.description.split(' ');
-                            if (desc.length < 8) return desc.join(' ');
-                            else return desc.splice(0, 8).join(' ') + '...';
-                        })()}
-                        onClick={() => navigate(`/programs/program/${program._id}`)}>
-                        <div>
-                            <p>{program.category}</p>
-                        </div>
-                    </CourseCard>
-                ))}
-            </div>
+                <tbody>
+                    {datos.map((item) => (
+                    <tr key={item.id}>
+                        <td>{item.nombre}</td>
+                        <td>{item.fechaInicio}</td>
+                        <td>{item.fechaFin}</td>
+                        <td>{item.fechaLímite}</td>
+                        <td>{item.codigoP}</td>
+                        <td>{item.descripcion}</td>
+                    </tr>
+                    ))}
+                </tbody>
             
-            <Pagination
-                lenght={getLength}
-                getPage={getPage}
-                setPage={setPage}
-                limit={8}
-            />
+            </table>
+
+            
         </Fragment>
     );
 };
