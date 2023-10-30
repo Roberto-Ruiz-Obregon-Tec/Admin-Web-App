@@ -38,6 +38,7 @@ const ConsultProjects = () => {
 
     return (
         <Fragment>
+
             <div className='header-container'>
                 <h4>Inicio / Proyectos Disponibles</h4>
                 <Button
@@ -46,6 +47,7 @@ const ConsultProjects = () => {
                     type='create'
                 />
             </div>
+
             <div className='search-container'>
                 <div className='input-container'>
                     <Input
@@ -56,6 +58,7 @@ const ConsultProjects = () => {
                         type='text'
                     />
                 </div>
+
                 <div className='input-container'>
                     <Select
                         className='input-general'
@@ -65,7 +68,9 @@ const ConsultProjects = () => {
                         options={['Beca', 'Programa', 'Evento', 'Apoyo', 'Otro']}
                     />
                 </div>
+
             </div>
+
             <div id='course-container'>
                 {programs.map((program) => (
                     <CourseCard
@@ -84,6 +89,7 @@ const ConsultProjects = () => {
                     </CourseCard>
                 ))}
             </div>
+            
             <Pagination
                 lenght={getLength}
                 getPage={getPage}
