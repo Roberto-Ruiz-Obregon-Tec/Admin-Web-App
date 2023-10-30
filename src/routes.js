@@ -1,5 +1,6 @@
 import LoginForm from './screens/Login';
 import SendMail from './screens/SendMail';
+import Certifications from './screens/Certifications';
 import SignupForm from './screens/Signup';
 import ForgotPassword from './screens/forgotPassword';
 import AddCourse from './screens/AddCourse';
@@ -20,6 +21,13 @@ const routes = [
         path: '/enviarAnuncio',
         name: 'Anuncios',
         Component: SendMail,
+        isPrivate: true,
+        inNavbar: true,
+    },
+    {
+        path: '/certificaciones',
+        name: 'Certificaciones',
+        Component: Certifications,
         isPrivate: true,
         inNavbar: true,
     },
