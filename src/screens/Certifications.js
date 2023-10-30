@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FireError } from '../utils/alertHandler';
 import { getCertifications } from "../client/certifications";
+import Card from "../components/CertificationsCard";
 
 function Certifications() {
 
@@ -10,9 +11,6 @@ function Certifications() {
         (async () => {
             try {
                 const certs = await getCertifications();
-
-                console.log("certs:", certs);
-
                 setCertifications(certs);
             } catch (error) {
                 FireError(error.response.message);
@@ -22,13 +20,19 @@ function Certifications() {
 
     return (
         <div>
-            {certifications.map((certs, index) => {
-                return (
-                    <div key={index}>
-                        {JSON.stringify(certs)}
-                    </div>
-                )
-            })}
+            <h4>Inicio / Certificaciones</h4>
+            <div className="certs">
+                {certifications.map((certs, index) => {
+                    return (
+                        <div key={index}>
+                            <Card
+                                name={certs.name}
+                                description={certs.description}
+                            />
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }
