@@ -24,7 +24,7 @@ function Usuarios() {
 
     return (
         <div className='user-container'>
-            <h4>Inicio / Usuarios</h4>
+            <h4 className='user-path'>Inicio / Usuarios</h4>
             <h2>Lista usuarios</h2>            
 
             <div className='users-container'>

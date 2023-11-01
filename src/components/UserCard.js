@@ -7,8 +7,7 @@ function UserCard(props) {
 
   return (
       <div className='card-container'>
-          <p>{firstName}</p>
-          <p>{lastName}</p>
+          <h3>{firstName} {lastName}</h3>          
           <p>{email}</p>
       </div>
   );

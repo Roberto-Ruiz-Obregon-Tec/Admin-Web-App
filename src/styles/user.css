@@ -10,6 +10,10 @@
   width: 100%;
 }
 
+.user-path{
+  margin-bottom: 0;  
+}
+
 .add-user-container form {
   width: 90%;
   display: flex;
@@ -25,5 +29,6 @@
 .users-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap;  
+  justify-content: center;
 }
