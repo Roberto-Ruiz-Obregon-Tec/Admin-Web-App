@@ -8,7 +8,6 @@ const ConsultProjects = () => {
     const [avaliableP, setavailableP] = useState ([]);
 
     useEffect(() => {
-        // Realizar la solicitud GET y actualizar el estado
         const fetchData = async () => {
             try {
                 const proj = await getProgram();
@@ -53,7 +52,6 @@ const ConsultProjects = () => {
                 </tbody>
             
             </table>
-
             
         </Fragment>
     );
