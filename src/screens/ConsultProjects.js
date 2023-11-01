@@ -1,22 +1,24 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {getProgram} from '../client/availableProj'
 import '../styles/verCursos.css';
 import '../styles/availableProj.css'
 
 const ConsultProjects = () => {
 
-    const navigate = useNavigate();
-    const [programs, setPrograms] = useState([]);
-    const [getPage, setPage] = useState(1);
-    const [getName, setName] = useState('');
-    const [getLength, setLength] = useState('');
-    const [getCategory, setCategory] = useState('');
+    const [avaliableP, setavailableP] = useState ([]);
 
-    const [datos, setDatos] = useState ([
-        { nombre: 'Juan', fechaInicio: "2023-10-30T00:00:00.000Z", fechaFin: "2023-11-01T00:00:00.000Z", fechaLímite: "2023-10-31T00:00:00.000Z", codigoP: 76100, descripcion: "Proyecto3"},
-        { nombre: 'Juan', fechaInicio: "2023-10-30T00:00:00.000Z", fechaFin: "2023-11-01T00:00:00.000Z", fechaLímite: "2023-10-31T00:00:00.000Z", codigoP: 76100, descripcion: "Proyecto3"},
-        { nombre: 'Juan', fechaInicio: "2023-10-30T00:00:00.000Z", fechaFin: "2023-11-01T00:00:00.000Z", fechaLímite: "2023-10-31T00:00:00.000Z", codigoP: 76100, descripcion: "Proyecto3"},
-    ])
+    useEffect(() => {
+        // Realizar la solicitud GET y actualizar el estado
+        const fetchData = async () => {
+            try {
+                const proj = await getProgram();
+                setavailableP(proj);
+            } catch (error) {
+                console.error('Error al obtener los proyectos:', error);
+            }
+        };
+        fetchData();
+    }, []);
 
     return (
         <Fragment>
@@ -38,14 +40,14 @@ const ConsultProjects = () => {
                 </thead>
 
                 <tbody>
-                    {datos.map((item) => (
-                    <tr key={item.id}>
-                        <td>{item.nombre}</td>
-                        <td>{item.fechaInicio}</td>
-                        <td>{item.fechaFin}</td>
-                        <td>{item.fechaLímite}</td>
-                        <td>{item.codigoP}</td>
-                        <td>{item.descripcion}</td>
+                    {avaliableP.map((item) => (
+                    <tr key={item._id}>
+                        <td>{item.name}</td>
+                        <td>{item.startDate}</td>
+                        <td>{item.endDate}</td>
+                        <td>{item.deadlineDate}</td>
+                        <td>{item.postalCode}</td>
+                        <td>{item.description}</td>
                     </tr>
                     ))}
                 </tbody>

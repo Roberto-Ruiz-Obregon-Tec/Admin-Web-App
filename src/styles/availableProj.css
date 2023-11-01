@@ -6,7 +6,7 @@
 }
 
 .availableTable thead tr {
-    background-color: #007879;
+    background-color: #CF2A2A;
     color: white;
     text-align: left;
     font-weight: bold;
@@ -26,5 +26,5 @@
 }
 
 .availableTable tbody tr:last-of-type {
-    border-bottom: 0.125em solid #009879; 
+    border-bottom: 0.125em solid #CF2A2A; 
 }
