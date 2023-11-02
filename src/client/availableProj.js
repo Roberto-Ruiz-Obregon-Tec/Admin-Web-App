@@ -10,5 +10,5 @@ export async function getProgram() {
     const endpoint = `${baseApiEndpoint}/program`;
 
     const response = await axios.get(endpoint);
-    return response.data.data.documents;
+    return response.data.data.programs;
 } 
