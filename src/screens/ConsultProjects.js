@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import {getProgram} from '../client/availableProj'
+import { getProgram } from '../client/availableProj'
+import { FireError } from '../utils/alertHandler';
 import '../styles/verCursos.css';
 import '../styles/availableProj.css'
 
@@ -8,15 +9,14 @@ const ConsultProjects = () => {
     const [avaliableP, setavailableP] = useState ([]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        (async () => {
             try {
                 const proj = await getProgram();
                 setavailableP(proj);
             } catch (error) {
-                console.error('Error al obtener los proyectos:', error);
+                FireError(error.response.message);
             }
-        };
-        fetchData();
+        })();
     }, []);
 
     return (

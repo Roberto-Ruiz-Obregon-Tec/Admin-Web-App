@@ -106,7 +106,7 @@ const routes = [
         path: '/consultprojects',
         name: 'Proyectos Disponibles',
         Component: ConsultProjects,
-        isPrivate: true,
+        isPrivate: true, 
         inNavbar: true,
     },
     {
