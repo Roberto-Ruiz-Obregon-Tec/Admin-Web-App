@@ -111,14 +111,14 @@ const routes = [
         path: '/signup',
         name: 'Registrarse',
         Component: SignupForm,
-        isPrivate: false,
+        isPrivate: true,
         inNavbar: false,
     },
     {
         path: '/cambiarContrasena',
         name: 'Cambiar contraseña',
         Component: ForgotPassword,
-        isPrivate: false,
+        isPrivate: true,
         inNavbar: false,
     },
 ];
