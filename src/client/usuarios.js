@@ -9,6 +9,6 @@ export async function getUsers() {
     const endpoint = `${baseApiEndpoint}/user`;
 
     const response = await axios.get(endpoint);
-    return response.data.data.documents;    
+    return response.data.data.users;    
 
 }

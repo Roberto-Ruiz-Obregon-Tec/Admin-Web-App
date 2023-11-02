@@ -13,9 +13,8 @@ function Usuarios() {
     useEffect(() => {
         (async () => {
             try {
-                const users = await getUsers();
-
-                setUsers(users);
+                const usersData = await getUsers();                
+                setUsers(usersData);                
             } catch (error) {
                 FireError(error.response.data.message);
             }
