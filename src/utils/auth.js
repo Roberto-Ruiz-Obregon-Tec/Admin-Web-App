@@ -60,7 +60,7 @@ export function isAuthenticated() {
     const user = getUserSaved();
     const token = getToken();
     if (user && token) {
-        if (jwt_decode(token).id === user._id) {
+        if (jwt_decode(token).id === user.id) {
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             return true;
         }
