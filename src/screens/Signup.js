@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { FireError, FireSucess, FireQuestion } from '../utils/alertHandler';
 import { postSignup } from '../client/authentication';
-import { isAuthenticated } from '../utils/auth';
 import '../styles/auth.css';
 
 const SignupForm = () => {
-    const [name, setName] = useState('');
+    const [fname, setFName] = useState('');
+    const [lastname, setLastName] = useState('');
+    const [age, setAge] = useState('');
     const [email, setEmail] = useState('');
+    const [gender, setGender] = useState('');
+    const [cp, setCp] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const navigate = useNavigate();
@@ -24,11 +27,18 @@ const SignupForm = () => {
             return;
         }
         try {
-            const data = { name, email, password, passwordConfirm };
+            const data = {
+                firstName: fname,
+                lastName: lastname,
+                age: age,
+                gender: gender,
+                email: email,
+                postalCode: cp,
+                password: password
+            };
             const response = await postSignup(data);
             if (response.status === 'success') {
-                FireSucess('Se ha enviado la solicitud exitosamente. Por favor espere a que la acepten.');
-                navigate('/login');
+                FireSucess('Has creado un admin exitosamente.');
             }
         } catch (error) {
             if ([400, 401].includes(error.response.status)) FireError(error.response.data.message);
@@ -36,20 +46,38 @@ const SignupForm = () => {
         }
     };
 
-    if (isAuthenticated()) return <Navigate to='/' />;
-
     return (
         <div className='auth-container'>
-            <h1>Registrarse</h1>
+            <h1>Registrar administradores</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor='name'>Nombre</label>
+                    <label htmlFor='name'>Primer Nombre</label>
                     <input
                         type='text'
-                        id='name'
+                        id='firstName'
                         required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={fname}
+                        onChange={(e) => setFName(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='name'>Apellidos</label>
+                    <input
+                        type='text'
+                        id='lastName'
+                        required
+                        value={lastname}
+                        onChange={(e) => setLastName(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='name'>Edad</label>
+                    <input
+                        type='text'
+                        id='age'
+                        required
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
                     />
                 </div>
                 <div>
@@ -60,6 +88,26 @@ const SignupForm = () => {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='email'>Género</label>
+                    <input
+                        type='text'
+                        id='gender'
+                        required
+                        value={gender}
+                        onChange={(e) => setGender(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='email'>Código postal</label>
+                    <input
+                        type='text'
+                        id='postalCode'
+                        required
+                        value={cp}
+                        onChange={(e) => setCp(e.target.value)}
                     />
                 </div>
                 <div>
@@ -84,10 +132,10 @@ const SignupForm = () => {
                 </div>
                 <button type='submit'>Registrarse</button>
             </form>
-            <section>
+            {/* <section>
                 <Link to='/login'>Iniciar sesión</Link>
                 <Link to='/cambiarContrasena'>Olvidé mi contraseña</Link>
-            </section>
+            </section> */}
         </div>
     );
 };
