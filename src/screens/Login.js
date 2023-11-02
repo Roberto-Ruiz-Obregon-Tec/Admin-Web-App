@@ -58,10 +58,10 @@ const LoginForm = () => {
                 </div>
                 <button type='submit'>Entrar</button>
             </form>
-            <section>
+            {/* <section>
                 <Link to='/signup'>Registrarse</Link>
                 <Link to='/cambiarContrasena'>Olvidé mi contraseña</Link>
-            </section>
+            </section> */}
         </div>
     );
 };
