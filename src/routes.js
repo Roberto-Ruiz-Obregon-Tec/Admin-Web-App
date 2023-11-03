@@ -13,6 +13,7 @@ import Topics from './screens/Topics';
 import Payments from './screens/Payments';
 import Admins from './screens/Admins';
 import Dashboard from './screens/dashboard';
+import ConsultProjects from './screens/ConsultProjects';
 import Usuarios from './screens/Usuarios';
 
 const routes = [
@@ -81,6 +82,14 @@ const routes = [
         inNavbar: true,
     },
     {
+        path: '/enviarAnuncio',
+        name: 'Anuncios',
+        Component: SendMail,
+        isPrivate: true,
+        inNavbar: true,
+    },
+    
+    {
         path: '/intereses',
         name: 'Intereses',
         Component: Topics,
@@ -99,6 +108,13 @@ const routes = [
         name: 'Administradores',
         Component: Admins,
         isPrivate: true,
+        inNavbar: true,
+    },
+    {
+        path: '/consultprojects',
+        name: 'Proyectos Disponibles',
+        Component: ConsultProjects,
+        isPrivate: true, 
         inNavbar: true,
     },
     {
