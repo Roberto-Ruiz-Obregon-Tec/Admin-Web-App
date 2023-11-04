@@ -74,13 +74,13 @@ const routes = [
         isPrivate: true,
         inNavbar: false,
     },
-    {
-        path: '/programs',
-        name: 'Programas',
-        Component: Programs,
-        isPrivate: true,
-        inNavbar: true,
-    },
+    // {
+    //     path: '/programs',
+    //     name: 'Programas',
+    //     Component: Programs,
+    //     isPrivate: true,
+    //     inNavbar: true,
+    // },
     {
         path: '/enviarAnuncio',
         name: 'Anuncios',
@@ -103,13 +103,13 @@ const routes = [
         isPrivate: true,
         inNavbar: true,
     },
-    {
-        path: '/admins',
-        name: 'Administradores',
-        Component: Admins,
-        isPrivate: true,
-        inNavbar: true,
-    },
+    // {
+    //     path: '/admins',
+    //     name: 'Administradores',
+    //     Component: Admins,
+    //     isPrivate: true,
+    //     inNavbar: true,
+    // },
     {
         path: '/consultprojects',
         name: 'Proyectos Disponibles',
@@ -117,13 +117,13 @@ const routes = [
         isPrivate: true, 
         inNavbar: true,
     },
-    {
-        path: '/pagos',
-        name: 'Pagos pendientes',
-        Component: Payments,
-        isPrivate: true,
-        inNavbar: true,
-    },
+    // {
+    //     path: '/pagos',
+    //     name: 'Pagos pendientes',
+    //     Component: Payments,
+    //     isPrivate: true,
+    //     inNavbar: true,
+    // },
     {
         path: '/login',
         name: 'Iniciar sesión',

@@ -42,9 +42,9 @@ const ConsultProjects = () => {
                     {avaliableP.map((item) => (
                     <tr key={item._id}>
                         <td>{item.name}</td>
-                        <td>{item.startDate}</td>
-                        <td>{item.endDate}</td>
-                        <td>{item.deadlineDate}</td>
+                        <td>{new Date(item.startDate).getDate()}/{new Date(item.startDate).getMonth() + 1}/{new Date(item.startDate).getFullYear()}</td>
+                        <td>{new Date(item.endDate).getDate()}/{new Date(item.endDate).getMonth() + 1}/{new Date(item.endDate).getFullYear()}</td>
+                        <td>{new Date(item.deadlineDate).getDate()}/{new Date(item.deadlineDate).getMonth() + 1}/{new Date(item.deadlineDate).getFullYear()}</td>
                         <td>{item.postalCode}</td>
                         <td>{item.description}</td>
                     </tr>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: screens/AddCourse.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: screens/AddCourse.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
+import { getTopics } from '../client/topics';
+import { postCourse } from '../client/course';
+import { FireError, FireSucess } from '../utils/alertHandler';
+import CourseCard from '../components/CourseCard';
+import TopicCard from '../components/TopicCard';
+import Input from '../components/Input';
+import InputImage from '../components/InputImage';
+import Select from '../components/Select';
+import Button from '../components/Button';
+import { Video, Users, Calendar } from 'react-feather';
+import '../styles/addCourse.css';
+
+function AddCourse() {
+    // Course attributes
+    const [courseName, setCourseName] = useState('');
+    const [description, setDescription] = useState('');
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [schedule, setSchedule] = useState('');
+    const [teacher, setTeacher] = useState('');
+    const [capacity, setCapacity] = useState('');
+    const [postalCode, setPostalCode] = useState('');
+    const [image, setImage] = useState(null);
+    const [preview, setPreview] = useState(null);
+
+    const [modality, setModality] = useState('');
+    const [accessLink, setAccessLink] = useState('https://zoom.us/');
+    const [address, setAddress] = useState('');
+    const [status, setStatus] = useState('');
+    const [bank, setBank] = useState('');
+    const [bankAccount, setBankAccount] = useState('');
+    const [cost, setCost] = useState(0);
+
+    // Topics
+    // Will store topic object for page renderig
+    const [topicsInCourse, setTopicsInCourse] = useState([]);
+    const [topicsAvailable, setTopicsAvailable] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const topics = await getTopics();
+
+                setTopicsAvailable(topics);
+            } catch (error) {
+                FireError(error.response.data.message);
+            }
+        })();
+    }, []);
+
+    useEffect(() => {
+        if (!image) {
+            setPreview(undefined);
+            return;
+        }
+        const objectUrl = URL.createObjectURL(image);
+        setPreview(objectUrl);
+    }, [image]);
+
+    /**
+     * It adds a topic to the topicsInCourse array and removes it from the topicsAvailable array.
+     * @param topic - {_id: "5f0f8f8f8f8f8f8f8f8f8f8f", name: "Topic 1"}
+     */
+    const handleRemoveTopic = (topic) => {
+        setTopicsAvailable([...topicsAvailable, topic]);
+
+        setTopicsInCourse(
+            topicsInCourse.filter((currTopic) => currTopic._id !== topic._id)
+        );
+    };
+
+    /**
+     * It adds a topic to the topicsInCourse array and removes it from the topicsAvailable array.
+     * @param topic - {_id: "5f0f8f8f8f8f8f8f8f8f8f8f", name: "Topic 1"}
+     */
+    const handleAddTopic = (topic) => {
+        setTopicsInCourse([...topicsInCourse, topic]);
+
+        setTopicsAvailable(
+            topicsAvailable.filter((currTopic) => currTopic._id !== topic._id)
+        );
+    };
+
+    const handleSubmit = async (e) => {
+        try {
+            const form = new FormData();
+            form.append('courseName', courseName);
+            form.append('description', description);
+            form.append('startDate', startDate);
+            form.append('endDate', endDate);
+            form.append('schedule', schedule);
+            form.append('teacher', teacher);
+            form.append('capacity', capacity);
+            form.append('postalCode', postalCode);
+            form.append('modality', modality);
+            form.append('accessLink', accessLink);
+            form.append('address', address);
+            form.append('status', status);
+            form.append('bank', bank);
+            form.append('bankAccount', bankAccount);
+            form.append('cost', cost);
+            topicsInCourse.forEach((topic) => {
+                form.append(`topics[]`, topic._id);
+            });
+            form.append('courseImage', image);
+
+            await postCourse(form);
+
+            FireSucess('Nuevo curso creado con éxito.');
+        } catch (error) {
+            FireError(error.response.data.message);
+        }
+    };
+
+    return (
+        &lt;div className='add-course-container'>
+            &lt;h5 className='inicio_agregar'>Inicio / Agregar Cursos&lt;/h5>
+            &lt;h2 className=''>Agregar Cursos&lt;/h2>
+            &lt;div className='form-preview-container'>
+                &lt;form className='form-container'>
+                    &lt;Input
+                        label='Título del curso'
+                        placeholder='Curso de lectura'
+                        getVal={courseName}
+                        setVal={setCourseName}
+                        type='text'
+                    />
+                    &lt;Input
+                        label='Descripción del curso'
+                        placeholder='En este curso...'
+                        getVal={description}
+                        setVal={setDescription}
+                        type='text'
+                    />
+                    &lt;Input
+                        label='Fecha de inicio del curso'
+                        placeholder=''
+                        getVal={startDate}
+                        setVal={setStartDate}
+                        type='date'
+                    />
+                    &lt;Input
+                        label='Fecha de fin del curso'
+                        placeholder=''
+                        getVal={endDate}
+                        setVal={setEndDate}
+                        type='date'
+                    />
+                    &lt;Input
+                        label='Horario del curso'
+                        placeholder='Este curso se imparte a las 6:00pm los sábados'
+                        getVal={schedule}
+                        setVal={setSchedule}
+                        type='text'
+                    />
+                    &lt;Input
+                        label='Maestro del curso'
+                        placeholder='Dr. Juan Villeda'
+                        getVal={teacher}
+                        setVal={setTeacher}
+                        type='text'
+                    />
+                    &lt;Input
+                        label='Capacidad del curso'
+                        placeholder='20'
+                        getVal={capacity}
+                        setVal={setCapacity}
+                        type='number'
+                    />
+                    &lt;Input
+                        label='Código postal del curso'
+                        placeholder='76159'
+                        getVal={postalCode}
+                        setVal={setPostalCode}
+                        type='text'
+                    />
+                    &lt;InputImage
+                        label='Imagen de la portada'
+                        getVal={image}
+                        setVal={setImage}
+                    />
+                    &lt;Select
+                        label='Selecciona la modalidad del curso'
+                        getVal={modality}
+                        setVal={setModality}
+                        options={['Remoto', 'Presencial']}
+                    />
+                    {modality === 'Remoto' ? (
+                        &lt;Input
+                            label='Link de acceso del curso'
+                            placeholder='zoom.com'
+                            getVal={accessLink}
+                            setVal={setAccessLink}
+                            type='text'
+                        />
+                    ) : (
+                        &lt;Input
+                            label='Dirección del curso'
+                            placeholder='Calle de la Revolución #130'
+                            getVal={address}
+                            setVal={setAddress}
+                            type='text'
+                        />
+                    )}
+                    &lt;Select
+                        label='Selecciona el tipo de pago'
+                        getVal={status}
+                        setVal={setStatus}
+                        options={['Gratuito', 'Pagado']}
+                    />
+                    {status === 'Pagado' ? (
+                        &lt;React.Fragment>
+                            &lt;Input
+                                label='Banco de la cuenta'
+                                placeholder='Bank of America'
+                                getVal={bank}
+                                setVal={setBank}
+                                type='string'
+                            />
+                            &lt;Input
+                                label='Cuenta bancaria que recibirá el pago'
+                                placeholder='3974619276419864'
+                                getVal={bankAccount}
+                                setVal={setBankAccount}
+                                type='number'
+                            />
+                            &lt;Input
+                                label='Costo'
+                                placeholder='150'
+                                getVal={cost}
+                                setVal={setCost}
+                                type='number'
+                            />
+                        &lt;/React.Fragment>
+                    ) : (
+                        &lt;>&lt;/>
+                    )}
+                    &lt;h3 className=''>Intereses seleccionados para el curso&lt;/h3>
+                    &lt;div className='topics-container'>
+                        {topicsInCourse.map((topic) => (
+                            &lt;TopicCard
+                                interest={topic}
+                                key={topic._id}
+                                action={() => {
+                                    handleRemoveTopic(topic);
+                                }}
+                                actionText='Remover'
+                                type='delete'
+                            />
+                        ))}
+                    &lt;/div>
+                    &lt;h3 className=''>Intereses disponibles&lt;/h3>
+                    &lt;div className='topics-container'>
+                        {topicsAvailable.map((topic) => (
+                            &lt;TopicCard
+                                interest={topic}
+                                key={topic._id}
+                                action={() => {
+                                    handleAddTopic(topic);
+                                }}
+                                actionText='Agregar'
+                                type='create'
+                            />
+                        ))}
+                    &lt;/div>
+                &lt;/form>
+                &lt;div className='course-container'>
+                    &lt;CourseCard
+                        imgSrc={preview}
+                        title={courseName}
+                        description={description}>
+                        &lt;div>
+                            {modality === 'Remoto' ? &lt;Video /> : &lt;Users />}
+                            &lt;p>{modality}&lt;/p>
+                        &lt;/div>
+                        &lt;div>
+                            &lt;Calendar />
+                            &lt;p>{new Date(startDate).toLocaleDateString()}&lt;/p>
+                        &lt;/div>
+                        &lt;div>{cost ? &lt;p>$ {cost}&lt;/p> : &lt;p>Gratis&lt;/p>}&lt;/div>
+                    &lt;/CourseCard>
+                    &lt;Button action={handleSubmit} text='Crear curso' type='create' />
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    );
+}
+
+export default AddCourse;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#FireError">FireError</a></li><li><a href="global.html#FireQuestion">FireQuestion</a></li><li><a href="global.html#FireSucess">FireSucess</a></li><li><a href="global.html#acceptPayment">acceptPayment</a></li><li><a href="global.html#declinePayment">declinePayment</a></li><li><a href="global.html#deleteAdmin">deleteAdmin</a></li><li><a href="global.html#deleteCourse">deleteCourse</a></li><li><a href="global.html#deleteInscription">deleteInscription</a></li><li><a href="global.html#deleteProgram">deleteProgram</a></li><li><a href="global.html#deleteTopic">deleteTopic</a></li><li><a href="global.html#getCertifications">getCertifications</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getCourseInscriptions">getCourseInscriptions</a></li><li><a href="global.html#getCourses">getCourses</a></li><li><a href="global.html#getPayments">getPayments</a></li><li><a href="global.html#getProgram">getProgram</a></li><li><a href="global.html#getPrograms">getPrograms</a></li><li><a href="global.html#getToken">getToken</a></li><li><a href="global.html#getTopics">getTopics</a></li><li><a href="global.html#getUnverifiedAdmins">getUnverifiedAdmins</a></li><li><a href="global.html#getUserSaved">getUserSaved</a></li><li><a href="global.html#getUsers">getUsers</a></li><li><a href="global.html#isAuthenticated">isAuthenticated</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#objectToUrlQueryString">objectToUrlQueryString</a></li><li><a href="global.html#patchCourse">patchCourse</a></li><li><a href="global.html#patchProgram">patchProgram</a></li><li><a href="global.html#postCourse">postCourse</a></li><li><a href="global.html#postLogin">postLogin</a></li><li><a href="global.html#postProgram">postProgram</a></li><li><a href="global.html#postSignup">postSignup</a></li><li><a href="global.html#postTopic">postTopic</a></li><li><a href="global.html#retreiveAdmin">retreiveAdmin</a></li><li><a href="global.html#sendEmailByZone">sendEmailByZone</a></li><li><a href="global.html#sendEmailToEveryone">sendEmailToEveryone</a></li><li><a href="global.html#setAdminUserSaved">setAdminUserSaved</a></li><li><a href="global.html#setToken">setToken</a></li><li><a href="global.html#verifyAdmin">verifyAdmin</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Nov 03 2023 18:07:19 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

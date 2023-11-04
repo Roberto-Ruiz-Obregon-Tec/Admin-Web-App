@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils/auth.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils/auth.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import jwt_decode from 'jwt-decode';
+import axios from 'axios';
+
+/**
+ * A function that returns access/refresh tokens based on whether they're requested.
+ * @returns { String | null} The access and refresh tokens or null if neither were requested or found in localStorage.
+ */
+export function getToken() {
+    let token = localStorage.getItem('authToken');
+    if (token != null &amp;&amp; token !== '') return token;
+    return null;
+}
+
+/**
+ * @function setToken
+ * @param {String} token - the access token to set.
+ * @returns {String|null} token
+ */
+export function setToken(token) {
+    if (!(typeof token === 'string') || !token) return null;
+
+    localStorage.setItem('authToken', token);
+    return token;
+}
+
+/**
+ * This function saves user data to local storage
+ *
+ * @param {Object} user - user data that will be stored in LocalStorage, need to be json serializable
+ * @return {Object|null} - returns an object representing the saved user, or null if none found
+ */
+export async function setAdminUserSaved(user) {
+    if (user) {
+        localStorage.setItem('adminUser', JSON.stringify(user));
+        return user;
+    }
+    return null;
+}
+
+/**
+ * This function retrieves the saved admin user from local storage
+ *
+ * @returns {Object|null} - returns an object representing the saved user, or null if none found
+ */
+export function getUserSaved() {
+    let user = localStorage.getItem('adminUser');
+    if (user) {
+        user = JSON.parse(user);
+        return user;
+    }
+    return null;
+}
+
+/**
+ * This function checks if a user is authenticated by checking if there is a valid token and saved user
+ *
+ * @returns {bool} - true if user is authenticated, false otherwise
+ */
+export function isAuthenticated() {
+    const user = getUserSaved();
+    const token = getToken();
+    if (user &amp;&amp; token) {
+        if (jwt_decode(token).id === user.id) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * Removes the 'adminUser' and 'authToken' keys from localStorage and reloads the page.
+ * 
+ * @returns undefined
+ */
+export function logOut() {
+    localStorage.removeItem('adminUser');
+    localStorage.removeItem('authToken');
+    window.location.reload(false);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#FireError">FireError</a></li><li><a href="global.html#FireQuestion">FireQuestion</a></li><li><a href="global.html#FireSucess">FireSucess</a></li><li><a href="global.html#acceptPayment">acceptPayment</a></li><li><a href="global.html#declinePayment">declinePayment</a></li><li><a href="global.html#deleteAdmin">deleteAdmin</a></li><li><a href="global.html#deleteCourse">deleteCourse</a></li><li><a href="global.html#deleteInscription">deleteInscription</a></li><li><a href="global.html#deleteProgram">deleteProgram</a></li><li><a href="global.html#deleteTopic">deleteTopic</a></li><li><a href="global.html#getCertifications">getCertifications</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getCourseInscriptions">getCourseInscriptions</a></li><li><a href="global.html#getCourses">getCourses</a></li><li><a href="global.html#getPayments">getPayments</a></li><li><a href="global.html#getProgram">getProgram</a></li><li><a href="global.html#getPrograms">getPrograms</a></li><li><a href="global.html#getToken">getToken</a></li><li><a href="global.html#getTopics">getTopics</a></li><li><a href="global.html#getUnverifiedAdmins">getUnverifiedAdmins</a></li><li><a href="global.html#getUserSaved">getUserSaved</a></li><li><a href="global.html#getUsers">getUsers</a></li><li><a href="global.html#isAuthenticated">isAuthenticated</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#objectToUrlQueryString">objectToUrlQueryString</a></li><li><a href="global.html#patchCourse">patchCourse</a></li><li><a href="global.html#patchProgram">patchProgram</a></li><li><a href="global.html#postCourse">postCourse</a></li><li><a href="global.html#postLogin">postLogin</a></li><li><a href="global.html#postProgram">postProgram</a></li><li><a href="global.html#postSignup">postSignup</a></li><li><a href="global.html#postTopic">postTopic</a></li><li><a href="global.html#retreiveAdmin">retreiveAdmin</a></li><li><a href="global.html#sendEmailByZone">sendEmailByZone</a></li><li><a href="global.html#sendEmailToEveryone">sendEmailToEveryone</a></li><li><a href="global.html#setAdminUserSaved">setAdminUserSaved</a></li><li><a href="global.html#setToken">setToken</a></li><li><a href="global.html#verifyAdmin">verifyAdmin</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Nov 03 2023 18:07:19 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
