@@ -1,5 +1,6 @@
 import LoginForm from './screens/Login';
 import SendMail from './screens/SendMail';
+import Certifications from './screens/Certifications';
 import SignupForm from './screens/Signup';
 import ForgotPassword from './screens/forgotPassword';
 import AddCourse from './screens/AddCourse';
@@ -12,6 +13,8 @@ import Topics from './screens/Topics';
 import Payments from './screens/Payments';
 import Admins from './screens/Admins';
 import Dashboard from './screens/dashboard';
+import ConsultProjects from './screens/ConsultProjects';
+import Usuarios from './screens/Usuarios';
 
 const routes = [
     { path: '/', name: 'Inicio', Component: Dashboard, isPrivate: true, inNavbar: true },
@@ -19,6 +22,13 @@ const routes = [
         path: '/enviarAnuncio',
         name: 'Anuncios',
         Component: SendMail,
+        isPrivate: true,
+        inNavbar: true,
+    },
+    {
+        path: '/certificaciones',
+        name: 'Certificaciones',
+        Component: Certifications,
         isPrivate: true,
         inNavbar: true,
     },
@@ -64,13 +74,21 @@ const routes = [
         isPrivate: true,
         inNavbar: false,
     },
+    // {
+    //     path: '/programs',
+    //     name: 'Programas',
+    //     Component: Programs,
+    //     isPrivate: true,
+    //     inNavbar: true,
+    // },
     {
-        path: '/programs',
-        name: 'Programas',
-        Component: Programs,
+        path: '/enviarAnuncio',
+        name: 'Anuncios',
+        Component: SendMail,
         isPrivate: true,
         inNavbar: true,
     },
+    
     {
         path: '/intereses',
         name: 'Intereses',
@@ -79,19 +97,33 @@ const routes = [
         inNavbar: true,
     },
     {
-        path: '/admins',
-        name: 'Administradores',
-        Component: Admins,
+        path: '/usuarios',
+        name: 'Usuarios',
+        Component: Usuarios,
         isPrivate: true,
         inNavbar: true,
     },
+    // {
+    //     path: '/admins',
+    //     name: 'Administradores',
+    //     Component: Admins,
+    //     isPrivate: true,
+    //     inNavbar: true,
+    // },
     {
-        path: '/pagos',
-        name: 'Pagos pendientes',
-        Component: Payments,
-        isPrivate: true,
+        path: '/consultprojects',
+        name: 'Proyectos Disponibles',
+        Component: ConsultProjects,
+        isPrivate: true, 
         inNavbar: true,
     },
+    // {
+    //     path: '/pagos',
+    //     name: 'Pagos pendientes',
+    //     Component: Payments,
+    //     isPrivate: true,
+    //     inNavbar: true,
+    // },
     {
         path: '/login',
         name: 'Iniciar sesión',
@@ -103,14 +135,14 @@ const routes = [
         path: '/signup',
         name: 'Registrarse',
         Component: SignupForm,
-        isPrivate: false,
+        isPrivate: true,
         inNavbar: false,
     },
     {
         path: '/cambiarContrasena',
         name: 'Cambiar contraseña',
         Component: ForgotPassword,
-        isPrivate: false,
+        isPrivate: true,
         inNavbar: false,
     },
 ];

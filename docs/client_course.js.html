@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: client/course.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: client/course.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from 'axios';
+
+const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
+
+/**
+ * It makes a GET request to the endpoint `/course` and returns the response data.
+ * @returns An array of objects.
+ */
+export async function getCourses(
+    name = '',
+    page = 1,
+    limit = 8,
+    topic = 'none',
+    postalCode = '',
+    status = '',
+    modality = ''
+) {
+    let endpoint = '';
+
+    if (topic === 'none' || topic === '') {
+        endpoint = `${baseApiEndpoint}/course?courseName[regex]=${name}&amp;page=${page}&amp;limit=${limit}&amp;postalCode[regex]=${postalCode}&amp;status[regex]=${status}&amp;modality[regex]=${modality}`;
+    } else {
+        endpoint = `${baseApiEndpoint}/course?courseName[regex]=${name}&amp;page=${page}&amp;limit=${limit}&amp;topics[in]=${topic}&amp;postalCode[regex]=${postalCode}&amp;status[regex]=${status}&amp;modality[regex]=${modality}`;
+    }
+
+    const response = await axios.get(endpoint);
+    return response.data.data.documents;
+}
+
+/**
+ * It gets the inscriptions of a course
+ * @param courseId - The id of the course
+ * @returns An array of objects.
+ */
+export async function getCourseInscriptions(courseId) {
+    const endpoint = `${baseApiEndpoint}/course/getinscriptions/${courseId}`;
+
+    const response = await axios.get(endpoint);
+    return response.data.data.documents;
+}
+
+/**
+ * It takes a topic object, sends it to the server, and returns the response.
+ * @param course - {
+ * @returns An array of topics.
+ */
+export async function postCourse(courseForm) {
+    const endpoint = `${baseApiEndpoint}/course`;
+
+    const response = await axios.post(endpoint, courseForm, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+
+    return response.data.data.document;
+}
+
+/**
+ * It takes an id, and then deletes the course with that id
+ * @param id - The id of the course to delete
+ */
+export async function deleteCourse(id) {
+    const endpoint = `${baseApiEndpoint}/course/${id}`;
+
+    await axios.delete(endpoint);
+}
+
+/**
+ * It makes a GET request to the API endpoint, and returns the data.
+ * @param id - The id of the course you want to get
+ * @returns The response.data.data.document is being returned.
+ */
+export async function getCourse(id) {
+    const endpoint = `${baseApiEndpoint}/course/${id}`;
+
+    const response = await axios.get(endpoint);
+    return response.data.data.document;
+}
+
+/**
+ * It takes an id and a form, and then it makes a patch request to the endpoint with the id and the
+ * form.
+ * @param id - The id of the course you want to update
+ * @param form - {
+ * @returns The response.data.data.document is the data that is being returned.
+ */
+export async function patchCourse(id, form) {
+    const endpoint = `${baseApiEndpoint}/course/${id}`;
+
+    const response = await axios.patch(endpoint, form, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data.data.document;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#FireError">FireError</a></li><li><a href="global.html#FireQuestion">FireQuestion</a></li><li><a href="global.html#FireSucess">FireSucess</a></li><li><a href="global.html#acceptPayment">acceptPayment</a></li><li><a href="global.html#declinePayment">declinePayment</a></li><li><a href="global.html#deleteAdmin">deleteAdmin</a></li><li><a href="global.html#deleteCourse">deleteCourse</a></li><li><a href="global.html#deleteInscription">deleteInscription</a></li><li><a href="global.html#deleteProgram">deleteProgram</a></li><li><a href="global.html#deleteTopic">deleteTopic</a></li><li><a href="global.html#getCertifications">getCertifications</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getCourseInscriptions">getCourseInscriptions</a></li><li><a href="global.html#getCourses">getCourses</a></li><li><a href="global.html#getPayments">getPayments</a></li><li><a href="global.html#getProgram">getProgram</a></li><li><a href="global.html#getPrograms">getPrograms</a></li><li><a href="global.html#getToken">getToken</a></li><li><a href="global.html#getTopics">getTopics</a></li><li><a href="global.html#getUnverifiedAdmins">getUnverifiedAdmins</a></li><li><a href="global.html#getUserSaved">getUserSaved</a></li><li><a href="global.html#getUsers">getUsers</a></li><li><a href="global.html#isAuthenticated">isAuthenticated</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#objectToUrlQueryString">objectToUrlQueryString</a></li><li><a href="global.html#patchCourse">patchCourse</a></li><li><a href="global.html#patchProgram">patchProgram</a></li><li><a href="global.html#postCourse">postCourse</a></li><li><a href="global.html#postLogin">postLogin</a></li><li><a href="global.html#postProgram">postProgram</a></li><li><a href="global.html#postSignup">postSignup</a></li><li><a href="global.html#postTopic">postTopic</a></li><li><a href="global.html#retreiveAdmin">retreiveAdmin</a></li><li><a href="global.html#sendEmailByZone">sendEmailByZone</a></li><li><a href="global.html#sendEmailToEveryone">sendEmailToEveryone</a></li><li><a href="global.html#setAdminUserSaved">setAdminUserSaved</a></li><li><a href="global.html#setToken">setToken</a></li><li><a href="global.html#verifyAdmin">verifyAdmin</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Nov 03 2023 18:07:19 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
