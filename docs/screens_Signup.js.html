@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: screens/Signup.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: screens/Signup.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
+import { FireError, FireSucess, FireQuestion } from '../utils/alertHandler';
+import { postSignup } from '../client/authentication';
+import '../styles/auth.css';
+
+const SignupForm = () => {
+    const [fname, setFName] = useState('');
+    const [lastname, setLastName] = useState('');
+    const [age, setAge] = useState('');
+    const [email, setEmail] = useState('');
+    const [gender, setGender] = useState('');
+    const [cp, setCp] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const navigate = useNavigate();
+
+    /**
+     * Handles the form submission for user signup by preventing the default form submission behavior, checking that the password and passwordConfirm values match, and sending a POST request to the '/admin/auth/signup' endpoint with the user's name, email, password, and passwordConfirm data. 
+     * 
+     * @param {Event} e - The form submission event that triggered the function.
+     */
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (passwordConfirm !== password) {
+            FireError('Las contraseñas no coinciden.');
+            return;
+        }
+        try {
+            const data = {
+                firstName: fname,
+                lastName: lastname,
+                age: age,
+                gender: gender,
+                email: email,
+                postalCode: cp,
+                password: password
+            };
+            const response = await postSignup(data);
+            if (response.status === 'success') {
+                FireSucess('Has creado un admin exitosamente.');
+            }
+        } catch (error) {
+            if ([400, 401].includes(error.response.status)) FireError(error.response.data.message);
+            else FireError('Ocurrió un error. Por favor intenta de nuevo.');
+        }
+    };
+
+    return (
+        &lt;div className='auth-container'>
+            &lt;h1>Registrar administradores&lt;/h1>
+            &lt;form onSubmit={handleSubmit}>
+                &lt;div>
+                    &lt;label htmlFor='name'>Primer Nombre&lt;/label>
+                    &lt;input
+                        type='text'
+                        id='firstName'
+                        required
+                        value={fname}
+                        onChange={(e) => setFName(e.target.value)}
+                    />
+                &lt;/div>
+                &lt;div>
+                    &lt;label htmlFor='name'>Apellidos&lt;/label>
+                    &lt;input
+                        type='text'
+                        id='lastName'
+                        required
+                        value={lastname}
+                        onChange={(e) => setLastName(e.target.value)}
+                    />
+                &lt;/div>
+                &lt;div>
+                    &lt;label htmlFor='name'>Edad&lt;/label>
+                    &lt;input
+                        type='text'
+                        id='age'
+                        required
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                    />
+                &lt;/div>
+                &lt;div>
+                    &lt;label htmlFor='email'>Email&lt;/label>
+                    &lt;input
+                        type='email'
+                        id='email'
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                &lt;/div>
+                &lt;div>
+                    &lt;label htmlFor='email'>Género&lt;/label>
+                    &lt;input
+                        type='text'
+                        id='gender'
+                        required
+                        value={gender}
+                        onChange={(e) => setGender(e.target.value)}
+                    />
+                &lt;/div>
+                &lt;div>
+                    &lt;label htmlFor='email'>Código postal&lt;/label>
+                    &lt;input
+                        type='text'
+                        id='postalCode'
+                        required
+                        value={cp}
+                        onChange={(e) => setCp(e.target.value)}
+                    />
+                &lt;/div>
+                &lt;div>
+                    &lt;label htmlFor='password'>Contraseña&lt;/label>
+                    &lt;input
+                        type='password'
+                        id='password'
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                &lt;/div>
+                &lt;div>
+                    &lt;label htmlFor='passwordConfirm'>Confirmar contraseña&lt;/label>
+                    &lt;input
+                        type='password'
+                        id='passwordConfirm'
+                        required
+                        value={passwordConfirm}
+                        onChange={(e) => setPasswordConfirm(e.target.value)}
+                    />
+                &lt;/div>
+                &lt;button type='submit'>Registrarse&lt;/button>
+            &lt;/form>
+            {/* &lt;section>
+                &lt;Link to='/login'>Iniciar sesión&lt;/Link>
+                &lt;Link to='/cambiarContrasena'>Olvidé mi contraseña&lt;/Link>
+            &lt;/section> */}
+        &lt;/div>
+    );
+};
+
+export default SignupForm;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#FireError">FireError</a></li><li><a href="global.html#FireQuestion">FireQuestion</a></li><li><a href="global.html#FireSucess">FireSucess</a></li><li><a href="global.html#acceptPayment">acceptPayment</a></li><li><a href="global.html#declinePayment">declinePayment</a></li><li><a href="global.html#deleteAdmin">deleteAdmin</a></li><li><a href="global.html#deleteCourse">deleteCourse</a></li><li><a href="global.html#deleteInscription">deleteInscription</a></li><li><a href="global.html#deleteProgram">deleteProgram</a></li><li><a href="global.html#deleteTopic">deleteTopic</a></li><li><a href="global.html#getCertifications">getCertifications</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getCourseInscriptions">getCourseInscriptions</a></li><li><a href="global.html#getCourses">getCourses</a></li><li><a href="global.html#getPayments">getPayments</a></li><li><a href="global.html#getProgram">getProgram</a></li><li><a href="global.html#getPrograms">getPrograms</a></li><li><a href="global.html#getToken">getToken</a></li><li><a href="global.html#getTopics">getTopics</a></li><li><a href="global.html#getUnverifiedAdmins">getUnverifiedAdmins</a></li><li><a href="global.html#getUserSaved">getUserSaved</a></li><li><a href="global.html#getUsers">getUsers</a></li><li><a href="global.html#isAuthenticated">isAuthenticated</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#objectToUrlQueryString">objectToUrlQueryString</a></li><li><a href="global.html#patchCourse">patchCourse</a></li><li><a href="global.html#patchProgram">patchProgram</a></li><li><a href="global.html#postCourse">postCourse</a></li><li><a href="global.html#postLogin">postLogin</a></li><li><a href="global.html#postProgram">postProgram</a></li><li><a href="global.html#postSignup">postSignup</a></li><li><a href="global.html#postTopic">postTopic</a></li><li><a href="global.html#retreiveAdmin">retreiveAdmin</a></li><li><a href="global.html#sendEmailByZone">sendEmailByZone</a></li><li><a href="global.html#sendEmailToEveryone">sendEmailToEveryone</a></li><li><a href="global.html#setAdminUserSaved">setAdminUserSaved</a></li><li><a href="global.html#setToken">setToken</a></li><li><a href="global.html#verifyAdmin">verifyAdmin</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Nov 03 2023 18:07:19 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

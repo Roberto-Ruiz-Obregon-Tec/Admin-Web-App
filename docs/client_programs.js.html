@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: client/programs.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: client/programs.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from 'axios';
+
+const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
+
+/**
+ * It makes a GET request to the endpoint `/program` and returns the response data.
+ * @returns An array of objects.
+ */
+export async function getPrograms(name = '', page = 1, limit = 8, category = '') {
+    const endpoint = `${baseApiEndpoint}/program?programName[regex]=${name}&amp;page=${page}&amp;limit=${limit}&amp;category[regex]=${category}`;
+
+    const response = await axios.get(endpoint);
+    return response.data.data.documents;
+}
+
+/**
+ * Fetches a specific program from an API based on its ID.
+ * @param {string|number} id - The ID of the program to retrieve from the API.
+ * @returns {Promise&lt;object>} - A Promise that resolves to an object representing the retrieved program.
+ */
+export async function getProgram(id) {
+    const endpoint = `${baseApiEndpoint}/program/${id}`;
+
+    const response = await axios.get(endpoint);
+    return response.data.data.document;
+}
+
+/**
+ * Updates a specific program in the API.
+ * @param {string|number} id - The ID of the program to update.
+ * @param {FormData} formData - The new data for the program in the form of a FormData object.
+ * @returns {Promise&lt;object>} - A Promise that resolves to an object representing the updated program.
+ */
+export async function patchProgram(id, formData) {
+    const endpoint = `${baseApiEndpoint}/program/${id}`;
+
+    const response = await axios.patch(endpoint, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data.data.document;
+}
+
+/**
+ * Creates a new program in the API.
+ * @param {FormData} formData - The data for the new program in the form of a FormData object.
+ * @returns {Promise&lt;object>} - A Promise that resolves to an object representing the newly created program.
+ */
+export async function postProgram(formData) {
+    const endpoint = `${baseApiEndpoint}/program`;
+
+    const response = await axios.post(endpoint, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data.data.document;
+}
+
+/**
+ * Deletes a specific program from the API based on its ID.
+ * @param {string|number} id - The ID of the program to delete from the API.
+ * @returns {Promise&lt;object>} - A Promise that resolves to an object representing the response from the API.
+ */
+export async function deleteProgram(id) {
+    const endpoint = `${baseApiEndpoint}/program/${id}`;
+
+    const response = await axios.delete(endpoint);
+    return response;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#FireError">FireError</a></li><li><a href="global.html#FireQuestion">FireQuestion</a></li><li><a href="global.html#FireSucess">FireSucess</a></li><li><a href="global.html#acceptPayment">acceptPayment</a></li><li><a href="global.html#declinePayment">declinePayment</a></li><li><a href="global.html#deleteAdmin">deleteAdmin</a></li><li><a href="global.html#deleteCourse">deleteCourse</a></li><li><a href="global.html#deleteInscription">deleteInscription</a></li><li><a href="global.html#deleteProgram">deleteProgram</a></li><li><a href="global.html#deleteTopic">deleteTopic</a></li><li><a href="global.html#getCertifications">getCertifications</a></li><li><a href="global.html#getCourse">getCourse</a></li><li><a href="global.html#getCourseInscriptions">getCourseInscriptions</a></li><li><a href="global.html#getCourses">getCourses</a></li><li><a href="global.html#getPayments">getPayments</a></li><li><a href="global.html#getProgram">getProgram</a></li><li><a href="global.html#getPrograms">getPrograms</a></li><li><a href="global.html#getToken">getToken</a></li><li><a href="global.html#getTopics">getTopics</a></li><li><a href="global.html#getUnverifiedAdmins">getUnverifiedAdmins</a></li><li><a href="global.html#getUserSaved">getUserSaved</a></li><li><a href="global.html#getUsers">getUsers</a></li><li><a href="global.html#isAuthenticated">isAuthenticated</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#objectToUrlQueryString">objectToUrlQueryString</a></li><li><a href="global.html#patchCourse">patchCourse</a></li><li><a href="global.html#patchProgram">patchProgram</a></li><li><a href="global.html#postCourse">postCourse</a></li><li><a href="global.html#postLogin">postLogin</a></li><li><a href="global.html#postProgram">postProgram</a></li><li><a href="global.html#postSignup">postSignup</a></li><li><a href="global.html#postTopic">postTopic</a></li><li><a href="global.html#retreiveAdmin">retreiveAdmin</a></li><li><a href="global.html#sendEmailByZone">sendEmailByZone</a></li><li><a href="global.html#sendEmailToEveryone">sendEmailToEveryone</a></li><li><a href="global.html#setAdminUserSaved">setAdminUserSaved</a></li><li><a href="global.html#setToken">setToken</a></li><li><a href="global.html#verifyAdmin">verifyAdmin</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Nov 03 2023 18:07:19 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

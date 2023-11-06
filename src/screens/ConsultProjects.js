@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import {getProgram} from '../client/availableProj'
+import { getProgram } from '../client/availableProj'
+import { FireError } from '../utils/alertHandler';
 import '../styles/verCursos.css';
 import '../styles/availableProj.css'
 
@@ -8,16 +9,14 @@ const ConsultProjects = () => {
     const [avaliableP, setavailableP] = useState ([]);
 
     useEffect(() => {
-        // Realizar la solicitud GET y actualizar el estado
-        const fetchData = async () => {
+        (async () => {
             try {
                 const proj = await getProgram();
                 setavailableP(proj);
             } catch (error) {
-                console.error('Error al obtener los proyectos:', error);
+                FireError(error.response.message);
             }
-        };
-        fetchData();
+        })();
     }, []);
 
     return (
@@ -43,9 +42,9 @@ const ConsultProjects = () => {
                     {avaliableP.map((item) => (
                     <tr key={item._id}>
                         <td>{item.name}</td>
-                        <td>{item.startDate}</td>
-                        <td>{item.endDate}</td>
-                        <td>{item.deadlineDate}</td>
+                        <td>{new Date(item.startDate).getDate()}/{new Date(item.startDate).getMonth() + 1}/{new Date(item.startDate).getFullYear()}</td>
+                        <td>{new Date(item.endDate).getDate()}/{new Date(item.endDate).getMonth() + 1}/{new Date(item.endDate).getFullYear()}</td>
+                        <td>{new Date(item.deadlineDate).getDate()}/{new Date(item.deadlineDate).getMonth() + 1}/{new Date(item.deadlineDate).getFullYear()}</td>
                         <td>{item.postalCode}</td>
                         <td>{item.description}</td>
                     </tr>
@@ -53,7 +52,6 @@ const ConsultProjects = () => {
                 </tbody>
             
             </table>
-
             
         </Fragment>
     );

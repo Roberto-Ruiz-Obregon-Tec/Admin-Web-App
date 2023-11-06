@@ -13,6 +13,8 @@ import Topics from './screens/Topics';
 import Payments from './screens/Payments';
 import Admins from './screens/Admins';
 import Dashboard from './screens/dashboard';
+import ConsultProjects from './screens/ConsultProjects';
+import Usuarios from './screens/Usuarios';
 
 const routes = [
     { path: '/', name: 'Inicio', Component: Dashboard, isPrivate: true, inNavbar: true },
@@ -72,13 +74,13 @@ const routes = [
         isPrivate: true,
         inNavbar: false,
     },
-    {
-        path: '/programs',
-        name: 'Programas',
-        Component: Programs,
-        isPrivate: true,
-        inNavbar: true,
-    },
+    // {
+    //     path: '/programs',
+    //     name: 'Programas',
+    //     Component: Programs,
+    //     isPrivate: true,
+    //     inNavbar: true,
+    // },
     {
         path: '/enviarAnuncio',
         name: 'Anuncios',
@@ -101,27 +103,27 @@ const routes = [
         isPrivate: true,
         inNavbar: true,
     },
-    {
-        path: '/admins',
-        name: 'Administradores',
-        Component: Admins,
-        isPrivate: true,
-        inNavbar: true,
-    },
+    // {
+    //     path: '/admins',
+    //     name: 'Administradores',
+    //     Component: Admins,
+    //     isPrivate: true,
+    //     inNavbar: true,
+    // },
     {
         path: '/consultprojects',
         name: 'Proyectos Disponibles',
         Component: ConsultProjects,
-        isPrivate: true,
+        isPrivate: true, 
         inNavbar: true,
     },
-    {
-        path: '/pagos',
-        name: 'Pagos pendientes',
-        Component: Payments,
-        isPrivate: true,
-        inNavbar: true,
-    },
+    // {
+    //     path: '/pagos',
+    //     name: 'Pagos pendientes',
+    //     Component: Payments,
+    //     isPrivate: true,
+    //     inNavbar: true,
+    // },
     {
         path: '/login',
         name: 'Iniciar sesión',
