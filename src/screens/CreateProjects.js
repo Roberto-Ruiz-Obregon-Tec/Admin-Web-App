@@ -20,13 +20,41 @@ const CreateProjects = () => {
     const [limitDate, setLimitDate] = useState(new Date());
     
     const [file, setFile] = useState(null);
+
+    const validateDates = () => {
+        const c1 = new Date(startDate).getTime() <= new Date(endDate).getTime();
+        const c2 = new Date(limitDate).getTime() <= new Date(endDate).getTime();
+        const c3 = new Date(startDate).getTime() <= new Date(limitDate).getTime();
+
+        return c1 && c2 && c3;
+    }
+
     /**
- * Handles the form submission for user signup by preventing the default form submission behavior, checking that the password and passwordConfirm values match, and sending a POST request to the '/admin/auth/signup' endpoint with the user's name, email, password, and passwordConfirm data. 
- * 
- * @param {Event} e - The form submission event that triggered the function.
- */
+     * Handles the form submission for admin to create a project
+     * 
+     * @param {Event} e - The form submission event that triggered the function.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateDates()) {
+            FireError('Las fecha de inicio debe de ser antes que la de inicio. Y el límite debe de ser antes que termine.');
+            return;
+        }
+
+        if (
+            name.trim() === "" || 
+            postalCode.trim() === "" || 
+            description.trim() === ""
+        ) {
+            FireError('No puedes dejar los campos vacíos.');
+            return;
+        }
+
+        if (file === null) {
+            FireError('Debes de subir una imagen');
+            return;
+        }
+
         // if (passwordConfirm !== password) {
         //     FireError('Las contraseñas no coinciden.');
         //     return;
