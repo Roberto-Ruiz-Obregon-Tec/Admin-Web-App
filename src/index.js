@@ -9,32 +9,30 @@ import './styles/style.css';
 function App() {
     return (
         <div id='app-container'>
-            <div>
-                <Routes>
-                    {routes.map((route) =>
-                        route.isPrivate ? (
-                            <Route
-                                key={route.path}
-                                path={route.path}
-                                element={
-                                    <PrivateRoute>
-                                        <Navbar />
-                                        <div id='app-base-layout'>
-                                            <route.Component />
-                                        </div>
-                                    </PrivateRoute>
-                                }
-                            />
-                        ) : (
-                            <Route
-                                key={route.path}
-                                path={route.path}
-                                element={<route.Component />}
-                            />
-                        )
-                    )}
-                </Routes>
-            </div>
+            <Routes>
+                {routes.map((route) =>
+                    route.isPrivate ? (
+                        <Route
+                            key={route.path}
+                            path={route.path}
+                            element={
+                                <PrivateRoute>
+                                    <Navbar />
+                                    <div id='app-base-layout'>
+                                        <route.Component />
+                                    </div>
+                                </PrivateRoute>
+                            }
+                        />
+                    ) : (
+                        <Route
+                            key={route.path}
+                            path={route.path}
+                            element={<route.Component />}
+                        />
+                    )
+                )}
+            </Routes>
         </div>
     );
 }

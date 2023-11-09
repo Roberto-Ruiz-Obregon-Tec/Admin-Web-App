@@ -22,18 +22,29 @@ function Navbar() {
     return (
         <div className='navbar-container'>
             <div className='navbar'>
-                <div>
+                <div className='navbar-left'>
                     {routes
                         .filter((route) => route.isPrivate && route.inNavbar)
-                        .map((route) => (
-                            <a
-                                key={route.path}
-                                className='navbar-button'
-                                id='inicio_btn'
-                                onClick={() => navigate(route.path)}>
-                                {route.name}
-                            </a>
-                        ))}
+                        .map((route) => {
+
+                            if (route.path === "/") {
+                                return (
+                                    <img
+                                        onClick={() => {
+                                            navigate("/");
+                                        }} src="/logoFundacion.png" width={50} />
+                                )
+                            }
+
+                            return (
+                                <a
+                                    key={route.path}
+                                    className='navbar-button'
+                                    onClick={() => navigate(route.path)}>
+                                    {route.name}
+                                </a>
+                            )
+                        })}
                 </div>
                 <div className='navbar-logout'>
                     <a onClick={logOutHandler}>
