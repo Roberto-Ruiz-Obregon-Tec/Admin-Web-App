@@ -6,14 +6,15 @@ import ForgotPassword from './screens/forgotPassword';
 import AddCourse from './screens/AddCourse';
 import EditCourse from './screens/EditCourse';
 import Courses from './screens/Courses';
-import Programs from './screens/Programs';
+// import Programs from './screens/Programs';
 import EditProgram from './screens/EditProgram';
 import Inscriptions from './screens/Inscriptions';
 import Topics from './screens/Topics';
-import Payments from './screens/Payments';
-import Admins from './screens/Admins';
+// import Payments from './screens/Payments';
+// import Admins from './screens/Admins';
 import Dashboard from './screens/dashboard';
 import ConsultProjects from './screens/ConsultProjects';
+import CreateProjects from './screens/CreateProjects';
 import Usuarios from './screens/Usuarios';
 
 const routes = [
@@ -110,6 +111,13 @@ const routes = [
     //     isPrivate: true,
     //     inNavbar: true,
     // },
+    {
+        path: '/consultprojects/crear',
+        name: 'Crear proyectoss',
+        Component: CreateProjects,
+        isPrivate: true, 
+        inNavbar: false,
+    },
     {
         path: '/consultprojects',
         name: 'Proyectos Disponibles',
