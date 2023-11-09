@@ -18,6 +18,8 @@ const CreateProjects = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [limitDate, setLimitDate] = useState(new Date());
+    
+    const [file, setFile] = useState(null);
     /**
  * Handles the form submission for user signup by preventing the default form submission behavior, checking that the password and passwordConfirm values match, and sending a POST request to the '/admin/auth/signup' endpoint with the user's name, email, password, and passwordConfirm data. 
  * 
@@ -126,16 +128,21 @@ const CreateProjects = () => {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
-                    <UploadImage
-                        id="image-project-new"
-                        setFile={(file) => {
-                            console.log(file);
-                        }}
-                    />
-                    
-                    <button type='submit'>
-                        Crear proyecto
-                    </button>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column"
+                    }}>
+                        <UploadImage
+                            id="image-project-new"
+                            setFile={(file) => {
+                                setFile(file);
+                            }}
+                            file={file}
+                        />
+                        <button type='submit'>
+                            Crear proyecto
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
