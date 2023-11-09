@@ -25,6 +25,7 @@ const routes = [
         Component: SendMail,
         isPrivate: true,
         inNavbar: true,
+        svg: "announce.svg"
     },
     {
         path: '/certificaciones',
@@ -32,6 +33,7 @@ const routes = [
         Component: Certifications,
         isPrivate: true,
         inNavbar: true,
+        svg: "certify.svg"
     },
     {
         path: '/agregarCursos',

@@ -40,7 +40,11 @@ function Navbar() {
                                 <a
                                     key={route.path}
                                     className='navbar-button'
-                                    onClick={() => navigate(route.path)}>
+                                    onClick={() => navigate(route.path)}
+                                >
+                                    {route.svg && (
+                                        <img src={`/icons/${route.svg}`} />
+                                    )}
                                     {route.name}
                                 </a>
                             )
