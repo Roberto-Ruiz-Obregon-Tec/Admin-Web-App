@@ -4,6 +4,13 @@
     min-height:  calc(100vh - 100px);
     position: relative;
 }
+.container_page_wrapper_no_nav {
+    width: 100%;
+    box-sizing: border-box;
+    min-height:  calc(100vh);
+    position: relative;
+    background-color: #F9F9F9;
+}
 
 .container_page_wrapper_button_add {
     background-color: #CF2B2A;
