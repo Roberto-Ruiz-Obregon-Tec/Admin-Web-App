@@ -11,4 +11,15 @@ export async function getProgram() {
 
     const response = await axios.get(endpoint);
     return response.data.data.programs;
+}
+
+
+/**
+ * It makes a POST request to the endpoint `/program/create` and returns the response data.
+ */
+export async function createAProject(data) {
+    const endpoint = `${baseApiEndpoint}/program/create`;
+
+    const response = await axios.post(endpoint, data);
+    return response.data;
 } 

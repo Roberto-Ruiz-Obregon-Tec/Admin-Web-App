@@ -20,25 +20,27 @@ function Navbar() {
     };
 
     return (
-        <div className='navbar'>
-            <div>
-                {routes
-                    .filter((route) => route.isPrivate && route.inNavbar)
-                    .map((route) => (
-                        <a
-                            key={route.path}
-                            className='navbar-button'
-                            id='inicio_btn'
-                            onClick={() => navigate(route.path)}>
-                            {route.name}
-                        </a>
-                    ))}
-            </div>
-            <div className='navbar-logout'>
-                <a onClick={logOutHandler}>
-                    <span>Cerrar sesión</span>
-                    <LogOut color="white" />
-                </a>
+        <div className='navbar-container'>
+            <div className='navbar'>
+                <div>
+                    {routes
+                        .filter((route) => route.isPrivate && route.inNavbar)
+                        .map((route) => (
+                            <a
+                                key={route.path}
+                                className='navbar-button'
+                                id='inicio_btn'
+                                onClick={() => navigate(route.path)}>
+                                {route.name}
+                            </a>
+                        ))}
+                </div>
+                <div className='navbar-logout'>
+                    <a onClick={logOutHandler}>
+                        <span>Cerrar sesión</span>
+                        <LogOut color="white" />
+                    </a>
+                </div>
             </div>
         </div>
     );
