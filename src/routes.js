@@ -81,15 +81,7 @@ const routes = [
     //     Component: Programs,
     //     isPrivate: true,
     //     inNavbar: true,
-    // },
-    {
-        path: '/enviarAnuncio',
-        name: 'Anuncios',
-        Component: SendMail,
-        isPrivate: true,
-        inNavbar: true,
-    },
-    
+    // },    
     {
         path: '/intereses',
         name: 'Intereses',

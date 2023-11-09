@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReturnLink from "../components/ReturnLink";
 import { FireError, FireSucess } from '../utils/alertHandler';
 import DateSelector from "../components/DateSelector";
+import UploadImage from "../components/UploadImage";
 
 import '../styles/verCursos.css';
 import '../styles/wrappers/wrap.css';
@@ -125,13 +126,17 @@ const CreateProjects = () => {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
-
-                    <button type='submit'>Registrarse</button>
+                    <UploadImage
+                        id="image-project-new"
+                        setFile={(file) => {
+                            console.log(file);
+                        }}
+                    />
+                    
+                    <button type='submit'>
+                        Crear proyecto
+                    </button>
                 </form>
-                {/* <section>
-                <Link to='/login'>Iniciar sesión</Link>
-                <Link to='/cambiarContrasena'>Olvidé mi contraseña</Link>
-            </section> */}
             </div>
         </div>
     );

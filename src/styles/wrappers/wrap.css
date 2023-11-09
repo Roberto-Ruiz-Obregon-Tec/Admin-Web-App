@@ -51,6 +51,30 @@
 .container_page_wrapper_link_return:hover {
     text-decoration: underline;
 }
-.container_page_wrapper_date_selector {
+.container_page_wrapper_images_upload {
+    width: 100%;
+}
+.container_page_wrapper_images_upload input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
 
+.container_page_wrapper_images_upload label {
+    width: 100%;
+    background-color: #9A9A9A;
+    color: #FFF;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: opacity ease-out 300ms;
+}
+.container_page_wrapper_images_upload label:hover {
+    opacity: .8;
 }

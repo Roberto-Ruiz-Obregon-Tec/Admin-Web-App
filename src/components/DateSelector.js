@@ -17,7 +17,7 @@ function DateSelector(props) {
         }}>
             <label style={{
                 width: "100%"
-            }} for="birthday">{text}</label>
+            }} htmlFor="birthday">{text}</label>
             <input value={currDate} onChange={(e) => {
                 setCurrDate(e.target.value);
             }} type="date" id={id} name="fecha"></input>
