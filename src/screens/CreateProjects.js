@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ReturnLink from "../components/ReturnLink";
 import { FireError, FireSucess } from '../utils/alertHandler';
+import DateSelector from "../components/DateSelector";
+
 import '../styles/verCursos.css';
 import '../styles/wrappers/wrap.css';
 import '../styles/auth.css';
@@ -11,6 +13,10 @@ const CreateProjects = () => {
     const [name, setName] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [description, setDescription] = useState('');
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [limitDate, setLimitDate] = useState(new Date());
     /**
  * Handles the form submission for user signup by preventing the default form submission behavior, checking that the password and passwordConfirm values match, and sending a POST request to the '/admin/auth/signup' endpoint with the user's name, email, password, and passwordConfirm data. 
  * 
@@ -49,7 +55,9 @@ const CreateProjects = () => {
             </div>
             <ReturnLink href="/consultprojects" />
 
-            <div className='auth-container'>
+            <div className='auth-container' style={{
+                width: "35rem"
+            }}>
                 <h1>
                     Crear proyecto
                 </h1>
@@ -64,6 +72,35 @@ const CreateProjects = () => {
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        width: "100%",
+                        flexDirection: "row",
+                        gap: "10px"
+                    }}>
+                        <DateSelector
+                            currDate={startDate}
+                            setCurrDate={setStartDate}
+
+                            text="Fecha inicio"
+                            id="start-date-project"
+                        />
+                        <DateSelector
+                            currDate={endDate}
+                            setCurrDate={setEndDate}
+
+                            text="Fecha fin"
+                            id="end-date-project"
+                        />
+                        <DateSelector
+                            currDate={limitDate}
+                            setCurrDate={setLimitDate}
+
+                            text="Fecha límite"
+                            id="limit-date-project"
+                        />
+                    </div>
                     <div>
                         <label htmlFor='postal-code'>Código postal</label>
                         <input
@@ -74,9 +111,6 @@ const CreateProjects = () => {
                             onChange={(e) => setPostalCode(e.target.value)}
                         />
                     </div>
-
-
-
                     <div>
                         <label htmlFor='description'>Descripción</label>
                         <textarea
