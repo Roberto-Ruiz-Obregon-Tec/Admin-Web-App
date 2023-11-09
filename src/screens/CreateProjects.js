@@ -56,12 +56,14 @@ const CreateProjects = () => {
             <ReturnLink href="/consultprojects" />
 
             <div className='auth-container' style={{
-                width: "35rem"
+                width: "32rem"
             }}>
                 <h1>
                     Crear proyecto
                 </h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{
+                    gap: "30px"
+                }}>
                     <div>
                         <label htmlFor='name'>Nombre</label>
                         <input

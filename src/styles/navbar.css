@@ -1,10 +1,16 @@
+.navbar-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: calc(100vw - 14.8px);
+}
 .navbar {
     background-color: #cf2a2a;
     padding: 22px;
     display: flex;
     justify-content: space-between;
 }
-
 .navbar-button {
     padding-right: 60px;
     color: white;
