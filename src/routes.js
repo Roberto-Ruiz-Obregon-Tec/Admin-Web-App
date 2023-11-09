@@ -6,21 +6,24 @@ import ForgotPassword from './screens/forgotPassword';
 import AddCourse from './screens/AddCourse';
 import EditCourse from './screens/EditCourse';
 import Courses from './screens/Courses';
-// import Programs from './screens/Programs';
 import EditProgram from './screens/EditProgram';
 import Inscriptions from './screens/Inscriptions';
 import Topics from './screens/Topics';
-// import Payments from './screens/Payments';
-// import Admins from './screens/Admins';
 import Dashboard from './screens/dashboard';
 import ConsultProjects from './screens/ConsultProjects';
 import CreateProjects from './screens/CreateProjects';
 import Usuarios from './screens/Usuarios';
 
 const routes = [
-    { path: '/', name: 'Inicio', Component: Dashboard, isPrivate: true, inNavbar: true },
     {
-        path: '/enviarAnuncio',
+        path: '/',
+        name: 'Inicio',
+        Component: Dashboard,
+        isPrivate: true,
+        inNavbar: true
+    },
+    {
+        path: '/anuncios',
         name: 'Anuncios',
         Component: SendMail,
         isPrivate: true,
@@ -36,7 +39,7 @@ const routes = [
         svg: "certify.svg"
     },
     {
-        path: '/agregarCursos',
+        path: '/cursos/crear',
         name: 'Agregar curso',
         Component: AddCourse,
         isPrivate: true,
@@ -64,7 +67,7 @@ const routes = [
         inNavbar: true,
     },
     {
-        path: '/programs/program/',
+        path: '/programs/program',
         name: 'Crear programa',
         Component: EditProgram,
         isPrivate: true,
@@ -106,14 +109,14 @@ const routes = [
     //     inNavbar: true,
     // },
     {
-        path: '/consultprojects/crear',
+        path: '/proyectos/crear',
         name: 'Crear proyectoss',
         Component: CreateProjects,
         isPrivate: true, 
         inNavbar: false,
     },
     {
-        path: '/consultprojects',
+        path: '/proyectos',
         name: 'Proyectos Disponibles',
         Component: ConsultProjects,
         isPrivate: true, 
@@ -134,7 +137,7 @@ const routes = [
         inNavbar: false,
     },
     {
-        path: '/signup',
+        path: '/crear-cuenta-admin',
         name: 'Registrarse',
         Component: SignupForm,
         isPrivate: true,

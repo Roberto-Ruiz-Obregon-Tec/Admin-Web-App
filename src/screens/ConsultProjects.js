@@ -55,7 +55,7 @@ const ConsultProjects = () => {
             
             </table>
 
-            <BtnToAdd title="Añadir un proyecto" asLink href="/consultprojects/crear" />
+            <BtnToAdd title="Añadir un proyecto" asLink href="/proyectos/crear" />
         </div>
     );
 };

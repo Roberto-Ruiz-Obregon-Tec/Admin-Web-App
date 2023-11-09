@@ -70,7 +70,7 @@ const CreateProjects = () => {
 
             if (response.status === 'success') {
                 FireSucess('Has creado un proyecto exitosamente.');
-                navigate("/consultprojects");
+                navigate("/proyectos");
             } else {
                 FireError('Ha habido un error.');
             }
@@ -88,7 +88,7 @@ const CreateProjects = () => {
             <div className='header-container'>
                 <h4>Inicio / Proyectos Disponibles / Crear Proyecto</h4>
             </div>
-            <ReturnLink href="/consultprojects" />
+            <ReturnLink href="/proyectos" />
 
             <div className='auth-container' style={{
                 width: "32rem"
