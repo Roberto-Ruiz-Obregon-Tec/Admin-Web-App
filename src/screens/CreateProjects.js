@@ -3,6 +3,8 @@ import ReturnLink from "../components/ReturnLink";
 import { FireError, FireSucess } from '../utils/alertHandler';
 import DateSelector from "../components/DateSelector";
 import UploadImage from "../components/UploadImage";
+import { createAProject } from "../client/availableProj";
+import { useNavigate } from 'react-router-dom';
 
 import '../styles/verCursos.css';
 import '../styles/wrappers/wrap.css';
@@ -10,7 +12,7 @@ import '../styles/auth.css';
 
 
 const CreateProjects = () => {
-
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [description, setDescription] = useState('');
@@ -18,7 +20,7 @@ const CreateProjects = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [limitDate, setLimitDate] = useState(new Date());
-    
+
     const [file, setFile] = useState(null);
 
     const validateDates = () => {
@@ -42,8 +44,8 @@ const CreateProjects = () => {
         }
 
         if (
-            name.trim() === "" || 
-            postalCode.trim() === "" || 
+            name.trim() === "" ||
+            postalCode.trim() === "" ||
             description.trim() === ""
         ) {
             FireError('No puedes dejar los campos vacíos.');
@@ -54,25 +56,27 @@ const CreateProjects = () => {
             FireError('Debes de subir una imagen');
             return;
         }
-
-        // if (passwordConfirm !== password) {
-        //     FireError('Las contraseñas no coinciden.');
-        //     return;
-        // }
         try {
-            // const data = {
-            //     firstName: fname,
-            //     lastName: lastname,
-            //     age: age,
-            //     gender: gender,
-            //     email: email,
-            //     postalCode: cp,
-            //     password: password
-            // };
-            // const response = await postSignup(data);
-            // if (response.status === 'success') {
-            //     FireSucess('Has creado un admin exitosamente.');
-            // }
+            const data = {
+                name: name,
+                startDate: new Date(startDate),
+                endDate: new Date(endDate),
+                deadlineDate: new Date(limitDate),
+                programImage: "ejemplo",
+                postalCode: postalCode,
+                description: description
+            };
+            const response = await createAProject(data);
+
+            if (response.status === 'success') {
+                FireSucess('Has creado un proyecto exitosamente.');
+                navigate("/consultprojects");
+            } else {
+                FireError('Ha habido un error.');
+            }
+
+
+
         } catch (error) {
             if ([400, 401].includes(error.response.status)) FireError(error.response.data.message);
             else FireError('Ocurrió un error. Por favor intenta de nuevo.');
