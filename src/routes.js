@@ -11,6 +11,7 @@ import LoginForm from './screens/LogIn/Login';
 import Certifications from './screens/Certifications/Certifications';
 import Dashboard from './screens/Dashboard/Dashboard';
 import ConsultProjects from './screens/Projects/Projects';
+import CreateProjects from './screens/Projects/CreateProjects/CreateProjects';
 import Usuarios from './screens/Users/Users';
 
 import {
@@ -18,7 +19,8 @@ import {
     PATH_CERTIFICATIONS,
     PATH_USERS,
     PATH_PROJECTS,
-    PATH_LOGIN
+    PATH_LOGIN,
+    PATH_CREATE_PROJECTS
 } from "./config/paths";
 
 const routes = [
@@ -60,6 +62,13 @@ const routes = [
         isPrivate: false,
         inNavbar: false,
     },
+    {
+        path: PATH_CREATE_PROJECTS,
+        name: 'Crear proyectos',
+        Component: CreateProjects,
+        isPrivate: true, 
+        inNavbar: false,
+    }
     // {
     //     path: PATH_ANNOUNCES,
     //     name: 'Anuncios',
@@ -130,13 +139,6 @@ const routes = [
     //     Component: Admins,
     //     isPrivate: true,
     //     inNavbar: true,
-    // },
-    // {
-    //     path: '/proyectos/crear',
-    //     name: 'Crear proyectoss',
-    //     Component: CreateProjects,
-    //     isPrivate: true, 
-    //     inNavbar: false,
     // },
     // {
     //     path: '/pagos',

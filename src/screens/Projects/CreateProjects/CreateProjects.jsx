@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
-import ReturnLink from "../../components/ReturnLink";
-import { FireError, FireSucess } from '../../utils/alertHandler';
-import DateSelector from "../../components/DateSelector";
-import UploadImage from "../../components/UploadImage";
-import { createAProject } from "../../client/availableProj";
+import ReturnLink from "../../../components/Links/Return/Return";
+import { FireError, FireSucess } from '../../../utils/alertHandler';
+import { createAProject } from "../../../client/availableProj";
+import NavHistory from "../../../components/NavHistory/NavHistory";
+import Card from "../../../components/ShadowCard/ShadowCard";
+import { PATH_PROJECTS } from "../../../config/paths";
+
+import InputText from "../../../components/Form/Input/Text/Text";
+import InputTextArea from "../../../components/Form/Input/TextArea/TextArea";
+import InputImage from "../../../components/Form/Input/Image/Image";
+import InputDate from "../../../components/Form/Input/Date/Date";
+import Button from "../../../components/Form/Button/Button";
+
 import { useNavigate } from 'react-router-dom';
-import styles from "./CreateProjects.css";
-import '../../styles/wrappers/wrap.css';
-
-// import '../styles/verCursos.css';
-// import '../styles/auth.css';
-
+import styles from "./CreateProjects.module.css";
 
 const CreateProjects = () => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
+
     const [name, setName] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [description, setDescription] = useState('');
@@ -67,116 +72,88 @@ const CreateProjects = () => {
                 postalCode: postalCode,
                 description: description
             };
+            setIsLoading(true);
             const response = await createAProject(data);
+            setIsLoading(false);
 
             if (response.status === 'success') {
                 FireSucess('Has creado un proyecto exitosamente.');
-                navigate("/proyectos");
+                navigate(PATH_PROJECTS);
             } else {
                 FireError('Ha habido un error.');
             }
-
-
-
         } catch (error) {
+            setIsLoading(false);
             if ([400, 401].includes(error.response.status)) FireError(error.response.data.message);
             else FireError('Ocurrió un error. Por favor intenta de nuevo.');
         }
     };
 
     return (
-        <div className='container_page_wrapper'>
-            <div className='header-container'>
-                <h4>Inicio / Proyectos Disponibles / Crear Proyecto</h4>
-            </div>
+        <div>
+            <NavHistory>
+                Inicio / Proyectos Disponibles / Crear Proyecto
+            </NavHistory>
             <ReturnLink href="/proyectos" />
-
-            <div className='auth-container' style={{
-                width: "32rem"
-            }}>
-                <h1>
-                    Crear proyecto
-                </h1>
-                <form onSubmit={handleSubmit} style={{
-                    gap: "30px"
-                }}>
-                    <div>
-                        <label htmlFor='name'>Nombre</label>
-                        <input
-                            type='text'
-                            id='name'
-                            required
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </div>
-                    <div style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        width: "100%",
-                        flexDirection: "row",
-                        gap: "10px"
-                    }}>
-                        <DateSelector
-                            currDate={startDate}
-                            setCurrDate={setStartDate}
-
-                            text="Fecha inicio"
-                            id="start-date-project"
-                        />
-                        <DateSelector
-                            currDate={endDate}
-                            setCurrDate={setEndDate}
-
-                            text="Fecha fin"
-                            id="end-date-project"
-                        />
-                        <DateSelector
-                            currDate={limitDate}
-                            setCurrDate={setLimitDate}
-
-                            text="Fecha límite"
-                            id="limit-date-project"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='postal-code'>Código postal</label>
-                        <input
-                            type='text'
-                            id='postal-code'
-                            required
-                            value={postalCode}
-                            onChange={(e) => setPostalCode(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='description'>Descripción</label>
-                        <textarea
-                            style={{
-                                height: "100px"
-                            }}
-                            id='description'
-                            required
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                    </div>
-                    <div style={{
-                        display: "flex",
-                        flexDirection: "column"
-                    }}>
-                        <UploadImage
-                            id="image-project-new"
-                            setFile={(file) => {
-                                setFile(file);
-                            }}
-                            file={file}
-                        />
-                        <button type='submit'>
+            <div className={styles.container}>
+                <div className={styles.wrapper}>
+                    <Card>
+                        <h1>
                             Crear proyecto
-                        </button>
-                    </div>
-                </form>
+                        </h1>
+                        <form onSubmit={handleSubmit} className={styles.form}>
+                            <InputText
+                                id="new-project-name"
+                                text="Nombre"
+                                value={name}
+                                setValue={setName}
+                            />
+                            <div className={styles.dates}>
+                                <InputDate
+                                    currDate={startDate}
+                                    setCurrDate={setStartDate}
+                                    text="Fecha inicio"
+                                    id="start-date-project"
+                                />
+                                <InputDate
+                                    currDate={endDate}
+                                    setCurrDate={setEndDate}
+                                    text="Fecha fin"
+                                    id="end-date-project"
+                                />
+                                <InputDate
+                                    currDate={limitDate}
+                                    setCurrDate={setLimitDate}
+                                    text="Fecha límite"
+                                    id="limit-date-project"
+                                />
+                            </div>
+                            <InputText
+                                id="new-project-postal-code"
+                                text="Código postal"
+                                value={postalCode}
+                                setValue={setPostalCode}
+                            />
+                            <InputTextArea
+                                id="new-project-description"
+                                text="Descripción"
+                                value={description}
+                                setValue={setDescription}
+                                className={styles.textarea}
+                            />
+                            <InputImage
+                                id="image-project-new"
+                                setFile={(file) => {
+                                    setFile(file);
+                                }}
+                                file={file}
+                            />
+                            <Button isAnimationLoading isLoading={isLoading} type='submit'>
+                                Crear proyecto
+                            </Button>
+                        </form>
+                    </Card>
+                </div>
             </div>
         </div>
     );

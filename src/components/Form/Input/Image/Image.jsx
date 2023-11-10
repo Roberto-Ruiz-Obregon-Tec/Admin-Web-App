@@ -1,5 +1,5 @@
 import React from 'react';
-import { FireError } from '../utils/alertHandler';
+import { FireError } from '../../../../utils/alertHandler';
 import styles from "./Image.module.css";
 
 function UploadImage(props) {

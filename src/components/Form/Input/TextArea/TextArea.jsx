@@ -5,10 +5,11 @@ export default function InputTextArea({
     text,
     value,
     setValue,
-    type = "text"
+    type = "text",
+    className = ""
 }) {
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${className}`}>
             <label htmlFor={id}>
                 {text}
             </label>
