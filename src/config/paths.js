@@ -8,3 +8,4 @@ export const PATH_USERS = "/usuarios";
 export const PATH_PROJECTS = "/proyectos";
 export const PATH_CREATE_PROJECTS = "/proyectos/crear";
 export const PATH_LOGIN = "/iniciar-sesion";
+export const PATH_NEW_ADMIN = "/crear-administrador";

@@ -58,6 +58,15 @@ const CreateProjects = () => {
             return;
         }
 
+        if (postalCode.length !== 5) {
+            FireError('El código postal debe de ser de 5 números.');
+            return;
+        }
+        if (isNaN(postalCode)) {
+            FireError('El código postal debe de ser un número.');
+            return;
+        }
+
         if (file === null) {
             FireError('Debes de subir una imagen');
             return;
