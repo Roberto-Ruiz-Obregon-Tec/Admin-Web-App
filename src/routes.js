@@ -12,15 +12,12 @@ import Certifications from './screens/Certifications/Certifications';
 import Dashboard from './screens/Dashboard/Dashboard';
 // import ConsultProjects from './screens/ConsultProjects';
 // import CreateProjects from './screens/CreateProjects/CreateProjects';
-// import Usuarios from './screens/Usuarios';
+import Usuarios from './screens/Users/Users';
 
 import {
     PATH_HOME,
-    PATH_ANNOUNCES,
     PATH_CERTIFICATIONS,
-    PATH_CREATE_COURSE,
-    PATH_ID_COURSE,
-    PATH_ID_INSCRIPTIONS
+    PATH_USERS
 } from "./config/paths";
 
 const routes = [
@@ -31,14 +28,6 @@ const routes = [
         isPrivate: true,
         inNavbar: true
     },
-    // {
-    //     path: PATH_ANNOUNCES,
-    //     name: 'Anuncios',
-    //     Component: SendMail,
-    //     isPrivate: true,
-    //     inNavbar: true,
-    //     svg: "announce.svg"
-    // },
     {
         path: PATH_CERTIFICATIONS,
         name: 'Certificaciones',
@@ -47,6 +36,24 @@ const routes = [
         inNavbar: true,
         svg: "certify.svg"
     },
+    {
+        path: PATH_USERS,
+        name: 'Usuarios',
+        Component: Usuarios,
+        isPrivate: true,
+        inNavbar: true,
+        svg: "users.svg"
+    }
+
+
+    // {
+    //     path: PATH_ANNOUNCES,
+    //     name: 'Anuncios',
+    //     Component: SendMail,
+    //     isPrivate: true,
+    //     inNavbar: true,
+    //     svg: "announce.svg"
+    // },
     // {
     //     path: PATH_CREATE_COURSE,
     //     name: 'Agregar curso',
@@ -100,13 +107,6 @@ const routes = [
     //     path: '/intereses',
     //     name: 'Intereses',
     //     Component: Topics,
-    //     isPrivate: true,
-    //     inNavbar: true,
-    // },
-    // {
-    //     path: '/usuarios',
-    //     name: 'Usuarios',
-    //     Component: Usuarios,
     //     isPrivate: true,
     //     inNavbar: true,
     // },
