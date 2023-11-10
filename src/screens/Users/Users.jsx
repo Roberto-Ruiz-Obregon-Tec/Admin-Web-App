@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { FireError } from '../../utils/alertHandler';
 import { getUsers } from '../../client/usuarios';
 import LoaderPages from './Loader/LoaderPages';
-import UserCard from './Card/Card';
 import NavHistory from "../../components/NavHistory/NavHistory";
 import Title from "../../components/Title/Title";
-import styles from "./Users.module.css";
 import Icons from "../../icons/index";
+import Table from "../../components/Table/Table";
 
 function Usuarios() {
 
@@ -21,10 +20,40 @@ function Usuarios() {
                 setIsLoading(false);
                 setUsers(usersData);
             } catch (error) {
+                setIsLoading(false);
                 FireError(error.response.data.message);
             }
         })();
     }, []);
+
+    const getMatrix = () => {
+        if (users.length === 0) return [];
+
+        const matrix = []
+
+        // El orden impora
+        const possibleKeys = [
+            "firstName",
+            "lastName",
+            "email",
+            "age",
+            "rol",
+            "gender"
+        ]
+
+        for (let i = 0; i < users.length; i++) {
+            const row = [];
+            const user = users[i];
+
+            for (let j = 0; j < possibleKeys.length; j++) {
+                const key = possibleKeys[j];
+                row.push(user[key] ? user[key] : "");
+            }
+
+            matrix.push(row);
+        }
+        return matrix;
+    };
 
     return (
         <div>
@@ -39,14 +68,17 @@ function Usuarios() {
                 <LoaderPages />
             )}
             {!isLoading && (
-                <div className={styles.users_container}>
-                    {users.map((user) => (
-                        <UserCard
-                            key={user._id}
-                            user={user}
-                        />
-                    ))}
-                </div>
+                <Table
+                    matrixData={getMatrix()}
+                    arrayHeaders={[
+                        "Primer nombre",
+                        "Apellido",
+                        "Correo electrónico",
+                        "Edad",
+                        "Rol",
+                        "Género"
+                    ]}
+                />
             )}
         </div>
     );
