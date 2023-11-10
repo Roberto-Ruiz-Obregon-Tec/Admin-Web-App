@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FireQuestion } from '../utils/alertHandler';
+import { FireQuestion } from '../../utils/alertHandler';
 import { LogOut } from 'react-feather';
-import { logOut } from '../utils/auth';
-import routes from '../routes';
-import '../styles/navbar.css';
+import { logOut } from '../../utils/auth';
+import routes from '../../routes';
+import styles from "./NavBar.module.css";
 
 function Navbar() {
     const navigate = useNavigate();
@@ -20,9 +20,9 @@ function Navbar() {
     };
 
     return (
-        <div className='navbar-container'>
-            <div className='navbar'>
-                <div className='navbar-left'>
+        <div className={styles.navbar_container}>
+            <div className={styles.navbar}>
+                <div className={styles.navbar_left}>
                     {routes
                         .filter((route) => route.isPrivate && route.inNavbar)
                         .map((route) => {
@@ -39,7 +39,7 @@ function Navbar() {
                             return (
                                 <a
                                     key={route.path}
-                                    className='navbar-button'
+                                    className={styles.button}
                                     onClick={() => navigate(route.path)}
                                 >
                                     {route.svg && (
@@ -50,7 +50,7 @@ function Navbar() {
                             )
                         })}
                 </div>
-                <div className='navbar-logout'>
+                <div className={styles.navbar_logout}>
                     <a onClick={logOutHandler}>
                         <span>Cerrar sesión</span>
                         <LogOut color="white" />

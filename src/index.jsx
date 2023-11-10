@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './components/NavBar/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import routes from './routes';
-import './styles/style.css';
+
+import "./styles/styles.css";
 
 function App() {
     return (
-        <div id='app-container'>
+        <div className='container_page_wrapper'>
             <Routes>
                 {routes.map((route) =>
                     route.isPrivate ? (
@@ -18,7 +19,7 @@ function App() {
                             element={
                                 <PrivateRoute>
                                     <Navbar />
-                                    <div id='app-base-layout'>
+                                    <div className='container_page_wrapper_pages'>
                                         <route.Component />
                                     </div>
                                 </PrivateRoute>

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import ReturnLink from "../components/ReturnLink";
-import { FireError, FireSucess } from '../utils/alertHandler';
-import DateSelector from "../components/DateSelector";
-import UploadImage from "../components/UploadImage";
-import { createAProject } from "../client/availableProj";
+import ReturnLink from "../../components/ReturnLink";
+import { FireError, FireSucess } from '../../utils/alertHandler';
+import DateSelector from "../../components/DateSelector";
+import UploadImage from "../../components/UploadImage";
+import { createAProject } from "../../client/availableProj";
 import { useNavigate } from 'react-router-dom';
+import styles from "./CreateProjects.css";
+import '../../styles/wrappers/wrap.css';
 
-import '../styles/verCursos.css';
-import '../styles/wrappers/wrap.css';
-import '../styles/auth.css';
+// import '../styles/verCursos.css';
+// import '../styles/auth.css';
 
 
 const CreateProjects = () => {
