@@ -1,0 +1,42 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #CF2B2A;
+    color: #FFF;
+    font-weight: bold;
+}
+
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.element {
+    display: flex;
+    word-break: break-all;
+    height: fit-content;
+    width: 100%;
+}
+
+.element, 
+.header {
+    padding: 10px;
+}
+.zero {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.row:hover {
+    background-color: #ffeded !important;
+}

@@ -1,0 +1,17 @@
+.container_page_wrapper_link_return {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #CF2B2A;
+    width: fit-content;
+}
+.container_page_wrapper_link_return svg {
+    fill: #CF2B2A;
+    width: 20px;
+    height: 20px;
+}
+.container_page_wrapper_link_return:hover {
+    text-decoration: underline;
+}

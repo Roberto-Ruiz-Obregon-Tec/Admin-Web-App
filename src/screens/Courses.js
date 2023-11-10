@@ -66,7 +66,7 @@ function Courses() {
             <div className='header-container'>
                 <h4>Inicio / Cursos</h4>
                 <Button
-                    action={() => navigate('/agregarCursos')}
+                    action={() => navigate('/cursos/crear')}
                     text='Agregar nuevo curso'
                     type='create'
                 />
