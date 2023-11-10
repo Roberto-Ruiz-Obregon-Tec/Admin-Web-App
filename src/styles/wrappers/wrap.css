@@ -1,0 +1,85 @@
+.container_page_wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    min-height:  calc(100vh - 100px);
+    position: relative;
+}
+
+.container_page_wrapper_button_add {
+    background-color: #CF2B2A;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    cursor: pointer;
+
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 1;
+
+    margin: 0;
+
+    transition: opacity ease-out 300ms;
+}
+.container_page_wrapper_button_add:hover {
+    opacity: .8;
+}
+.container_page_wrapper_button_add svg {
+    fill: #FFF;
+    width: 22px;
+    height: 22px;
+}
+.container_page_wrapper_link_return {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #CF2B2A;
+    width: fit-content;
+}
+.container_page_wrapper_link_return svg {
+    fill: #CF2B2A;
+    width: 20px;
+    height: 20px;
+}
+.container_page_wrapper_link_return:hover {
+    text-decoration: underline;
+}
+.container_page_wrapper_images_upload {
+    width: 100%;
+}
+.container_page_wrapper_images_upload input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.container_page_wrapper_images_upload label {
+    width: 100%;
+    color: #FFF;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: opacity ease-out 300ms;
+}
+.container_page_wrapper_images_upload label svg {
+    fill: #FFF;
+    width: 17.5px;
+    height: 17.5px;
+    margin-left: 10px;
+}
+.container_page_wrapper_images_upload label:hover {
+    opacity: .8;
+}

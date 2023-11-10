@@ -1,8 +1,11 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
+import BtnToAdd from "../components/AddAdminContentBtn";
+
 import { getProgram } from '../client/availableProj'
 import { FireError } from '../utils/alertHandler';
 import '../styles/verCursos.css';
 import '../styles/availableProj.css'
+import '../styles/wrappers/wrap.css';
 
 const ConsultProjects = () => {
 
@@ -20,8 +23,7 @@ const ConsultProjects = () => {
     }, []);
 
     return (
-        <Fragment>
-
+        <div className='container_page_wrapper'>
             <div className='header-container'>
                 <h4>Inicio / Proyectos Disponibles</h4>
             </div>
@@ -52,8 +54,9 @@ const ConsultProjects = () => {
                 </tbody>
             
             </table>
-            
-        </Fragment>
+
+            <BtnToAdd title="Añadir un proyecto" asLink href="/consultprojects/crear" />
+        </div>
     );
 };
 
