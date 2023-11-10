@@ -9,6 +9,8 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 
+    height: 50px;
+
     justify-content: center;
     display: flex;
     align-items: center;
@@ -19,8 +21,8 @@
 }
 
 .rotate {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     fill: #FFF;
 
     animation-name: rotate;

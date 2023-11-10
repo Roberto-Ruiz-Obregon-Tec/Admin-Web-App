@@ -9,7 +9,7 @@ import Table from "../../components/Table/Table";
 
 function Proyectos() {
 
-    const [avaliableP, setavailableP] = useState ([]);
+    const [avaliableP, setavailableP] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -83,16 +83,18 @@ function Proyectos() {
                 <LoaderPages />
             )}
             {!isLoading && (
-                <Table
-                    matrixData={getMatrix()}
-                    arrayHeaders={[
-                        "Nombre",
-                        "Fecha de inicio",
-                        "Fecha fin",
-                        "Fecha límite",
-                        "Descripción"
-                    ]}
-                />
+                <>
+                    <Table
+                        matrixData={getMatrix()}
+                        arrayHeaders={[
+                            "Nombre",
+                            "Fecha de inicio",
+                            "Fecha fin",
+                            "Fecha límite",
+                            "Descripción"
+                        ]}
+                    />
+                </>
             )}
         </div>
     );

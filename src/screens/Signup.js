@@ -132,10 +132,6 @@ const SignupForm = () => {
                 </div>
                 <button type='submit'>Registrarse</button>
             </form>
-            {/* <section>
-                <Link to='/login'>Iniciar sesión</Link>
-                <Link to='/cambiarContrasena'>Olvidé mi contraseña</Link>
-            </section> */}
         </div>
     );
 };

@@ -1,14 +1,15 @@
 import { isAuthenticated } from '../utils/auth';
 import { Navigate } from 'react-router-dom';
-import { useCallback, Fragment } from 'react';
+import { Fragment } from 'react';
+import { PATH_LOGIN } from "../config/paths";
 
 const PrivateRoute = ({ children }) => {
     return (
         isAuthenticated() ?
             <Fragment>
-              {children}
+                {children}
             </Fragment>
-        :  <Navigate to="/login" />
+            : <Navigate to={PATH_LOGIN} />
     );
 }
 

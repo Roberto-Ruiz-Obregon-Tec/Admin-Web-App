@@ -1,6 +1,4 @@
-// import LoginForm from './screens/Login';
 // import SendMail from './screens/SendMail';
-import Certifications from './screens/Certifications/Certifications';
 // import SignupForm from './screens/Signup';
 // import ForgotPassword from './screens/forgotPassword';
 // import AddCourse from './screens/AddCourse';
@@ -9,6 +7,8 @@ import Certifications from './screens/Certifications/Certifications';
 // import EditProgram from './screens/EditProgram';
 // import Inscriptions from './screens/Inscriptions';
 // import Topics from './screens/Topics';
+import LoginForm from './screens/LogIn/Login';
+import Certifications from './screens/Certifications/Certifications';
 import Dashboard from './screens/Dashboard/Dashboard';
 import ConsultProjects from './screens/Projects/Projects';
 import Usuarios from './screens/Users/Users';
@@ -17,7 +17,8 @@ import {
     PATH_HOME,
     PATH_CERTIFICATIONS,
     PATH_USERS,
-    PATH_PROJECTS
+    PATH_PROJECTS,
+    PATH_LOGIN
 } from "./config/paths";
 
 const routes = [
@@ -51,6 +52,13 @@ const routes = [
         isPrivate: true,
         inNavbar: true,
         svg: "projects"
+    },
+    {
+        path: PATH_LOGIN,
+        name: 'Iniciar sesión',
+        Component: LoginForm,
+        isPrivate: false,
+        inNavbar: false,
     },
     // {
     //     path: PATH_ANNOUNCES,
@@ -136,13 +144,6 @@ const routes = [
     //     Component: Payments,
     //     isPrivate: true,
     //     inNavbar: true,
-    // },
-    // {
-    //     path: '/login',
-    //     name: 'Iniciar sesión',
-    //     Component: LoginForm,
-    //     isPrivate: false,
-    //     inNavbar: false,
     // },
     // {
     //     path: '/crear-cuenta-admin',
