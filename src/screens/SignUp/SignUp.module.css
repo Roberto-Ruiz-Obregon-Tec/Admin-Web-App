@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.wrapper {
+    width: 500px;   
+}
+.form {
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+}
