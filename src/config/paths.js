@@ -5,3 +5,4 @@ export const PATH_CREATE_COURSE = "/cursos/crear";
 export const PATH_ID_COURSE = "/cursos/:id";
 export const PATH_ID_INSCRIPTIONS = "/inscripciones/:id";
 export const PATH_USERS = "/usuarios";
+export const PATH_PROJECTS = "/proyectos";

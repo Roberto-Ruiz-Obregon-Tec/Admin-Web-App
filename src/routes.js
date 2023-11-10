@@ -10,14 +10,14 @@ import Certifications from './screens/Certifications/Certifications';
 // import Inscriptions from './screens/Inscriptions';
 // import Topics from './screens/Topics';
 import Dashboard from './screens/Dashboard/Dashboard';
-// import ConsultProjects from './screens/ConsultProjects';
-// import CreateProjects from './screens/CreateProjects/CreateProjects';
+import ConsultProjects from './screens/Projects/Projects';
 import Usuarios from './screens/Users/Users';
 
 import {
     PATH_HOME,
     PATH_CERTIFICATIONS,
-    PATH_USERS
+    PATH_USERS,
+    PATH_PROJECTS
 } from "./config/paths";
 
 const routes = [
@@ -43,9 +43,15 @@ const routes = [
         isPrivate: true,
         inNavbar: true,
         svg: "users"
-    }
-
-
+    },
+    {
+        path: PATH_PROJECTS,
+        name: 'Proyectos',
+        Component: ConsultProjects,
+        isPrivate: true,
+        inNavbar: true,
+        svg: "projects"
+    },
     // {
     //     path: PATH_ANNOUNCES,
     //     name: 'Anuncios',
@@ -123,13 +129,6 @@ const routes = [
     //     Component: CreateProjects,
     //     isPrivate: true, 
     //     inNavbar: false,
-    // },
-    // {
-    //     path: '/proyectos',
-    //     name: 'Proyectos Disponibles',
-    //     Component: ConsultProjects,
-    //     isPrivate: true, 
-    //     inNavbar: true,
     // },
     // {
     //     path: '/pagos',
