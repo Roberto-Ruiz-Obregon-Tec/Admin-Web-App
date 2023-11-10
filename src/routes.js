@@ -1,5 +1,4 @@
 // import SendMail from './screens/SendMail';
-// import SignupForm from './screens/Signup';
 // import ForgotPassword from './screens/forgotPassword';
 // import AddCourse from './screens/AddCourse';
 // import EditCourse from './screens/EditCourse';
@@ -8,6 +7,7 @@
 // import Inscriptions from './screens/Inscriptions';
 // import Topics from './screens/Topics';
 import LoginForm from './screens/LogIn/Login';
+import SignupForm from './screens/SignUp/SignUp';
 import Certifications from './screens/Certifications/Certifications';
 import Dashboard from './screens/Dashboard/Dashboard';
 import ConsultProjects from './screens/Projects/Projects';
@@ -20,7 +20,8 @@ import {
     PATH_USERS,
     PATH_PROJECTS,
     PATH_LOGIN,
-    PATH_CREATE_PROJECTS
+    PATH_CREATE_PROJECTS,
+    PATH_NEW_ADMIN
 } from "./config/paths";
 
 const routes = [
@@ -66,9 +67,17 @@ const routes = [
         path: PATH_CREATE_PROJECTS,
         name: 'Crear proyectos',
         Component: CreateProjects,
-        isPrivate: true, 
+        isPrivate: true,
         inNavbar: false,
-    }
+    },
+    {
+        path: PATH_NEW_ADMIN,
+        name: 'Añadir administradores',
+        Component: SignupForm,
+        isPrivate: true,
+        inNavbar: true,
+        svg: "newUser"
+    },
     // {
     //     path: PATH_ANNOUNCES,
     //     name: 'Anuncios',
@@ -146,13 +155,6 @@ const routes = [
     //     Component: Payments,
     //     isPrivate: true,
     //     inNavbar: true,
-    // },
-    // {
-    //     path: '/crear-cuenta-admin',
-    //     name: 'Registrarse',
-    //     Component: SignupForm,
-    //     isPrivate: true,
-    //     inNavbar: false,
     // },
     // {
     //     path: '/cambiarContrasena',
