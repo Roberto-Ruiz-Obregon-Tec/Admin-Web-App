@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { FireError } from '../../utils/alertHandler';
+import {Link} from "react-router-dom";
 import { getProgram } from '../../client/availableProj'
 import LoaderPages from './Loader/LoaderPages';
 import NavHistory from "../../components/NavHistory/NavHistory";
 import Title from "../../components/Title/Title";
+import { PATH_CREATE_PROJECTS } from "../../config/paths";
 import Icons from "../../icons/index";
 import Table from "../../components/Table/Table";
+import styles from "./Projects.module.css";
 
 function Proyectos() {
 
@@ -94,6 +97,9 @@ function Proyectos() {
                             "Descripción"
                         ]}
                     />
+                    <Link title="Añadir un proyecto" to={PATH_CREATE_PROJECTS} className={styles.add}>
+                        {Icons.cross()}
+                    </Link>
                 </>
             )}
         </div>
