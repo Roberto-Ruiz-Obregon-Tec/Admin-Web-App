@@ -34,7 +34,7 @@ const routes = [
         Component: Certifications,
         isPrivate: true,
         inNavbar: true,
-        svg: "certify.svg"
+        svg: "certify"
     },
     {
         path: PATH_USERS,
@@ -42,7 +42,7 @@ const routes = [
         Component: Usuarios,
         isPrivate: true,
         inNavbar: true,
-        svg: "users.svg"
+        svg: "users"
     }
 
 

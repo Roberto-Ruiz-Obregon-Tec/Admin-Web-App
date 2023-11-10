@@ -4,7 +4,9 @@ import { getUsers } from '../../client/usuarios';
 import LoaderPages from './Loader/LoaderPages';
 import UserCard from './Card/Card';
 import NavHistory from "../../components/NavHistory/NavHistory";
+import Title from "../../components/Title/Title";
 import styles from "./Users.module.css";
+import Icons from "../../icons/index";
 
 function Usuarios() {
 
@@ -25,13 +27,14 @@ function Usuarios() {
     }, []);
 
     return (
-        <div className={styles.user_container}>
+        <div>
             <NavHistory>
                 Inicio / Usuarios
             </NavHistory>
-
-            <h2>Lista usuarios</h2>
-
+            <Title>
+                {Icons.users()}
+                Lista usuarios
+            </Title>
             {isLoading && (
                 <LoaderPages />
             )}

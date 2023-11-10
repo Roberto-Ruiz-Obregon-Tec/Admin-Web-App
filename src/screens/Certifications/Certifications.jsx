@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { FireError } from '../../utils/alertHandler';
 import { getCertifications } from "../../client/certifications";
 import Card from "./Card/Card";
 import NavHistory from "../../components/NavHistory/NavHistory";
+import Title from "../../components/Title/Title";
 import LoaderPages from "./Loader/LoaderPages";
 import styles from "./Certifications.module.css";
+import Icons from "../../icons/index";
 
 function Certifications() {
 
@@ -29,6 +31,10 @@ function Certifications() {
             <NavHistory>
                 Inicio / Certificaciones
             </NavHistory>
+            <Title>
+                {Icons.certify()}
+                Lista de certificaciones
+            </Title>
             {isLoading && (
                 <LoaderPages />
             )}
@@ -36,12 +42,12 @@ function Certifications() {
                 <div className={styles.certs}>
                     {certifications.map((certs, index) => {
                         return (
-                            <div key={index}>
+                            <Fragment key={index}>
                                 <Card
                                     name={certs.name}
                                     description={certs.description}
                                 />
-                            </div>
+                            </Fragment>
                         )
                     })}
                 </div>

@@ -48,9 +48,10 @@
     align-items: center;
     gap: 5px;
 }
-.navbar_left a img {
+.navbar_left a svg {
     width: 20px;
     height: 20px;
+    fill: #FFF;
 }
 
 .navbar .navbar_logout {

@@ -5,6 +5,7 @@ import { LogOut } from 'react-feather';
 import { logOut } from '../../utils/auth';
 import routes from '../../routes';
 import styles from "./NavBar.module.css";
+import Icons from "../../icons/index";
 
 function Navbar() {
     const navigate = useNavigate();
@@ -43,7 +44,9 @@ function Navbar() {
                                     onClick={() => navigate(route.path)}
                                 >
                                     {route.svg && (
-                                        <img src={`/icons/${route.svg}`} />
+                                        <>
+                                            {Icons[route.svg]()}
+                                        </>
                                     )}
                                     {route.name}
                                 </a>

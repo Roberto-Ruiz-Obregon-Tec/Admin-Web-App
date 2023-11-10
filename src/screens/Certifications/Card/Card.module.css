@@ -1,20 +1,36 @@
 .certs_container {
     background-color: #ffffff;
     color: #000;
-    border-radius: 20px;
     border: none;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    margin: 20px;
-    width: 300px;
+    min-width: 300px;
+    max-width: 600px;
     height: 180px;
     display: flex;
+    padding: 0;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
-.certs_container p {
+.name {
     font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding: 0;
+    text-align: center;
+    height: calc(180px - 50px);
+}
+.des {
+    width: 100%;
+    padding: 15px 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    background-color: #dedede;
+    
     display: block;
-    margin: 5px;
     text-align: center;
 }
