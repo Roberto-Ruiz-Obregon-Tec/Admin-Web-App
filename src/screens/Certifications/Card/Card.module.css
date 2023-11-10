@@ -18,9 +18,11 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    padding: 0;
+    padding: 0 5px;
     text-align: center;
     height: calc(180px - 50px);
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .des {
     width: 100%;
