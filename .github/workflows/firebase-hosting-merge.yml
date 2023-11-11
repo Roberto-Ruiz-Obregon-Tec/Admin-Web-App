@@ -4,8 +4,7 @@
 name: Deploy to Firebase Hosting on merge
 on:
   push:
-    branches:
-      - staging
+    branches: [ "staging" ]
 env:
   REACT_APP_BASE_API_ENDPOINT=https://us-central1-roberto-ruiz-obregon.cloudfunctions.net/test/v1
 jobs:

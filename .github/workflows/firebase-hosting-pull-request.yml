@@ -2,8 +2,7 @@ name: Build on PR
 
 on:
   pull_request:
-    branches:
-        - staging
+    branches: [ "staging" ]
 jobs:
   build:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
