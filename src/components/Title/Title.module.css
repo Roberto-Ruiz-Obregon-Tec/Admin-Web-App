@@ -1,0 +1,11 @@
+.h1 {
+    color: #222;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.h1 svg {
+    margin-right: 10px;
+    fill: #CF2B2A;
+}

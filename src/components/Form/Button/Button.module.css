@@ -1,0 +1,42 @@
+.btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: #cf2a2a;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    height: 50px;
+
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.btn:hover {
+    background-color: #862121;
+}
+
+.rotate {
+    width: 20px;
+    height: 20px;
+    fill: #FFF;
+
+    animation-name: rotate;
+    animation-timing-function: linear;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateZ(0);
+    }
+
+    to {
+        transform: rotateZ(360deg);
+    }
+}
