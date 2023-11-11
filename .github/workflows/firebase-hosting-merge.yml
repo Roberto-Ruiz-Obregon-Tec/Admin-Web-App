@@ -2,18 +2,21 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-'on':
+on:
   push:
     branches:
-      - main
+      - staging
+env:
+  REACT_APP_BASE_API_ENDPOINT=https://us-central1-roberto-ruiz-obregon.cloudfunctions.net/test/v1
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_REACT_DOCKER_GCP_376610 }}'
-          channelId: live
-          projectId: react-docker-gcp-376610
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROBERTO_RUIZ_OBREGON }}'
+          channelId: 423bb4e4a85121181fe373
+          projectId: roberto-ruiz-obregon
