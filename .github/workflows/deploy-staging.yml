@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Disable update
+        run: npm config set update-notifier false
       - name: Install
         run: npm ci
       - name: Build
