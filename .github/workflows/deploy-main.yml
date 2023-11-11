@@ -1,0 +1,36 @@
+name: Deploy main env
+on:
+  push:
+    branches: [ main ]
+env:
+  REACT_APP_BASE_API_ENDPOINT:  ${{ secrets.REACT_APP_BASE_API_ENDPOINT }}
+  CI: ${{ secrets.CI }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+	
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Build
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting:roberto-ruiz-obregon
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
