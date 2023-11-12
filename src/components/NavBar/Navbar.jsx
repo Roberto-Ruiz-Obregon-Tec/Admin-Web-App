@@ -31,6 +31,7 @@ function Navbar() {
                             if (route.path === "/") {
                                 return (
                                     <img
+                                        key={route.path}
                                         onClick={() => {
                                             navigate("/");
                                         }} src="/logoFundacion.png" width={50} />
