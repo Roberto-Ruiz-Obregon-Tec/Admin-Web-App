@@ -9,3 +9,4 @@ export const PATH_PROJECTS = "/proyectos";
 export const PATH_CREATE_PROJECTS = "/proyectos/crear";
 export const PATH_LOGIN = "/iniciar-sesion";
 export const PATH_NEW_ADMIN = "/crear-administrador";
+export const PATH_EVENTS = "/eventos";
