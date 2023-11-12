@@ -5,6 +5,7 @@ import projects from "./projects"
 import cross from "./cross"
 import create from "./create"
 import newUser from "./newUser"
+import content from "./content"
 
 export default {
     announce,
@@ -13,5 +14,6 @@ export default {
     projects,
     cross,
     create,
-    newUser
+    newUser,
+    content
 }

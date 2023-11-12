@@ -10,8 +10,7 @@ import LoginForm from './screens/LogIn/Login';
 import SignupForm from './screens/SignUp/SignUp';
 import Certifications from './screens/Certifications/Certifications';
 import Dashboard from './screens/Dashboard/Dashboard';
-import ConsultProjects from './screens/Projects/Projects';
-import CreateProjects from './screens/Projects/CreateProjects/CreateProjects';
+import Content from './screens/Content/Content';
 import Usuarios from './screens/Users/Users';
 
 import {
@@ -21,8 +20,32 @@ import {
     PATH_PROJECTS,
     PATH_LOGIN,
     PATH_CREATE_PROJECTS,
-    PATH_NEW_ADMIN
+    PATH_NEW_ADMIN,
+    PATH_CONTENT_DASHBOARD
 } from "./config/paths";
+
+const routesContent = () => {
+    const keysRoutes = [
+        PATH_CONTENT_DASHBOARD,
+        PATH_CREATE_PROJECTS,
+        PATH_PROJECTS
+    ];
+    const arrayJSON = [];
+
+    for (let i = 0; i < keysRoutes.length; i++) {
+        const keyRouter = keysRoutes[i];
+        arrayJSON.push({
+            path: keyRouter,
+            name: "Gestión de contenido",
+            Component: Content,
+            isPrivate: true,
+            inNavbar: keyRouter === PATH_CONTENT_DASHBOARD,
+            svg: "content"
+        });
+    }
+
+    return arrayJSON;
+}
 
 const routes = [
     {
@@ -49,25 +72,10 @@ const routes = [
         svg: "users"
     },
     {
-        path: PATH_PROJECTS,
-        name: 'Proyectos',
-        Component: ConsultProjects,
-        isPrivate: true,
-        inNavbar: true,
-        svg: "projects"
-    },
-    {
         path: PATH_LOGIN,
         name: 'Iniciar sesión',
         Component: LoginForm,
         isPrivate: false,
-        inNavbar: false,
-    },
-    {
-        path: PATH_CREATE_PROJECTS,
-        name: 'Crear proyectos',
-        Component: CreateProjects,
-        isPrivate: true,
         inNavbar: false,
     },
     {
@@ -78,6 +86,7 @@ const routes = [
         inNavbar: true,
         svg: "newUser"
     },
+    ...routesContent()
     // {
     //     path: PATH_ANNOUNCES,
     //     name: 'Anuncios',

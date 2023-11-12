@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import ReturnLink from "../../../components/Links/Return/Return";
-import { FireError, FireSucess } from '../../../utils/alertHandler';
-import { createAProject } from "../../../client/availableProj";
-import NavHistory from "../../../components/NavHistory/NavHistory";
-import Card from "../../../components/ShadowCard/ShadowCard";
-import { PATH_PROJECTS } from "../../../config/paths";
+import ReturnLink from "../../../../components/Links/Return/Return";
+import { FireError, FireSucess } from '../../../../utils/alertHandler';
+import { createAProject } from "../../../../client/availableProj";
+import NavHistory from "../../../../components/NavHistory/NavHistory";
+import Card from "../../../../components/ShadowCard/ShadowCard";
+import { PATH_PROJECTS } from "../../../../config/paths";
 
-import InputText from "../../../components/Form/Input/Text/Text";
-import InputTextArea from "../../../components/Form/Input/TextArea/TextArea";
-import InputImage from "../../../components/Form/Input/Image/Image";
-import InputDate from "../../../components/Form/Input/Date/Date";
-import Button from "../../../components/Form/Button/Button";
+import InputText from "../../../../components/Form/Input/Text/Text";
+import InputTextArea from "../../../../components/Form/Input/TextArea/TextArea";
+import InputImage from "../../../../components/Form/Input/Image/Image";
+import InputDate from "../../../../components/Form/Input/Date/Date";
+import Button from "../../../../components/Form/Button/Button";
 
 import { useNavigate } from 'react-router-dom';
 import styles from "./CreateProjects.module.css";
@@ -103,7 +103,7 @@ const CreateProjects = () => {
             <NavHistory>
                 Inicio / Proyectos Disponibles / Crear Proyecto
             </NavHistory>
-            <ReturnLink href="/proyectos" />
+            <ReturnLink href={PATH_PROJECTS} />
             <div className={styles.container}>
                 <div className={styles.wrapper}>
                     <Card>
