@@ -40,6 +40,7 @@ const routesContent = () => {
             Component: Content,
             isPrivate: true,
             inNavbar: keyRouter === PATH_CONTENT_DASHBOARD,
+            withoutPadding: true,
             svg: "content"
         });
     }
@@ -53,7 +54,8 @@ const routes = [
         name: 'Inicio',
         Component: Dashboard,
         isPrivate: true,
-        inNavbar: true
+        inNavbar: true,
+        withoutPadding: false
     },
     {
         path: PATH_CERTIFICATIONS,
@@ -61,6 +63,7 @@ const routes = [
         Component: Certifications,
         isPrivate: true,
         inNavbar: true,
+        withoutPadding: false,
         svg: "certify"
     },
     {
@@ -69,6 +72,7 @@ const routes = [
         Component: Usuarios,
         isPrivate: true,
         inNavbar: true,
+        withoutPadding: false,
         svg: "users"
     },
     {
@@ -76,6 +80,7 @@ const routes = [
         name: 'Iniciar sesión',
         Component: LoginForm,
         isPrivate: false,
+        withoutPadding: false,
         inNavbar: false,
     },
     {
@@ -84,6 +89,7 @@ const routes = [
         Component: SignupForm,
         isPrivate: true,
         inNavbar: true,
+        withoutPadding: false,
         svg: "newUser"
     },
     ...routesContent()

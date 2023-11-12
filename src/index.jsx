@@ -19,7 +19,7 @@ function App() {
                             element={
                                 <PrivateRoute>
                                     <Navbar />
-                                    <div className='container_page_wrapper_pages'>
+                                    <div className={`${!route.withoutPadding && "container_page_wrapper_pages"}`}>
                                         <route.Component />
                                     </div>
                                 </PrivateRoute>
