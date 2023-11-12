@@ -36,13 +36,27 @@ export default function Information() {
 
       <div className={` ${styles.wrapper_detail} `} >
         <h2>Informacion sobre nosotros</h2>
+
+        <div>
+          <h3>Direccion</h3>          
+
+          {info.map((info, index) => {
+            return (
+              <ListItem 
+              icon = {Icons.location()}
+              content = {info.location} />
+            )
+          })}
+          
+        </div>    
+
         <div>
           <h3>Numeros de telefono de contacto</h3>          
 
           {info.map((info, index) => {
             return (
               <ListItem 
-              icon = {Icons.users()}
+              icon = {Icons.telephone()}
               content = {info.phone} />
             )
           })}

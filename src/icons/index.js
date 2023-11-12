@@ -6,8 +6,10 @@ import cross from "./cross"
 import create from "./create"
 import newUser from "./newUser"
 import info from "./info"
+import telephone from "./telephone"
+import location from "./location"
 
-export default {
+const icons = {
     announce,
     certify,
     users,
@@ -15,5 +17,9 @@ export default {
     cross,
     create,
     newUser,
-    info
+    info,
+    telephone,
+    location
 }
+
+export default icons;

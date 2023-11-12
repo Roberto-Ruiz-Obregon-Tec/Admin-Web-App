@@ -1,9 +1,10 @@
 .wrapper_info {
   display: flex;
   justify-content: space-between;
-  align-items: start;   
+  align-items: flex-start;   
   padding-left: 4em;
 }
+
 .wrapper_info h1 {
   margin: 0;
   padding: 0;
@@ -13,6 +14,7 @@
 .wrapper_detail {
   flex-grow: 1;
   display: flex;
-  align-items: center;
+  padding: 2em 4em;
+  align-items: flex-start;
   flex-direction: column;
 }
