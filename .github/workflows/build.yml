@@ -1,0 +1,18 @@
+name: Build on PR
+on:
+  pull_request:
+    branches: [ staging, main ]
+env:
+  CI: ${{ secrets.CI }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Disable update
+        run: npm config set update-notifier false
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
