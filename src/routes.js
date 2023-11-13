@@ -26,6 +26,7 @@ import {
     PATH_EVENTS,
     PATH_COURSES,
     PATH_CREATE_POSTS,
+    PATH_CREATE_COURSE,
     PATH_INFO
 } from "./config/paths";
 
@@ -38,7 +39,8 @@ const routesContent = () => {
         PATH_POSTS,
         PATH_CREATE_POSTS,
         PATH_EVENTS,
-        PATH_COURSES
+        PATH_COURSES,
+        PATH_CREATE_COURSE
     ];
     const arrayJSON = [];
 

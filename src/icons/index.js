@@ -10,6 +10,7 @@ import courses from "./courses"
 import events from "./events"
 import posts from "./posts"
 import menu from "./menu"
+import xmark from "./xmark"
 import info from "./info"
 import telephone from "./telephone"
 import location from "./location"
@@ -31,6 +32,7 @@ const icons = {
     events,
     posts,
     menu,
+    xmark,
     info,
     telephone,
     location,
