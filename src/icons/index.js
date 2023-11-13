@@ -5,6 +5,11 @@ import projects from "./projects"
 import cross from "./cross"
 import create from "./create"
 import newUser from "./newUser"
+import content from "./content"
+import courses from "./courses"
+import events from "./events"
+import posts from "./posts"
+import menu from "./menu"
 import info from "./info"
 import telephone from "./telephone"
 import location from "./location"
@@ -21,6 +26,11 @@ const icons = {
     cross,
     create,
     newUser,
+    content,
+    courses,
+    events,
+    posts,
+    menu,
     info,
     telephone,
     location,

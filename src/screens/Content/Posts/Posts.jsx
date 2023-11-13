@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { FireError } from '../../utils/alertHandler';
-import {Link} from "react-router-dom";
-import { getProgram } from '../../client/availableProj'
+import { FireError } from '../../../utils/alertHandler';
+import { Link } from "react-router-dom";
+import { getPublications } from '../../../client/publications';
 import LoaderPages from './Loader/LoaderPages';
-import NavHistory from "../../components/NavHistory/NavHistory";
-import Title from "../../components/Title/Title";
-import { PATH_CREATE_PROJECTS } from "../../config/paths";
-import Icons from "../../icons/index";
-import Table from "../../components/Table/Table";
-import styles from "./Projects.module.css";
+import NavHistory from "../../../components/NavHistory/NavHistory";
+import Title from "../../../components/Title/Title";
+import { PATH_CREATE_POSTS } from "../../../config/paths";
+import Icons from "../../../icons/index";
+import Table from "../../../components/Table/Table";
+import styles from "./Posts.module.css";
 
-function Proyectos() {
+function Posts() {
 
-    const [avaliableP, setavailableP] = useState([]);
+    const [avaliablePosts, setavailablePosts] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -20,9 +20,9 @@ function Proyectos() {
         (async () => {
             try {
                 setIsLoading(true);
-                const proj = await getProgram();
+                const posts = await getPublications();
                 setIsLoading(false);
-                setavailableP(proj);
+                setavailablePosts(posts);
             } catch (error) {
                 setIsLoading(false);
                 FireError(error.response.data.message);
@@ -37,34 +37,31 @@ function Proyectos() {
     };
 
     const getMatrix = () => {
-        if (avaliableP.length === 0) return [];
+        if (avaliablePosts.length === 0) return [];
 
         const matrix = []
 
-        // El orden impora
+        // El orden importa
         const possibleKeys = [
-            "name",
-            "startDate",
-            "endDate",
-            "deadlineDate",
-            "description"
+            "title",
+            "description",
+            "likes",
+            "createdAt",
         ]
 
         const needsTransformation = new Set();
-        needsTransformation.add("startDate");
-        needsTransformation.add("endDate");
-        needsTransformation.add("deadlineDate");
+        needsTransformation.add("createdAt");
 
-        for (let i = 0; i < avaliableP.length; i++) {
+        for (let i = 0; i < avaliablePosts.length; i++) {
             const row = [];
-            const project = avaliableP[i];
+            const post = avaliablePosts[i];
 
             for (let j = 0; j < possibleKeys.length; j++) {
                 const key = possibleKeys[j];
                 if (needsTransformation.has(key)) {
-                    row.push(project[key] ? getFormatedDate(project[key]) : "dd/mm/yyyy");
+                    row.push(post[key] ? getFormatedDate(post[key]) : "dd/mm/yyyy");
                 } else {
-                    row.push(project[key] ? project[key] : "");
+                    row.push(post[key] !== "" ? post[key] : "");
                 }
             }
 
@@ -76,11 +73,11 @@ function Proyectos() {
     return (
         <div>
             <NavHistory>
-                Inicio / Proyectos
+                Gestión de contenido / Publicaciones
             </NavHistory>
             <Title>
-                {Icons.projects()}
-                Lista proyectos
+                {Icons.posts()}
+                Lista de publicaciones
             </Title>
             {isLoading && (
                 <LoaderPages />
@@ -90,14 +87,13 @@ function Proyectos() {
                     <Table
                         matrixData={getMatrix()}
                         arrayHeaders={[
-                            "Nombre",
-                            "Fecha de inicio",
-                            "Fecha fin",
-                            "Fecha límite",
-                            "Descripción"
+                            "Título",
+                            "Descripción",
+                            "Likes",
+                            "Fecha de creación"
                         ]}
                     />
-                    <Link title="Añadir un proyecto" to={PATH_CREATE_PROJECTS} className={styles.add}>
+                    <Link title="Añadir una publicación" to={PATH_CREATE_POSTS} className={styles.add}>
                         {Icons.cross()}
                     </Link>
                 </>
@@ -107,4 +103,4 @@ function Proyectos() {
 
 }
 
-export default Proyectos;
+export default Posts;
