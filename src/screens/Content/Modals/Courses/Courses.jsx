@@ -5,14 +5,14 @@ import { ContentContext } from "../../Content";
 import Image from "../../../../components/Image/Image";
 import styles from "./Posts.module.css";
 
-export default function PopUpPosts() {
+export default function PopUpCourses() {
     const {
         modalState,
         modalDispatch
     } = useContext(ContentContext);
 
     const isOpen = () => {
-        return modalState.modalOpened === KEYS_MODAL.POST;
+        return modalState.modalOpened === KEYS_MODAL.COURSE
     }
 
     const getFormatedDate = (date) => {
@@ -29,11 +29,24 @@ export default function PopUpPosts() {
 
     const getState = () => {
         return {
-            "title": modalState.documentJSON["title"] ? modalState.documentJSON["title"] : "-----",
+            "name": modalState.documentJSON["name"] ? modalState.documentJSON["name"] : "-----",
             "description": modalState.documentJSON["description"] ? modalState.documentJSON["description"] : "-----",
-            "likes": modalState.documentJSON["likes"] ? modalState.documentJSON["likes"] : "0",
-            "createdAt": modalState.documentJSON["createdAt"] ? modalState.documentJSON["createdAt"] : "dd/mm/yyyy",
-            "comments": modalState.documentJSON["comments"] ? modalState.documentJSON["comments"] : [],
+            "location": modalState.documentJSON["location"] ? modalState.documentJSON["location"] : "-----",
+            "postalCode": modalState.documentJSON["postalCode"] ? modalState.documentJSON["postalCode"] : "-----",
+            "cost": modalState.documentJSON["cost"] ? modalState.documentJSON["cost"] : "0",
+            "capacity": modalState.documentJSON["capacity"] ? modalState.documentJSON["capacity"] : "0",
+            "rating": modalState.documentJSON["rating"] ? modalState.documentJSON["rating"] : "0",
+            "ratingCount": modalState.documentJSON["ratingCount"] ? modalState.documentJSON["ratingCount"] : "0",
+            "meetingCode": modalState.documentJSON["meetingCode"] ? modalState.documentJSON["meetingCode"] : "-----",
+            "speaker": modalState.documentJSON["speaker"] ? modalState.documentJSON["speaker"] : "-----",
+            "startDate": modalState.documentJSON["startDate"] ? modalState.documentJSON["startDate"] : "dd/mm/yyyy",
+            "endDate": modalState.documentJSON["endDate"] ? modalState.documentJSON["endDate"] : "dd/mm/yyyy",
+            "modality": modalState.documentJSON["modality"] ? modalState.documentJSON["modality"] : "-----",
+            "status": modalState.documentJSON["status"] ? modalState.documentJSON["status"] : "-----",
+            
+
+
+            "focus": modalState.documentJSON["focus"] ? modalState.documentJSON["focus"] : [],
         };
     };
 
@@ -65,7 +78,7 @@ export default function PopUpPosts() {
                 <div className={styles.img}>
                     <Image
                         alt={getState().name}
-                        src={modalState.documentJSON["image"]}
+                        src={modalState.documentJSON["courseImage"]}
                     />
                 </div>
             </div>
