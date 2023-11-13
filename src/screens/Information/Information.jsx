@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import { FireError } from '../../utils/alertHandler';
 import { getInformation } from '../../client/information';
 
 import Title from "../../components/Title/Title";
 import Icons from "../../icons/index";
 import ListItem from '../../components/ListItem/ListItem';
+import GenericLink from '../../components/Links/Generic/Generic';
 
 import styles from "./Information.module.css";
-import { Fragment } from 'react';
+
 
 export default function Information() {
 
@@ -65,8 +66,70 @@ export default function Information() {
             )
           })}
           
-        </div>        
+        </div>   
+        <div>
+          <h3>Redes Sociales</h3>          
+
+          {info.map((info, index) => {
+            return (
+              <Fragment key={index}>
+                <ListItem 
+                icon = {Icons.facebook()}
+                content = {
+                <GenericLink 
+                  href={info.facebook}
+                  name = {"Facebook"} />
+              }  />
+              </Fragment>
+            )
+          })}
+
+          {info.map((info, index) => {
+            return (
+              <Fragment key={index}>
+                <ListItem 
+              icon = {Icons.instagram()}
+              content = {
+                <GenericLink 
+                  href={info.instagram}
+                  name = {"Instagram"} />
+              }  />
+              </Fragment>
+            )
+          })}
+
+          {info.map((info, index) => {
+            return (
+              <Fragment key={index}>
+                <ListItem 
+              icon = {Icons.twitter()}
+              content = {
+                <GenericLink 
+                  href={info.twitter}
+                  name = {"Twitter"} />
+              }  />
+              </Fragment>
+            )
+          })}
+
+          {info.map((info, index) => {
+            return (
+              <Fragment key={index}>
+                <ListItem 
+              icon = {Icons.tiktok()}
+              content = {
+                <GenericLink 
+                  href={info.tiktok}
+                  name = {"Tiktok"} />
+              }  />
+              </Fragment>
+            )
+          })}
+          
+        </div>      
       </div>
+
+       
       
 		</div>
 	)

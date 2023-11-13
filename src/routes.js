@@ -14,6 +14,7 @@ import ConsultProjects from './screens/Projects/Projects';
 import CreateProjects from './screens/Projects/CreateProjects/CreateProjects';
 import Usuarios from './screens/Users/Users';
 import Informacion from './screens/Information/Information';
+import Eventos from './screens/Events/Events';
 
 import {
     PATH_HOME,
@@ -23,7 +24,8 @@ import {
     PATH_LOGIN,
     PATH_CREATE_PROJECTS,
     PATH_NEW_ADMIN,
-    PATH_INFO
+    PATH_INFO,
+    PATH_EVENTS
 } from "./config/paths";
 
 const routes = [
@@ -88,6 +90,7 @@ const routes = [
         inNavbar: true,
         svg: "info"
     },
+
     // {
     //     path: PATH_ANNOUNCES,
     //     name: 'Anuncios',

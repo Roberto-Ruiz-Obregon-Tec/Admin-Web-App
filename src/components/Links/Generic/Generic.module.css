@@ -1,0 +1,25 @@
+.container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #CF2B2A;
+    width: fit-content;
+    margin: 0.5em;
+    padding: 0 0.625em;
+    text-decoration: none;
+}
+
+.container:after {
+    content: "";
+    position: absolute;
+    background-color: #CF2B2A;
+    height: 0.188em;
+    width: 0;
+    left: 0;
+    bottom: -0.625em;
+    transition: 0.3s;
+}
+
+.container:hover::after {
+    width: 100%;
+}
