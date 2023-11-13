@@ -8,7 +8,9 @@ import { PATH_COURSES } from "../../../../config/paths";
 import DropDown from "../../../../components/Form/Input/DropDown/DropDown";
 
 import InputText from "../../../../components/Form/Input/Text/Text";
+import OurInputText from "./Input/Text";
 import InputTextArea from "../../../../components/Form/Input/TextArea/TextArea";
+import Icons from "../../../../icons/index";
 import InputImage from "../../../../components/Form/Input/Image/Image";
 import Button from "../../../../components/Form/Button/Button";
 
@@ -116,6 +118,14 @@ const CreateCourses = () => {
                         <form onSubmit={handleSubmit} className={styles.form}>
                             <div className={styles.top}>
                                 <div className={styles.left}>
+                                    <OurInputText
+                                          id="new-course-address"
+                                          text="Localización"
+                                          value={location}
+                                          setValue={setLocation}
+                                    >
+                                        {Icons.certify()}
+                                    </OurInputText>
                                     <DropDown
                                         text={modality === "" ? "Modalidad" : modality}
                                         attrBtn=""
