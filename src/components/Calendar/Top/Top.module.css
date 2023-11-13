@@ -1,0 +1,129 @@
+.calendar_container_top button[attr-css="btn-today-calendar"],
+.calendar_container_top button[attr-css="btn-month-calendar"],
+.calendar_container_top button[attr-css="btn-week-calendar"],
+.calendar_container_top button[attr-css="btn-day-calendar"],
+.calendar_container_top button[attr-css="btn-arrow-left-calendar"],
+.calendar_container_top button[attr-css="btn-arrow-right-calendar"] {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.calendar_container_top {
+    height: 60px;
+    padding: 15px 0;
+    background-color: #FFF;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar_container_top_left {
+    display: flex;
+    height: 100%;
+    gap: 20px;
+}
+
+
+.calendar_container_top_left_arrows button[attr-css="btn-arrow-left-calendar"],
+.calendar_container_top_left_arrows button[attr-css="btn-arrow-right-calendar"] {
+    width: 50%;
+    padding: 0;
+}
+
+.calendar_container_top_left_arrows button[attr-css="btn-arrow-left-calendar"] svg,
+.calendar_container_top_left_arrows button[attr-css="btn-arrow-right-calendar"] svg {
+    width: 15px;
+    height: 15px;
+    fill: #FFF;
+}
+
+.calendar_container_top_left_arrows button[attr-css="btn-arrow-left-calendar"] {
+    border-radius: 5px 0 0 5px;
+}
+
+.calendar_container_top_left_arrows button[attr-css="btn-arrow-right-calendar"] {
+    border-radius: 0 5px 5px 0;
+}
+
+.calendar_container_top_left_arrows {
+    display: flex;
+    height: 100%;
+    width: 70px;
+
+}
+
+.calendar_container_top_center {
+    display: block;
+    height: 100%;
+    width: 220px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1.3rem;
+}
+
+.calendar_container_top_right {
+    display: flex;
+    height: 100%;
+    gap: 20px;
+}
+
+@media screen and (max-width: 760px) {
+    .calendar_container_top {
+        height: 120px;
+        flex-direction: column;
+    }
+
+    .calendar_container_top_left,
+    .calendar_container_top_right {
+        justify-content: space-between;
+    }
+
+
+    .calendar_container_top_left button[attr-css="btn-month-calendar"],
+    .calendar_container_top_left button[attr-css="btn-week-calendar"],
+    .calendar_container_top_left button[attr-css="btn-day-calendar"],
+
+    .calendar_container_top_right button[attr-css="btn-month-calendar"],
+    .calendar_container_top_right button[attr-css="btn-week-calendar"],
+    .calendar_container_top_right button[attr-css="btn-day-calendar"] {
+        width: 30%;
+    }
+
+    .calendar_container_top_center {
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 360px) {
+    .calendar_container_top {
+        height: 210px;
+        gap: 5px;
+
+    }
+
+    .calendar_container_top_center,
+    .calendar_container_top_left {
+        height: 30px;
+    }
+
+    .calendar_container_top_right {
+        flex-direction: column;
+        height: 110px;
+        gap: 10px;
+
+    }
+
+    .calendar_container_top_right button[attr-css="btn-month-calendar"],
+    .calendar_container_top_right button[attr-css="btn-week-calendar"],
+    .calendar_container_top_right button[attr-css="btn-day-calendar"] {
+        width: 100%;
+    }
+}

@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
+import Calendar from "../../../components/Calendar/Calendar";
 import { FireError } from '../../../utils/alertHandler';
 import LoaderPages from './Loader/LoaderPages';
 import { getEvent } from '../../../client/events';
@@ -9,8 +10,7 @@ import Title from "../../../components/Title/Title";
 import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
 
-
-function Events() {
+function EventsTable() {
 
     const { modalDispatch } = useContext(ContentContext);
     const [events, setEvent] = useState([]);
@@ -18,19 +18,19 @@ function Events() {
 
     useEffect(() => {
         (async () => {
-            try{
+            try {
                 setIsLoading(true);
                 const even = await getEvent();
-                setIsLoading(false);                
-                setEvent(even);                
-            } catch (error){
+                setIsLoading(false);
+                setEvent(even);
+            } catch (error) {
                 setIsLoading(false);
                 FireError(error.response.data.message);
             }
         })();
     }, []);
 
-    
+
     const getFormatedDate = (date) => {
         const dateObject = new Date(date);
 
@@ -83,7 +83,9 @@ function Events() {
             });
         } catch { };
     };
-    
+}
+
+function EventsCalendar() {
     return (
         <div>
             <NavHistory>
@@ -112,8 +114,9 @@ function Events() {
                     />
                 </>
             )}
+            <Calendar />
         </div>
     );
 }
 
-export default Events;
+export default EventsCalendar;
