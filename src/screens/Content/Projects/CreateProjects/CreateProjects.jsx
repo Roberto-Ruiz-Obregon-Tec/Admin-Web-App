@@ -45,7 +45,7 @@ const CreateProjects = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateDates()) {
-            FireError('Las fecha de inicio debe de ser antes que la de inicio. Y el límite debe de ser antes que termine.');
+            FireError('Las fecha de inicio debe de ser antes que la de fin. Y el límite debe de ser antes que termine.');
             return;
         }
 

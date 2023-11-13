@@ -1,20 +1,90 @@
 .container {
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
 }
+
 .wrapper {
-    width: 500px;   
+    width: 900px;
 }
+
 .form {
     gap: 30px;
     display: flex;
     flex-direction: column;
 }
+
 .textarea textarea {
-    height: 100px;
+    height: 145px;
 }
+
 .dates {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+}
+.dates input[type="date"] {
+    text-align: center;
+}
+
+.left {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+
+.right {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 27.5px;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.bottom {
+    width: 450px;
+    display: flex;
+    margin-left: auto;
+    justify-content: flex-end;
+    gap: 30px;
+}
+.bottom div,
+.bottom button {
+    width: 50%;
+}
+
+.split {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.dates div input {
+    height: 50px;
+    font-size: 15px;
+}
+
+.dates div,
+.input_in_split {
+    width: 195px;
+}
+.left div[attr-css="child-modality-new-course"] {
+    z-index: 2;
+}
+.drops {
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+    width: 100%;
+    margin-top: 37.5px;
 }

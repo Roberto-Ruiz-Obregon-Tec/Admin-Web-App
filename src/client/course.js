@@ -29,13 +29,11 @@ export async function getCourseInscriptions(courseId) {
  * @returns An array of topics.
  */
 export async function postCourse(courseForm) {
-    const endpoint = `${baseApiEndpoint}/course`;
+    const endpoint = `${baseApiEndpoint}/course/create`;
 
-    const response = await axios.post(endpoint, courseForm, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    const response = await axios.post(endpoint, courseForm);
 
-    return response.data.data.document;
+    return response.data;
 }
 
 /**
