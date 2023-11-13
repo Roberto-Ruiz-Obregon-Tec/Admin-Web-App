@@ -2,19 +2,54 @@
     display: flex;
     justify-content: center;
 }
+
 .wrapper {
-    width: 500px;   
+    width: 950px;
 }
+
 .form {
     gap: 30px;
     display: flex;
     flex-direction: column;
 }
+
 .textarea textarea {
     height: 100px;
 }
+
 .dates {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+}
+
+.left {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.bottom {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.bottom button {
+    width: 300px;
 }
