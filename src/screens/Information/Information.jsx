@@ -16,7 +16,7 @@ export default function Information() {
   useEffect( () => {
     (async () => {
       try {
-        const infoData = await getInformation();        
+        const infoData = await getInformation();                
         setInfo(infoData);
       } catch ( error ){
         FireError(error.response.data.message);
@@ -60,9 +60,13 @@ export default function Information() {
 
           {info.map((info, index) => {
             return (
+              <Fragment key={index}>
+
               <ListItem 
               icon = {Icons.telephone()}
               content = {info.phone} />
+
+              </Fragment>
             )
           })}
           
@@ -72,49 +76,57 @@ export default function Information() {
 
           {info.map((info, index) => {
             return (
-              <ListItem 
-              icon = {Icons.facebook()}
-              content = {
+              <Fragment key={index}>
+                <ListItem 
+                icon = {Icons.facebook()}
+                content = {
                 <GenericLink 
                   href={info.facebook}
                   name = {"Facebook"} />
               }  />
+              </Fragment>
             )
           })}
 
           {info.map((info, index) => {
             return (
-              <ListItem 
+              <Fragment key={index}>
+                <ListItem 
               icon = {Icons.instagram()}
               content = {
                 <GenericLink 
                   href={info.instagram}
                   name = {"Instagram"} />
               }  />
+              </Fragment>
             )
           })}
 
           {info.map((info, index) => {
             return (
-              <ListItem 
+              <Fragment key={index}>
+                <ListItem 
               icon = {Icons.twitter()}
               content = {
                 <GenericLink 
                   href={info.twitter}
                   name = {"Twitter"} />
               }  />
+              </Fragment>
             )
           })}
 
           {info.map((info, index) => {
             return (
-              <ListItem 
+              <Fragment key={index}>
+                <ListItem 
               icon = {Icons.tiktok()}
               content = {
                 <GenericLink 
                   href={info.tiktok}
                   name = {"Tiktok"} />
               }  />
+              </Fragment>
             )
           })}
           
