@@ -62,7 +62,7 @@ function Usuarios() {
             </NavHistory>
             <Title>
                 {Icons.users()}
-                Lista usuarios
+                Lista de usuarios
             </Title>
             {isLoading && (
                 <LoaderPages />

@@ -1,5 +1,5 @@
 import styles from "./LoaderPages.module.css";
-import Skeleton from "../../../components/Skeleton/Skeleton";
+import Skeleton from "../../../../components/Skeleton/Skeleton";
 
 function LoaderPages() {
     return (

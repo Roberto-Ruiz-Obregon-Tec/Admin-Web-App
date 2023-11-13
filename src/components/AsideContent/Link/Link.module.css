@@ -1,0 +1,55 @@
+.link {
+    width: 100%;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color ease-out 300ms;
+    background-color: #FFF;
+    color: #000;
+}
+
+@media (hover:hover) and (pointer:fine) {
+    .link:hover {
+        background-color: #f3dddd;
+    }
+}
+
+.link:focus {
+    outline: none;
+}
+
+.link span {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-weight: bold;
+}
+
+.link svg {
+    width: 20px;
+    height: 20px;
+    fill: #000;
+}
+
+.is_in_link {
+    background-color: #F6D2D2;
+}
+
+.is_in_link svg {
+    fill: #CF2B2A !important;
+}
+
+.link span:nth-child(1) {
+    width: 55px;
+    justify-content: center;
+}
+
+.link span:nth-child(2) {
+    width: calc(100% - 55px);
+    justify-content: flex-start;
+    text-align: left;
+}
