@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReturnLink from "../../../../components/Links/Return/Return";
 import { FireError, FireSucess } from '../../../../utils/alertHandler';
-import { createPublications } from "../../../../client/publications";
+import { postCourse } from "../../../../client/course";
 import NavHistory from "../../../../components/NavHistory/NavHistory";
 import Card from "../../../../components/ShadowCard/ShadowCard";
 import { PATH_COURSES } from "../../../../config/paths";
@@ -27,7 +27,6 @@ const CreateCourses = () => {
     const [speaker, setSpeaker] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-    const [schedule, setSchedule] = useState("");
 
     const [modality, setModality] = useState("");
     const [isOpenModality, setIsOpenModality] = useState(false);
@@ -39,73 +38,94 @@ const CreateCourses = () => {
     const [isOpenStatus, setIsOpenStatus] = useState(false);
 
     const [cost, setCost] = useState("");
-    const [courseImage, setCourseImage] = useState("");
     const [capacity, setCapacity] = useState("");
-    const [rating, setRating] = useState("");
-    const [ratingCount, setRatingCount] = useState("");
     const [meetingCode, setMeetingCode] = useState("");
-    const [accessCode, setAccessCode] = useState("");
 
-    const [file, setFile] = useState(null);
+    const [courseImage, setCourseImage] = useState(null);
+
+    const validateDates = () => {
+        return new Date(startDate).getTime() <= new Date(endDate).getTime();
+    }
 
     /**
-     * Handles the form submission for admin to create a post
+     * Handles the form submission for admin to create a course
      * 
      * @param {Event} e - The form submission event that triggered the function.
      */
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // if (
-        //     title.trim() === "" ||
-        //     description.trim() === ""
-        // ) {
-        //     FireError('No puedes dejar los campos vacíos.');
-        //     return;
-        // }
-        // if (file === null) {
-        //     FireError('Debes de subir una imagen');
-        //     return;
-        // }
-        // try {
-        //     const data = {
-        //         title,
-        //         description,
-        //         image: "https://ejemplo.com",
-        //     };
-        //     setIsLoading(true);
-        //     const response = await createPublications(data);
-        //     setIsLoading(false);
+        if (
+            name.trim() === "" ||
+            description.trim() === "" ||
+            speaker.trim() === "" ||
+            modality.trim() === "" ||
+            postalCode.trim() === "" ||
+            location.trim() === "" ||
+            status.trim() === "" ||
+            cost.trim() === "" ||
+            capacity.trim() === "" ||
+            meetingCode.trim() === ""
+        ) {
+            FireError('No puedes dejar los campos vacíos.');
+            return;
+        }
+        if (!validateDates()) {
+            FireError('Las fecha de inicio debe de ser antes que la de fin.');
+            return;
+        }
+        if (postalCode.length !== 5) {
+            FireError('El código postal debe de ser de 5 números.');
+            return;
+        }
+        if (isNaN(postalCode)) {
+            FireError('El código postal debe de ser un número.');
+            return;
+        }
+        if (isNaN(cost)) {
+            FireError('El costo debe de ser un número.');
+            return;
+        }
+        if (isNaN(capacity)) {
+            FireError('La capacidad debe de ser un número.');
+            return;
+        }
+        if (courseImage === null) {
+            FireError('Debes de subir una imagen');
+            return;
+        }
+        try {
+            const data = {
+                name,
+                description,
+                speaker,
+                startDate: new Date(startDate),
+                endDate: new Date(endDate),
+                schedule: new Date(startDate),
+                modality,
+                postalCode,
+                location,
+                status,
+                cost,
+                courseImage: "https://ejemplo.com",
+                capacity,
+                meetingCode
+            };
+            setIsLoading(true);
+            const response = await postCourse(data);
+            setIsLoading(false);
 
-        //     if (response.status === 'success') {
-        //         FireSucess('Has creado una publicación exitosamente.');
-        //         navigate(PATH_COURSES);
-        //     } else {
-        //         FireError('Ha habido un error.');
-        //     }
-        // } catch (error) {
-        //     setIsLoading(false);
-        //     if ([400, 401].includes(error.response.status)) FireError(error.response.data.message);
-        //     else FireError('Ocurrió un error. Por favor intenta de nuevo.');
-        // }
+            if (response.status === 'success') {
+                FireSucess('Has creado un curso exitosamente.');
+                navigate(PATH_COURSES);
+            } else {
+                FireError('Ha habido un error.');
+            }
+        } catch (error) {
+            setIsLoading(false);
+            if ([400, 401].includes(error.response.status)) FireError(error.response.data.message);
+            else FireError('Ocurrió un error. Por favor intenta de nuevo.');
+        }
     };
-
-    // name
-    // description
-    // speaker
-    // startDate
-    // endDate
-    // schedule
-    // modality
-    // postalCode
-    // location
-    // status
-    // cost
-    // courseImage
-    // capacity
-    // rating
-    // ratingCount
-    // meetingCode
-    // accessCode
 
     return (
         <div>
@@ -141,8 +161,8 @@ const CreateCourses = () => {
                                     <OurInputText
                                         id="new-course-access-code"
                                         text="Código de acceso"
-                                        value={accessCode}
-                                        setValue={setAccessCode}
+                                        value={meetingCode}
+                                        setValue={setMeetingCode}
                                     >
                                         {Icons.link()}
                                     </OurInputText>
@@ -240,9 +260,9 @@ const CreateCourses = () => {
                                 <InputImage
                                     id="image-post-new"
                                     setFile={(file) => {
-                                        setFile(file);
+                                        setCourseImage(file);
                                     }}
-                                    file={file}
+                                    file={courseImage}
                                 />
                                 <Button isAnimationLoading isLoading={isLoading} type='submit'>
                                     Crear curso
