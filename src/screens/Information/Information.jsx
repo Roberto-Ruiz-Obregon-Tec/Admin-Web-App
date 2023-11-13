@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import { FireError } from '../../utils/alertHandler';
 import { getInformation } from '../../client/information';
 
@@ -42,9 +42,14 @@ export default function Information() {
 
           {info.map((info, index) => {
             return (
+
+              <Fragment key={index}> 
+
               <ListItem 
               icon = {Icons.location()}
               content = {info.location} />
+              
+              </Fragment>
             )
           })}
           
