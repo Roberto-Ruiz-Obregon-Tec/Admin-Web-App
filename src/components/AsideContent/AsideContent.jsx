@@ -13,7 +13,12 @@ export default function Aside() {
 	return (
 		<aside className={styles.container}>
 			<div className={styles.title}>
-				TITLE
+				<span>
+					{Icons.menu()}
+				</span>
+				<span>
+					Todos los menús
+				</span>
 			</div>
 			<div className={styles.container_links}>
 				<Link text="Proyectos" href={PATH_PROJECTS}>

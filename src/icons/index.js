@@ -9,6 +9,7 @@ import content from "./content"
 import courses from "./courses"
 import events from "./events"
 import posts from "./posts"
+import menu from "./menu"
 
 export default {
     announce,
@@ -21,5 +22,6 @@ export default {
     content,
     courses,
     events,
-    posts
+    posts,
+    menu
 }
