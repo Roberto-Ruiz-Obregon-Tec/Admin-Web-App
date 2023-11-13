@@ -18,6 +18,9 @@ import facebook from "./facebook"
 import instagram from "./instagram"
 import twitter from "./twitter"
 import tiktok from "./tiktok"
+import link from "./link"
+import map from "./map"
+import postal from "./postal"
 
 const icons = {
     announce,
@@ -39,7 +42,10 @@ const icons = {
     facebook, 
     instagram,
     twitter,
-    tiktok
+    tiktok,
+    link,
+    map,
+    postal
 }
 
 export default icons;

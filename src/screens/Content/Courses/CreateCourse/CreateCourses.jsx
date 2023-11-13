@@ -8,6 +8,7 @@ import { PATH_COURSES } from "../../../../config/paths";
 import DropDown from "../../../../components/Form/Input/DropDown/DropDown";
 
 import InputText from "../../../../components/Form/Input/Text/Text";
+import InputDate from "../../../../components/Form/Input/Date/Date";
 import OurInputText from "./Input/Text";
 import InputTextArea from "../../../../components/Form/Input/TextArea/TextArea";
 import Icons from "../../../../icons/index";
@@ -29,11 +30,14 @@ const CreateCourses = () => {
     const [schedule, setSchedule] = useState("");
 
     const [modality, setModality] = useState("");
-    const [isOpenmodality, setIsOpenModality] = useState(false);
+    const [isOpenModality, setIsOpenModality] = useState(false);
 
     const [postalCode, setPostalCode] = useState("");
     const [location, setLocation] = useState("");
+
     const [status, setStatus] = useState("");
+    const [isOpenStatus, setIsOpenStatus] = useState(false);
+
     const [cost, setCost] = useState("");
     const [courseImage, setCourseImage] = useState("");
     const [capacity, setCapacity] = useState("");
@@ -119,32 +123,66 @@ const CreateCourses = () => {
                             <div className={styles.top}>
                                 <div className={styles.left}>
                                     <OurInputText
-                                          id="new-course-address"
-                                          text="Localización"
-                                          value={location}
-                                          setValue={setLocation}
+                                        id="new-course-address"
+                                        text="Localización"
+                                        value={location}
+                                        setValue={setLocation}
                                     >
-                                        {Icons.certify()}
+                                        {Icons.map()}
                                     </OurInputText>
-                                    <DropDown
-                                        text={modality === "" ? "Modalidad" : modality}
-                                        attrBtn=""
-                                        attrDivParent=""
-                                        isOpen={isOpenmodality}
-                                        id="dropdown-new-course-modality"
-                                        setIsOpen={setIsOpenModality}
+                                    <OurInputText
+                                        id="new-course-postal-code"
+                                        text="Código postal"
+                                        value={postalCode}
+                                        setValue={setPostalCode}
                                     >
-                                        {["Remoto", "Presencial"].map((possibility, index) => {
-                                            return (
-                                                <div onClick={() => {
-                                                    setModality(possibility);
-                                                    setIsOpenModality(false);
-                                                }} attr-css="element" key={index}>
-                                                    {possibility}
-                                                </div>
-                                            )
-                                        })}
-                                    </DropDown>
+                                        {Icons.postal()}
+                                    </OurInputText>
+                                    <OurInputText
+                                        id="new-course-access-code"
+                                        text="Código de acceso"
+                                        value={accessCode}
+                                        setValue={setAccessCode}
+                                    >
+                                        {Icons.link()}
+                                    </OurInputText>
+                                    <div className={styles.drops}>
+                                        <DropDown
+                                            text={modality === "" ? "Modalidad" : modality}
+                                            attrDivChild="child-modality-new-course"
+                                            isOpen={isOpenModality}
+                                            id="dropdown-new-course-modality"
+                                            setIsOpen={setIsOpenModality}
+                                        >
+                                            {["Remoto", "Presencial"].map((possibility, index) => {
+                                                return (
+                                                    <div onClick={() => {
+                                                        setModality(possibility);
+                                                        setIsOpenModality(false);
+                                                    }} attr-css="element" key={index}>
+                                                        {possibility}
+                                                    </div>
+                                                )
+                                            })}
+                                        </DropDown>
+                                        <DropDown
+                                            text={status === "" ? "Estatus" : status}
+                                            isOpen={isOpenStatus}
+                                            id="dropdown-new-course-status"
+                                            setIsOpen={setIsOpenStatus}
+                                        >
+                                            {["Gratuito", "De pago"].map((possibility, index) => {
+                                                return (
+                                                    <div onClick={() => {
+                                                        setStatus(possibility);
+                                                        setIsOpenStatus(false);
+                                                    }} attr-css="element" key={index}>
+                                                        {possibility}
+                                                    </div>
+                                                )
+                                            })}
+                                        </DropDown>
+                                    </div>
                                 </div>
                                 <div className={styles.right}>
                                     <InputText
@@ -153,16 +191,59 @@ const CreateCourses = () => {
                                         value={name}
                                         setValue={setName}
                                     />
-                                    <InputImage
-                                        id="image-post-new"
-                                        setFile={(file) => {
-                                            setFile(file);
-                                        }}
-                                        file={file}
+                                    <div className={`${styles.split} ${styles.dates}`}>
+                                        <InputDate
+                                            currDate={startDate}
+                                            setCurrDate={setStartDate}
+                                            text="Fecha inicio"
+                                            id="start-date-new-course"
+                                        />
+                                        <InputDate
+                                            currDate={endDate}
+                                            setCurrDate={setEndDate}
+                                            text="Fecha fin"
+                                            id="limit-date-new-course"
+                                        />
+                                    </div>
+                                    <div className={styles.split}>
+                                        <InputText
+                                            id="new-course-price"
+                                            text="Costo"
+                                            value={cost}
+                                            className={styles.input_in_split}
+                                            setValue={setCost}
+                                        />
+                                        <InputText
+                                            id="new-course-capacity"
+                                            text="Capacidad"
+                                            value={capacity}
+                                            className={styles.input_in_split}
+                                            setValue={setCapacity}
+                                        />
+                                    </div>
+                                    <InputTextArea
+                                        id="new-course-description"
+                                        text="Descripción"
+                                        value={description}
+                                        setValue={setDescription}
+                                        className={styles.textarea}
+                                    />
+                                    <InputText
+                                        id="new-course-speaker-name"
+                                        text="Nombre del ponente"
+                                        value={speaker}
+                                        setValue={setSpeaker}
                                     />
                                 </div>
                             </div>
                             <div className={styles.bottom}>
+                                <InputImage
+                                    id="image-post-new"
+                                    setFile={(file) => {
+                                        setFile(file);
+                                    }}
+                                    file={file}
+                                />
                                 <Button isAnimationLoading isLoading={isLoading} type='submit'>
                                     Crear curso
                                 </Button>
