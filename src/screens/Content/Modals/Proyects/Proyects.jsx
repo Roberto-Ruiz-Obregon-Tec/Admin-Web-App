@@ -1,7 +1,8 @@
 import PopUpModal from "../PopUp/PopUp";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CLEAR_MODALS, KEYS_MODAL } from "../../store/modalReducer";
 import { ContentContext } from "../../Content";
+import Image from "../../../../components/Image/Image";
 import styles from "./Projects.module.css";
 
 export default function PopUpProyect() {
@@ -9,8 +10,6 @@ export default function PopUpProyect() {
         modalState,
         modalDispatch
     } = useContext(ContentContext);
-
-    const [imgSrc, setImgSrc] = useState("");
 
     const isOpen = () => {
         return modalState.modalOpened === KEYS_MODAL.PROJECT;
@@ -28,12 +27,7 @@ export default function PopUpProyect() {
         });
     }
 
-    useEffect(() => {
-        setImgSrc(modalState.documentJSON["programImage"] ? modalState.documentJSON["programImage"] : "/imagen404.png");
-    }, [modalState.documentJSON]);
-
     const getState = () => {
-
         return {
             "name": modalState.documentJSON["name"] ? modalState.documentJSON["name"] : "-----",
             "startDate": modalState.documentJSON["startDate"] ? modalState.documentJSON["startDate"] : "dd/mm/yyyy",
@@ -47,12 +41,6 @@ export default function PopUpProyect() {
             "focus": modalState.documentJSON["focus"] ? modalState.documentJSON["focus"] : [],
         };
     };
-
-    const onError = () => {
-        try {
-            setImgSrc("/imagen404.png");
-        } catch { }
-    }
 
     const clearState = () => {
         setIsOpen();
@@ -88,9 +76,10 @@ export default function PopUpProyect() {
                 </div>
             </div>
             <div className={styles.img}>
-                <img onClick={() => {
-                    window.open(imgSrc, "_blank");
-                }} onError={onError} src={imgSrc} alt={getState().name} />
+                <Image
+                    alt={getState().name}
+                    src={modalState.documentJSON["programImage"]}
+                />
             </div>
             <div className={styles.focus}>
                 <div className={styles.focus_title}>Enfoques:</div>
