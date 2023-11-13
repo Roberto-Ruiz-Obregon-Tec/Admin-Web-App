@@ -10,8 +10,15 @@ import courses from "./courses"
 import events from "./events"
 import posts from "./posts"
 import menu from "./menu"
+import info from "./info"
+import telephone from "./telephone"
+import location from "./location"
+import facebook from "./facebook"
+import instagram from "./instagram"
+import twitter from "./twitter"
+import tiktok from "./tiktok"
 
-export default {
+const icons = {
     announce,
     certify,
     users,
@@ -23,5 +30,14 @@ export default {
     courses,
     events,
     posts,
-    menu
+    menu,
+    info,
+    telephone,
+    location,
+    facebook, 
+    instagram,
+    twitter,
+    tiktok
 }
+
+export default icons;
