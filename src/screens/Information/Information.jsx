@@ -15,8 +15,7 @@ export default function Information() {
   useEffect( () => {
     (async () => {
       try {
-        const infoData = await getInformation();        
-        console.log("Resultado:", infoData);
+        const infoData = await getInformation();                
         setInfo(infoData);
       } catch ( error ){
         FireError(error.response.data.message);
@@ -43,6 +42,7 @@ export default function Information() {
           {info.map((info, index) => {
             return (
               <ListItem 
+              key = {index}
               icon = {Icons.location()}
               content = {info.location} />
             )
