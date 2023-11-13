@@ -11,6 +11,7 @@ import SignupForm from './screens/SignUp/SignUp';
 import Dashboard from './screens/Dashboard/Dashboard';
 import Content from './screens/Content/Content';
 import Usuarios from './screens/Users/Users';
+import Informacion from './screens/Information/Information';
 
 import {
     PATH_HOME,
@@ -25,7 +26,8 @@ import {
     PATH_EVENTS,
     PATH_COURSES,
     PATH_CREATE_POSTS,
-    PATH_CREATE_COURSE
+    PATH_CREATE_COURSE,
+    PATH_INFO
 } from "./config/paths";
 
 const routesContent = () => {
@@ -93,7 +95,16 @@ const routes = [
         withoutPadding: false,
         svg: "newUser"
     },
-    ...routesContent()
+    ...routesContent(),
+    {
+        path: PATH_INFO,
+        name: 'Informacion',
+        Component: Informacion,
+        isPrivate: true,
+        inNavbar: true,
+        svg: "info"
+    },
+
     // {
     //     path: PATH_ANNOUNCES,
     //     name: 'Anuncios',

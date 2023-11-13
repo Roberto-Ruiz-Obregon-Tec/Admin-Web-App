@@ -21,3 +21,4 @@ export const PATH_COURSES = "/contenido/cursos";
 export const PATH_CREATE_COURSE = "/contenido/cursos/crear";
 
 export const PATH_CERTIFICATIONS = "/contenido/acreditaciones";
+export const PATH_INFO = "/informacion";
