@@ -141,8 +141,7 @@ const TopCalendar = () => {
                         if (setCalendarView) setCalendarView("Month");
                         getToday();
                     }}
-                    attr="btn-month-calendar"
-                    isDisabled={calendarView != "Month"}
+                    attr={`${calendarView != "Month" ? "btn-month-calendar-disabled" : "btn-month-calendar"}`}
                 >
                     Mes
                 </BtnChildren>
@@ -152,8 +151,7 @@ const TopCalendar = () => {
                         if (setCalendarView) setCalendarView("Week");
                         getToday();
                     }}
-                    isDisabled={calendarView != "Week"}
-                    attr="btn-week-calendar"
+                    attr={`${calendarView != "Week" ? "btn-week-calendar-disabled" : "btn-week-calendar"}`}
                 >
                     Semana
                 </BtnChildren>
@@ -163,8 +161,7 @@ const TopCalendar = () => {
                         if (setCalendarView) setCalendarView("Day");
                         getToday();
                     }}
-                    isDisabled={calendarView != "Day"}
-                    attr="btn-day-calendar"
+                    attr={`${calendarView != "Day" ? "btn-day-calendar-disabled" : "btn-day-calendar"}`}
                 >
                     Día
                 </BtnChildren>

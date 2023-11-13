@@ -2,18 +2,20 @@ import styles from "./Calendar.module.css";
 
 // Components
 import TopCalendar from "./Top/Top";
+import Provider from "./Provider";
 // import GridCalendar from "./Grid/Grid";
 
 const Calendar = () => {
 
     return (
-        <div className={styles.calendar}>
-            <h1>Calendario eventos</h1>
-            <div className={styles.calendar_container}>
-                <TopCalendar />
-                {/* <GridCalendar /> */}
+        <Provider>
+            <div className={styles.calendar}>
+                <div className={styles.calendar_container}>
+                    <TopCalendar />
+                    {/* <GridCalendar /> */}
+                </div>
             </div>
-        </div>
+        </Provider>
     );
 };
 export default Calendar;

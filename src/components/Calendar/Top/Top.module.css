@@ -1,7 +1,18 @@
-.calendar_container_top button[attr-css="btn-today-calendar"],
+.calendar_container_top button[attr-css="btn-month-calendar-disabled"],
+.calendar_container_top button[attr-css="btn-week-calendar-disabled"],
+.calendar_container_top button[attr-css="btn-day-calendar-disabled"] {
+    opacity: .6 !important;
+}
+
+.calendar_container_top button[attr-css="btn-month-calendar-disabled"],
+.calendar_container_top button[attr-css="btn-week-calendar-disabled"],
+.calendar_container_top button[attr-css="btn-day-calendar-disabled"],
+
 .calendar_container_top button[attr-css="btn-month-calendar"],
 .calendar_container_top button[attr-css="btn-week-calendar"],
 .calendar_container_top button[attr-css="btn-day-calendar"],
+
+.calendar_container_top button[attr-css="btn-today-calendar"],
 .calendar_container_top button[attr-css="btn-arrow-left-calendar"],
 .calendar_container_top button[attr-css="btn-arrow-right-calendar"] {
     height: 100%;
@@ -12,8 +23,7 @@
 }
 
 .calendar_container_top {
-    height: 60px;
-    padding: 15px 0;
+    height: 30px;
     background-color: #FFF;
 
     display: flex;
@@ -51,8 +61,7 @@
 .calendar_container_top_left_arrows {
     display: flex;
     height: 100%;
-    width: 70px;
-
+    width: 100px;
 }
 
 .calendar_container_top_center {
@@ -62,6 +71,7 @@
     justify-content: center;
     text-align: center;
     align-items: center;
+    line-height: 30px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -89,6 +99,14 @@
     .calendar_container_top_left button[attr-css="btn-month-calendar"],
     .calendar_container_top_left button[attr-css="btn-week-calendar"],
     .calendar_container_top_left button[attr-css="btn-day-calendar"],
+
+    .calendar_container_top_left button[attr-css="btn-month-calendar-disabled"],
+    .calendar_container_top_left button[attr-css="btn-week-calendar-disabled"],
+    .calendar_container_top_left button[attr-css="btn-day-calendar-disabled"],
+
+    .calendar_container_top_right button[attr-css="btn-month-calendar-disabled"],
+    .calendar_container_top_right button[attr-css="btn-week-calendar-disabled"],
+    .calendar_container_top_right button[attr-css="btn-day-calendar-disabled"],
 
     .calendar_container_top_right button[attr-css="btn-month-calendar"],
     .calendar_container_top_right button[attr-css="btn-week-calendar"],
@@ -123,7 +141,11 @@
 
     .calendar_container_top_right button[attr-css="btn-month-calendar"],
     .calendar_container_top_right button[attr-css="btn-week-calendar"],
-    .calendar_container_top_right button[attr-css="btn-day-calendar"] {
+    .calendar_container_top_right button[attr-css="btn-day-calendar"],
+
+    .calendar_container_top_right button[attr-css="btn-month-calendar-disabled"],
+    .calendar_container_top_right button[attr-css="btn-week-calendar-disabled"],
+    .calendar_container_top_right button[attr-css="btn-day-calendar-disabled"] {
         width: 100%;
     }
 }
