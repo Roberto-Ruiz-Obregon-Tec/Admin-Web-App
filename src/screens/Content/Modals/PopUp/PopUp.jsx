@@ -36,7 +36,7 @@ export default function PopUp({
                 }} className={styles.xmark}>
                     {Icons.xmark()}
                 </button>
-                <div className={styles.body}>
+                <div className={`${styles.body} ${classNameBody}`}>
                     {children}
                 </div>
             </Card>
