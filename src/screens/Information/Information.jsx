@@ -8,6 +8,7 @@ import ListItem from '../../components/ListItem/ListItem';
 import GenericLink from '../../components/Links/Generic/Generic';
 
 import styles from "./Information.module.css";
+import { Fragment } from 'react';
 
 export default function Information() {
 
@@ -42,14 +43,11 @@ export default function Information() {
 
           {info.map((info, index) => {
             return (
-
-              <Fragment key={index}> 
-
-              <ListItem 
-              icon = {Icons.location()}
-              content = {info.location} />
-              
-              </Fragment>
+              <Fragment key={index}>
+                  <ListItem               
+                  icon = {Icons.location()}
+                  content = {info.location} />
+              </Fragment>              
             )
           })}
           
@@ -61,11 +59,9 @@ export default function Information() {
           {info.map((info, index) => {
             return (
               <Fragment key={index}>
-
-              <ListItem 
-              icon = {Icons.telephone()}
-              content = {info.phone} />
-
+                <ListItem 
+                icon = {Icons.telephone()}
+                content = {info.phone} />
               </Fragment>
             )
           })}
