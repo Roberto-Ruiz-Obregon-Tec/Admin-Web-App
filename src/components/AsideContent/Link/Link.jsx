@@ -9,7 +9,7 @@ export default function _Link({
     const location = useLocation();
 
     const isOnOurLink = () => {
-        return location.pathname === href;
+        return location.pathname.includes(href);
     };
 
     return (

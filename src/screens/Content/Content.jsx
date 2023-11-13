@@ -10,7 +10,10 @@ import ConsultProjects from "./Projects/Projects";
 import CreateProjects from "./Projects/CreateProjects/CreateProjects";
 
 import Certifications from "./Certifications/Certifications";
+
 import Posts from "./Posts/Posts";
+import CreatePosts from "./Posts/CreatePosts/CreatePosts";
+
 import Events from "./Events/Events";
 import Courses from "./Courses/Courses";
 
@@ -23,7 +26,8 @@ import {
 	PATH_CERTIFICATIONS,
 	PATH_COURSES,
 	PATH_EVENTS,
-	PATH_POSTS
+	PATH_POSTS,
+	PATH_CREATE_POSTS
 } from "../../config/paths";
 import { useEffect } from "react";
 
@@ -41,6 +45,7 @@ export default function ContentDashboard() {
 		keys.add(PATH_COURSES);
 		keys.add(PATH_EVENTS);
 		keys.add(PATH_POSTS);
+		keys.add(PATH_CREATE_POSTS);
 
 		if (keys.has(pathname)) return;
 
@@ -62,6 +67,7 @@ export default function ContentDashboard() {
 				{pathname === PATH_COURSES && <Courses />}
 				{pathname === PATH_EVENTS && <Events />}
 				{pathname === PATH_POSTS && <Posts />}
+				{pathname === PATH_CREATE_POSTS && <CreatePosts />}
 			</div>
 		</div>
 	)

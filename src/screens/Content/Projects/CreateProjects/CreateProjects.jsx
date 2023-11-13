@@ -77,7 +77,7 @@ const CreateProjects = () => {
                 startDate: new Date(startDate),
                 endDate: new Date(endDate),
                 deadlineDate: new Date(limitDate),
-                programImage: "ejemplo",
+                programImage: "https://ejemplo.com",
                 postalCode: postalCode,
                 description: description
             };
@@ -101,7 +101,7 @@ const CreateProjects = () => {
     return (
         <div>
             <NavHistory>
-                Gestión de contenido / Proyectos Disponibles / Crear Proyecto
+                Gestión de contenido / Proyectos / Crear Proyecto
             </NavHistory>
             <ReturnLink href={PATH_PROJECTS} />
             <div className={styles.container}>

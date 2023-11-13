@@ -23,7 +23,8 @@ import {
     PATH_CERTIFICATIONS,
     PATH_POSTS,
     PATH_EVENTS,
-    PATH_COURSES
+    PATH_COURSES,
+    PATH_CREATE_POSTS
 } from "./config/paths";
 
 const routesContent = () => {
@@ -33,6 +34,7 @@ const routesContent = () => {
         PATH_PROJECTS,
         PATH_CERTIFICATIONS,
         PATH_POSTS,
+        PATH_CREATE_POSTS,
         PATH_EVENTS,
         PATH_COURSES
     ];

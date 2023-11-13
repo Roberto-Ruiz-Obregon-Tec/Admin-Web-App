@@ -64,7 +64,7 @@ function Proyectos() {
                 if (needsTransformation.has(key)) {
                     row.push(project[key] ? getFormatedDate(project[key]) : "dd/mm/yyyy");
                 } else {
-                    row.push(project[key] ? project[key] : "");
+                    row.push(project[key] !== "" ? project[key] : "");
                 }
             }
 

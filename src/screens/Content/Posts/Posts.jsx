@@ -5,7 +5,7 @@ import { getPublications } from '../../../client/publications';
 import LoaderPages from './Loader/LoaderPages';
 import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
-import { PATH_CREATE_PROJECTS } from "../../../config/paths";
+import { PATH_CREATE_POSTS } from "../../../config/paths";
 import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
 import styles from "./Posts.module.css";
@@ -61,7 +61,7 @@ function Posts() {
                 if (needsTransformation.has(key)) {
                     row.push(post[key] ? getFormatedDate(post[key]) : "dd/mm/yyyy");
                 } else {
-                    row.push(post[key] ? post[key] : "");
+                    row.push(post[key] !== "" ? post[key] : "");
                 }
             }
 
@@ -93,7 +93,7 @@ function Posts() {
                             "Fecha de creación"
                         ]}
                     />
-                    <Link title="Añadir una publicación" to={PATH_CREATE_PROJECTS} className={styles.add}>
+                    <Link title="Añadir una publicación" to={PATH_CREATE_POSTS} className={styles.add}>
                         {Icons.cross()}
                     </Link>
                 </>

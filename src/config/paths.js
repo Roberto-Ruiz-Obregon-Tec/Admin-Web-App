@@ -13,6 +13,7 @@ export const PATH_PROJECTS = "/contenido/proyectos";
 export const PATH_CREATE_PROJECTS = "/contenido/proyectos/crear";
 
 export const PATH_POSTS = "/contenido/publicaciones";
+export const PATH_CREATE_POSTS = "/contenido/publicaciones/crear";
 
 export const PATH_EVENTS = "/contenido/eventos";
 

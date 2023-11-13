@@ -12,3 +12,13 @@ export async function getPublications() {
     const response = await axios.get(endpoint);
     return response.data.data.publications;
 }
+
+/**
+ * It makes a POST request to the endpoint `/publication/create` to create a publication
+ */
+export async function createPublications(body) {
+    const endpoint = `${baseApiEndpoint}/publication/create`;
+
+    const response = await axios.post(endpoint, body);
+    return response.data;
+}
