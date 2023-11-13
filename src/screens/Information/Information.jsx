@@ -8,7 +8,7 @@ import ListItem from '../../components/ListItem/ListItem';
 import GenericLink from '../../components/Links/Generic/Generic';
 
 import styles from "./Information.module.css";
-import { Fragment } from 'react';
+
 
 export default function Information() {
 
