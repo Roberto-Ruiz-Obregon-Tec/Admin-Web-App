@@ -2,8 +2,23 @@ import styles from "./Table.module.css";
 
 function Table({
     matrixData,
-    arrayHeaders
+    arrayHeaders,
+
+    percentages = null,
+    clickOnCell = null
 }) {
+
+    const getPercentage = (i = null) => {
+        if (percentages === null || i === null) return 100 / arrayHeaders.length;
+
+        return percentages[i];
+    }
+
+    const gotAClick = (i = null) => {
+        if (clickOnCell === null) return;
+
+        clickOnCell(i);
+    }
 
     return (
         <div className={styles.table}>
@@ -11,7 +26,7 @@ function Table({
                 {arrayHeaders.map((header, i) => {
                     return (
                         <div style={{
-                            width: `${100 / arrayHeaders.length}%`
+                            width: `${getPercentage(i)}%`
                         }} key={i} className={styles.header}>
                             {header}
                         </div>
@@ -31,8 +46,11 @@ function Table({
                     }}>
                         {row.map((element, j) => {
                             return (
-                                <div style={{
-                                    width: `${100 / arrayHeaders.length}%`
+                                <div onClick={() => {
+                                    gotAClick(i);
+                                }} style={{
+                                    width: `${getPercentage(j)}%`,
+                                    cursor: clickOnCell === null ? "default" : "pointer"
                                 }} className={styles.element} key={`${i}-${j}`}>
                                     {element}
                                 </div>

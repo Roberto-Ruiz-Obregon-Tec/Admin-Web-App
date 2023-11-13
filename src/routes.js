@@ -8,21 +8,57 @@
 // import Topics from './screens/Topics';
 import LoginForm from './screens/LogIn/Login';
 import SignupForm from './screens/SignUp/SignUp';
-import Certifications from './screens/Certifications/Certifications';
 import Dashboard from './screens/Dashboard/Dashboard';
-import ConsultProjects from './screens/Projects/Projects';
-import CreateProjects from './screens/Projects/CreateProjects/CreateProjects';
+import Content from './screens/Content/Content';
 import Usuarios from './screens/Users/Users';
+import Informacion from './screens/Information/Information';
 
 import {
     PATH_HOME,
-    PATH_CERTIFICATIONS,
     PATH_USERS,
     PATH_PROJECTS,
     PATH_LOGIN,
     PATH_CREATE_PROJECTS,
-    PATH_NEW_ADMIN
+    PATH_NEW_ADMIN,
+    PATH_CONTENT_DASHBOARD,
+    PATH_CERTIFICATIONS,
+    PATH_POSTS,
+    PATH_EVENTS,
+    PATH_COURSES,
+    PATH_CREATE_POSTS,
+    PATH_CREATE_COURSE,
+    PATH_INFO
 } from "./config/paths";
+
+const routesContent = () => {
+    const keysRoutes = [
+        PATH_CONTENT_DASHBOARD,
+        PATH_CREATE_PROJECTS,
+        PATH_PROJECTS,
+        PATH_CERTIFICATIONS,
+        PATH_POSTS,
+        PATH_CREATE_POSTS,
+        PATH_EVENTS,
+        PATH_COURSES,
+        PATH_CREATE_COURSE
+    ];
+    const arrayJSON = [];
+
+    for (let i = 0; i < keysRoutes.length; i++) {
+        const keyRouter = keysRoutes[i];
+        arrayJSON.push({
+            path: keyRouter,
+            name: "Gestión de contenido",
+            Component: Content,
+            isPrivate: true,
+            inNavbar: keyRouter === PATH_CONTENT_DASHBOARD,
+            withoutPadding: true,
+            svg: "content"
+        });
+    }
+
+    return arrayJSON;
+}
 
 const routes = [
     {
@@ -30,15 +66,8 @@ const routes = [
         name: 'Inicio',
         Component: Dashboard,
         isPrivate: true,
-        inNavbar: true
-    },
-    {
-        path: PATH_CERTIFICATIONS,
-        name: 'Certificaciones',
-        Component: Certifications,
-        isPrivate: true,
         inNavbar: true,
-        svg: "certify"
+        withoutPadding: false
     },
     {
         path: PATH_USERS,
@@ -46,28 +75,15 @@ const routes = [
         Component: Usuarios,
         isPrivate: true,
         inNavbar: true,
+        withoutPadding: false,
         svg: "users"
-    },
-    {
-        path: PATH_PROJECTS,
-        name: 'Proyectos',
-        Component: ConsultProjects,
-        isPrivate: true,
-        inNavbar: true,
-        svg: "projects"
     },
     {
         path: PATH_LOGIN,
         name: 'Iniciar sesión',
         Component: LoginForm,
         isPrivate: false,
-        inNavbar: false,
-    },
-    {
-        path: PATH_CREATE_PROJECTS,
-        name: 'Crear proyectos',
-        Component: CreateProjects,
-        isPrivate: true,
+        withoutPadding: false,
         inNavbar: false,
     },
     {
@@ -76,8 +92,19 @@ const routes = [
         Component: SignupForm,
         isPrivate: true,
         inNavbar: true,
+        withoutPadding: false,
         svg: "newUser"
     },
+    ...routesContent(),
+    {
+        path: PATH_INFO,
+        name: 'Informacion',
+        Component: Informacion,
+        isPrivate: true,
+        inNavbar: true,
+        svg: "info"
+    },
+
     // {
     //     path: PATH_ANNOUNCES,
     //     name: 'Anuncios',
