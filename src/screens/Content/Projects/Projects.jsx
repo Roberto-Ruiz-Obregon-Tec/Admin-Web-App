@@ -76,11 +76,11 @@ function Proyectos() {
     return (
         <div>
             <NavHistory>
-                Inicio / Proyectos
+                Gestión de contenido / Proyectos
             </NavHistory>
             <Title>
                 {Icons.projects()}
-                Lista proyectos
+                Lista de proyectos
             </Title>
             {isLoading && (
                 <LoaderPages />

@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Redirect from './components/Redirect/Redirect';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NavBar/Navbar';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import {
+    PATH_HOME
+} from './config/paths';
 import routes from './routes';
 
 import "./styles/styles.css";
@@ -33,6 +37,11 @@ function App() {
                         />
                     )
                 )}
+                <Route
+                    key={"key-404"}
+                    path={"*"}
+                    element={<Redirect to={PATH_HOME} />}
+                />
             </Routes>
         </div>
     );

@@ -20,7 +20,10 @@ import {
     PATH_CREATE_PROJECTS,
     PATH_NEW_ADMIN,
     PATH_CONTENT_DASHBOARD,
-    PATH_CERTIFICATIONS
+    PATH_CERTIFICATIONS,
+    PATH_POSTS,
+    PATH_EVENTS,
+    PATH_COURSES
 } from "./config/paths";
 
 const routesContent = () => {
@@ -28,7 +31,10 @@ const routesContent = () => {
         PATH_CONTENT_DASHBOARD,
         PATH_CREATE_PROJECTS,
         PATH_PROJECTS,
-        PATH_CERTIFICATIONS
+        PATH_CERTIFICATIONS,
+        PATH_POSTS,
+        PATH_EVENTS,
+        PATH_COURSES
     ];
     const arrayJSON = [];
 

@@ -29,11 +29,11 @@ function Certifications() {
     return (
         <div>
             <NavHistory>
-                Inicio / Certificaciones
+                Gestión de contenido  / Acreditaciones
             </NavHistory>
             <Title>
                 {Icons.certify()}
-                Lista de certificaciones
+                Lista de acreditaciones
             </Title>
             {isLoading && (
                 <LoaderPages />
