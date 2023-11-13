@@ -13,6 +13,7 @@ import Dashboard from './screens/Dashboard/Dashboard';
 import ConsultProjects from './screens/Projects/Projects';
 import CreateProjects from './screens/Projects/CreateProjects/CreateProjects';
 import Usuarios from './screens/Users/Users';
+import Informacion from './screens/Information/Information';
 
 import {
     PATH_HOME,
@@ -21,7 +22,8 @@ import {
     PATH_PROJECTS,
     PATH_LOGIN,
     PATH_CREATE_PROJECTS,
-    PATH_NEW_ADMIN
+    PATH_NEW_ADMIN,
+    PATH_INFO
 } from "./config/paths";
 
 const routes = [
@@ -77,6 +79,14 @@ const routes = [
         isPrivate: true,
         inNavbar: true,
         svg: "newUser"
+    },
+    {
+        path: PATH_INFO,
+        name: 'Informacion',
+        Component: Informacion,
+        isPrivate: true,
+        inNavbar: true,
+        svg: "info"
     },
     // {
     //     path: PATH_ANNOUNCES,
