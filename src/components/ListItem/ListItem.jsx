@@ -1,10 +1,10 @@
 import styles from "./ListItem.module.css";
 
 function ListItem({
-    icon, content, key
+    icon, content
 }) {
     return (        
-        <div id={key}>
+        <div>
           {icon}
           <p className={styles.p} >
             {content}

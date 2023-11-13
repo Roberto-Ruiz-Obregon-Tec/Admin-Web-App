@@ -7,6 +7,7 @@ import Icons from "../../icons/index";
 import ListItem from '../../components/ListItem/ListItem';
 
 import styles from "./Information.module.css";
+import { Fragment } from 'react';
 
 export default function Information() {
 
@@ -41,10 +42,11 @@ export default function Information() {
 
           {info.map((info, index) => {
             return (
-              <ListItem 
-              key = {index}
-              icon = {Icons.location()}
-              content = {info.location} />
+              <Fragment key={index}>
+                  <ListItem               
+                  icon = {Icons.location()}
+                  content = {info.location} />
+              </Fragment>              
             )
           })}
           
@@ -55,9 +57,11 @@ export default function Information() {
 
           {info.map((info, index) => {
             return (
-              <ListItem 
-              icon = {Icons.telephone()}
-              content = {info.phone} />
+              <Fragment key={index}>
+                <ListItem 
+                icon = {Icons.telephone()}
+                content = {info.phone} />
+              </Fragment>
             )
           })}
           
