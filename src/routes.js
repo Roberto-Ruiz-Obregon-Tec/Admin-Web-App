@@ -8,27 +8,27 @@
 // import Topics from './screens/Topics';
 import LoginForm from './screens/LogIn/Login';
 import SignupForm from './screens/SignUp/SignUp';
-import Certifications from './screens/Certifications/Certifications';
 import Dashboard from './screens/Dashboard/Dashboard';
 import Content from './screens/Content/Content';
 import Usuarios from './screens/Users/Users';
 
 import {
     PATH_HOME,
-    PATH_CERTIFICATIONS,
     PATH_USERS,
     PATH_PROJECTS,
     PATH_LOGIN,
     PATH_CREATE_PROJECTS,
     PATH_NEW_ADMIN,
-    PATH_CONTENT_DASHBOARD
+    PATH_CONTENT_DASHBOARD,
+    PATH_CERTIFICATIONS
 } from "./config/paths";
 
 const routesContent = () => {
     const keysRoutes = [
         PATH_CONTENT_DASHBOARD,
         PATH_CREATE_PROJECTS,
-        PATH_PROJECTS
+        PATH_PROJECTS,
+        PATH_CERTIFICATIONS
     ];
     const arrayJSON = [];
 
@@ -56,15 +56,6 @@ const routes = [
         isPrivate: true,
         inNavbar: true,
         withoutPadding: false
-    },
-    {
-        path: PATH_CERTIFICATIONS,
-        name: 'Certificaciones',
-        Component: Certifications,
-        isPrivate: true,
-        inNavbar: true,
-        withoutPadding: false,
-        svg: "certify"
     },
     {
         path: PATH_USERS,

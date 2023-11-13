@@ -1,12 +1,12 @@
 import { useState, useEffect, Fragment } from "react";
-import { FireError } from '../../utils/alertHandler';
-import { getCertifications } from "../../client/certifications";
+import { FireError } from '../../../utils/alertHandler';
+import { getCertifications } from "../../../client/certifications";
 import Card from "./Card/Card";
-import NavHistory from "../../components/NavHistory/NavHistory";
-import Title from "../../components/Title/Title";
+import NavHistory from "../../../components/NavHistory/NavHistory";
+import Title from "../../../components/Title/Title";
 import LoaderPages from "./Loader/LoaderPages";
 import styles from "./Certifications.module.css";
-import Icons from "../../icons/index";
+import Icons from "../../../icons/index";
 
 function Certifications() {
 

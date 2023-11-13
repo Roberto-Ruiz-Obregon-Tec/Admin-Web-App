@@ -6,6 +6,9 @@ import cross from "./cross"
 import create from "./create"
 import newUser from "./newUser"
 import content from "./content"
+import courses from "./courses"
+import events from "./events"
+import posts from "./posts"
 
 export default {
     announce,
@@ -15,5 +18,8 @@ export default {
     cross,
     create,
     newUser,
-    content
+    content,
+    courses,
+    events,
+    posts
 }
