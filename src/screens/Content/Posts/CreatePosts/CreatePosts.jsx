@@ -13,9 +13,9 @@ import InputDate from "../../../../components/Form/Input/Date/Date";
 import Button from "../../../../components/Form/Button/Button";
 
 import { useNavigate } from 'react-router-dom';
-import styles from "./CreateProjects.module.css";
+import styles from "./CreatePosts.module.css";
 
-const CreateProjects = () => {
+const CreatePosts = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -101,7 +101,7 @@ const CreateProjects = () => {
     return (
         <div>
             <NavHistory>
-                Gestión de contenido / Proyectos Disponibles / Crear Proyecto
+                Inicio / Proyectos Disponibles / Crear Proyecto
             </NavHistory>
             <ReturnLink href={PATH_PROJECTS} />
             <div className={styles.container}>
@@ -168,4 +168,4 @@ const CreateProjects = () => {
     );
 };
 
-export default CreateProjects;
+export default CreatePosts;
