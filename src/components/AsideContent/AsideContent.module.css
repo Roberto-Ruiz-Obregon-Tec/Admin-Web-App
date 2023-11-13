@@ -1,7 +1,7 @@
 .container {
     width: 280px;
     height: calc(100vh - 60px);
-    position: sticky;
+    position: fixed;
     top: 60px;
     left: 0;
     z-index: 1;
