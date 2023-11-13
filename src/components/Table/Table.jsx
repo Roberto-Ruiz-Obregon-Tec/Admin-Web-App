@@ -4,13 +4,20 @@ function Table({
     matrixData,
     arrayHeaders,
 
-    percentages = null
+    percentages = null,
+    clickOnCell = null
 }) {
 
     const getPercentage = (i = null) => {
         if (percentages === null || i === null) return 100 / arrayHeaders.length;
 
         return percentages[i];
+    }
+
+    const gotAClick = (i = null) => {
+        if (clickOnCell === null) return;
+
+        clickOnCell(i);
     }
 
     return (
@@ -39,7 +46,9 @@ function Table({
                     }}>
                         {row.map((element, j) => {
                             return (
-                                <div style={{
+                                <div onClick={() => {
+                                    gotAClick(j);
+                                }} style={{
                                     width: `${getPercentage(j)}%`
                                 }} className={styles.element} key={`${i}-${j}`}>
                                     {element}

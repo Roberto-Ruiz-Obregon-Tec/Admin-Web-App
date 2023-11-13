@@ -10,6 +10,7 @@ import courses from "./courses"
 import events from "./events"
 import posts from "./posts"
 import menu from "./menu"
+import xmark from "./xmark"
 
 export default {
     announce,
@@ -23,5 +24,6 @@ export default {
     courses,
     events,
     posts,
-    menu
+    menu,
+    xmark
 }
