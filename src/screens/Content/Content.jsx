@@ -1,9 +1,14 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { createContext, useReducer } from "react";
+import { modalReducer, initialState } from "./store/modalReducer";
 import Redirect from "../../components/Redirect/Redirect";
 import styles from "./Content.module.css";
 
 // Aside
 import Aside from "../../components/AsideContent/AsideContent";
+
+// Modals
+import ModalProject from "./Modals/Proyects/Proyects";
 
 // Pages
 import ConsultProjects from "./Projects/Projects";
@@ -29,13 +34,16 @@ import {
 	PATH_EVENTS,
 	PATH_POSTS,
 	PATH_CREATE_POSTS,
-	
+
 	PATH_COURSES,
 	PATH_CREATE_COURSE
 } from "../../config/paths";
 import { useEffect } from "react";
 
+export const ContentContext = createContext({});
+
 export default function ContentDashboard() {
+	const [modalState, modalDispatch] = useReducer(modalReducer, initialState);
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { pathname } = location;
@@ -60,21 +68,27 @@ export default function ContentDashboard() {
 	useEffect(checkIfNeedsToRedirect, [pathname]);
 
 	return (
-		<div className={styles.container}>
-			<Aside />
-			<div className={styles.body}>
-				{/* Default */}
-				{pathname === PATH_CONTENT_DASHBOARD && <Redirect to={PATH_PROJECTS} />}
+		<ContentContext.Provider value={{
+			modalState,
+			modalDispatch
+		}}>
+			<ModalProject />
+			<div className={styles.container}>
+				<Aside />
+				<div className={styles.body}>
+					{/* Default */}
+					{pathname === PATH_CONTENT_DASHBOARD && <Redirect to={PATH_PROJECTS} />}
 
-				{pathname === PATH_PROJECTS && <ConsultProjects />}
-				{pathname === PATH_CREATE_PROJECTS && <CreateProjects />}
-				{pathname === PATH_CERTIFICATIONS && <Certifications />}
-				{pathname === PATH_COURSES && <Courses />}
-				{pathname === PATH_EVENTS && <Events />}
-				{pathname === PATH_POSTS && <Posts />}
-				{pathname === PATH_CREATE_POSTS && <CreatePosts />}
-				{pathname === PATH_CREATE_COURSE && <CreateCourses />}
+					{pathname === PATH_PROJECTS && <ConsultProjects />}
+					{pathname === PATH_CREATE_PROJECTS && <CreateProjects />}
+					{pathname === PATH_CERTIFICATIONS && <Certifications />}
+					{pathname === PATH_COURSES && <Courses />}
+					{pathname === PATH_EVENTS && <Events />}
+					{pathname === PATH_POSTS && <Posts />}
+					{pathname === PATH_CREATE_POSTS && <CreatePosts />}
+					{pathname === PATH_CREATE_COURSE && <CreateCourses />}
+				</div>
 			</div>
-		</div>
+		</ContentContext.Provider>
 	)
 }

@@ -47,9 +47,10 @@ function Table({
                         {row.map((element, j) => {
                             return (
                                 <div onClick={() => {
-                                    gotAClick(j);
+                                    gotAClick(i);
                                 }} style={{
-                                    width: `${getPercentage(j)}%`
+                                    width: `${getPercentage(j)}%`,
+                                    cursor: clickOnCell === null ? "default" : "pointer"
                                 }} className={styles.element} key={`${i}-${j}`}>
                                     {element}
                                 </div>

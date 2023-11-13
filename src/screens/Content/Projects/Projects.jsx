@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { ContentContext } from "../Content";
+import { OPEN_PROJECT } from "../store/modalReducer";
 import { FireError } from '../../../utils/alertHandler';
 import { Link } from "react-router-dom";
 import { getProgram } from '../../../client/availableProj'
@@ -11,7 +13,7 @@ import Table from "../../../components/Table/Table";
 import styles from "./Projects.module.css";
 
 function Proyectos() {
-
+    const { modalDispatch } = useContext(ContentContext);
     const [avaliableP, setavailableP] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
@@ -73,6 +75,17 @@ function Proyectos() {
         return matrix;
     };
 
+    const openInfo = (i) => {
+        try {
+            if (i < 0 || i >= avaliableP.length) return;
+            const project = avaliableP[i];
+            modalDispatch({
+                type: OPEN_PROJECT,
+                payload: project
+            });
+        } catch { };
+    };
+
     return (
         <div>
             <NavHistory>
@@ -97,6 +110,7 @@ function Proyectos() {
                             "Descripción"
                         ]}
                         percentages={[30, 10, 10, 10, 40]}
+                        clickOnCell={openInfo}
                     />
                     <Link title="Añadir un proyecto" to={PATH_CREATE_PROJECTS} className={styles.add}>
                         {Icons.cross()}

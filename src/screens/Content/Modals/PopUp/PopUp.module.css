@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    z-index: 10;
     background-color: rgba(0, 0, 0, 0.75);
     visibility: hidden;
     opacity: 0;
@@ -38,15 +38,14 @@
 }
 .xmark svg {
     fill: #575757;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
 }
 .xmark svg:hover {
     fill: #777777;
 }
 .card {
     position: relative;
-    background-color: aqua;
 }
 .body {
     width: 100%;
