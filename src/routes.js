@@ -12,7 +12,6 @@ import Dashboard from './screens/Dashboard/Dashboard';
 import Content from './screens/Content/Content';
 import Usuarios from './screens/Users/Users';
 import Informacion from './screens/Information/Information';
-import Eventos from './screens/Events/Events';
 
 import {
     PATH_HOME,
@@ -27,8 +26,7 @@ import {
     PATH_EVENTS,
     PATH_COURSES,
     PATH_CREATE_POSTS,
-    PATH_INFO,
-    PATH_EVENTS
+    PATH_INFO
 } from "./config/paths";
 
 const routesContent = () => {
