@@ -92,6 +92,7 @@ function Posts() {
                             "Likes",
                             "Fecha de creación"
                         ]}
+                        percentages={[25, 60, 10, 15]}
                     />
                     <Link title="Añadir una publicación" to={PATH_CREATE_POSTS} className={styles.add}>
                         {Icons.cross()}

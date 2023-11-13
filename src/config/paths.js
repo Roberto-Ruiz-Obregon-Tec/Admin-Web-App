@@ -18,7 +18,6 @@ export const PATH_CREATE_POSTS = "/contenido/publicaciones/crear";
 export const PATH_EVENTS = "/contenido/eventos";
 
 export const PATH_COURSES = "/contenido/cursos";
-export const PATH_CREATE_COURSE = "/cursos/crear";
-export const PATH_ID_COURSE = "/cursos/:id";
+export const PATH_CREATE_COURSE = "/contenido/cursos/crear";
 
 export const PATH_CERTIFICATIONS = "/contenido/acreditaciones";

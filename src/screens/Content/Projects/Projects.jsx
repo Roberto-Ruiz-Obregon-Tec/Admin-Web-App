@@ -45,8 +45,8 @@ function Proyectos() {
         const possibleKeys = [
             "name",
             "startDate",
-            "endDate",
             "deadlineDate",
+            "endDate",
             "description"
         ]
 
@@ -92,10 +92,11 @@ function Proyectos() {
                         arrayHeaders={[
                             "Nombre",
                             "Fecha de inicio",
-                            "Fecha fin",
                             "Fecha límite",
+                            "Fecha fin",
                             "Descripción"
                         ]}
+                        percentages={[30, 10, 10, 10, 40]}
                     />
                     <Link title="Añadir un proyecto" to={PATH_CREATE_PROJECTS} className={styles.add}>
                         {Icons.cross()}
