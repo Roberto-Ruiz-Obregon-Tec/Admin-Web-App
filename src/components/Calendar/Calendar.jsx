@@ -3,7 +3,7 @@ import styles from "./Calendar.module.css";
 // Components
 import TopCalendar from "./Top/Top";
 import Provider from "./Provider";
-// import GridCalendar from "./Grid/Grid";
+import GridCalendar from "./Grid/Grid";
 
 const Calendar = () => {
 
@@ -12,7 +12,7 @@ const Calendar = () => {
             <div className={styles.calendar}>
                 <div className={styles.calendar_container}>
                     <TopCalendar />
-                    {/* <GridCalendar /> */}
+                    <GridCalendar />
                 </div>
             </div>
         </Provider>

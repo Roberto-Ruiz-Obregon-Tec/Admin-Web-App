@@ -23,6 +23,7 @@ import map from "./map"
 import postal from "./postal"
 import chevronLeft from "./chevron-left"
 import chevronRight from "./chevron-right"
+import chevronDown from "./chevron-down"
 
 const icons = {
     announce,
@@ -49,7 +50,8 @@ const icons = {
     map,
     postal,
     chevronLeft,
-    chevronRight
+    chevronRight,
+    chevronDown
 }
 
 export default icons;
