@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Calendar from "../../../components/Calendar/Calendar";
 import { FireError } from '../../../utils/alertHandler';
 import LoaderPages from './Loader/LoaderPages';
-import { getEvent } from '../../../client/events';
-import { ContentContext } from "../Content";
-import { OPEN_EVENT } from "../store/modalReducer";
+import { getEvents } from '../../../client/events';
 import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
 import Icons from "../../../icons/index";
@@ -13,7 +11,6 @@ import styles from "./Events.module.css";
 
 function EventsTable() {
 
-    const { modalDispatch } = useContext(ContentContext);
     const [events, setEvent] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +18,7 @@ function EventsTable() {
         (async () => {
             try {
                 setIsLoading(true);
-                const even = await getEvent();
+                const even = await getEvents();
                 setIsLoading(false);
                 setEvent(even);
             } catch (error) {
@@ -74,26 +71,8 @@ function EventsTable() {
         return matrix;
     };
 
-    const openInfo = (i) => {
-        try {
-            if (i < 0 || i >= events.length) return;
-            const eventos = events[i];
-            modalDispatch({
-                type: OPEN_EVENT,
-                payload: eventos
-            });
-        } catch { };
-    };
-
     return (
-        <div>
-            <NavHistory>
-                Gestión de contenido / Eventos
-            </NavHistory>
-            <Title>
-                {Icons.events()}
-                Lista de eventos
-            </Title>
+        <>
             {isLoading && (
                 <LoaderPages />
             )}
@@ -108,30 +87,51 @@ function EventsTable() {
                             "Fecha fin",
                             "Descripción"
                         ]}
-                        percentages={[30, 10, 10, 10, 40]}
-                        clickOnCell={openInfo}
+                        percentages={[20, 10, 20, 10, 40]}
                     />
                 </>
             )}
-        </div>
+        </>
     );
 }
 
 function EventsCalendar() {
     return (
-        <div>
-            <NavHistory>
-                Gestión de contenido / Eventos
-            </NavHistory>
-            <Title>
-                {Icons.events()}
-                Calendario de eventos
-            </Title>
-            <div className={styles.calendar}>
-                <Calendar />
-            </div>
+        <div className={styles.calendar}>
+            <Calendar />
         </div>
     );
 }
 
-export default EventsCalendar;
+function Events() {
+    const [view, setView] = useState("calendar");
+    return (
+        <div>
+            <NavHistory>
+                Gestión de contenido / Eventos
+            </NavHistory>
+            <div className={styles.top}>
+                <Title>
+                    {Icons.events()}
+                    {view === "calendar" ? "Calendario" : "Lista"} de eventos
+                </Title>
+                <div className={styles.modes}>
+                    <button onClick={() => {
+                        setView("calendar")
+                    }} className={`${view === "calendar" && styles.choosen}`}>Calendario</button>
+                    <button onClick={() => {
+                        setView("table")
+                    }} className={`${view === "table" && styles.choosen}`}>Tabla</button>
+                </div>
+            </div>
+            {view === "calendar" && (
+                <EventsCalendar />
+            )}
+            {view === "table" && (
+                <EventsTable />
+            )}
+        </div>
+    )
+}
+
+export default Events;
