@@ -27,7 +27,8 @@ import {
     PATH_COURSES,
     PATH_CREATE_POSTS,
     PATH_CREATE_COURSE,
-    PATH_INFO
+    PATH_INFO,
+    PATH_SCHOLARSHIP
 } from "./config/paths";
 
 const routesContent = () => {
@@ -40,7 +41,8 @@ const routesContent = () => {
         PATH_CREATE_POSTS,
         PATH_EVENTS,
         PATH_COURSES,
-        PATH_CREATE_COURSE
+        PATH_CREATE_COURSE,
+        PATH_SCHOLARSHIP
     ];
     const arrayJSON = [];
 
