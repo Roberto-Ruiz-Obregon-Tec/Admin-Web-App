@@ -21,11 +21,8 @@ function Events() {
             try{
                 setIsLoading(true);
                 const even = await getEvent();
-                console.log(even);
-                
                 setIsLoading(false);                
                 setEvent(even);                
-
             } catch (error){
                 setIsLoading(false);
                 FireError(error.response.data.message);
@@ -41,7 +38,6 @@ function Events() {
     };
 
     const getMatrix = () => {
-        console.log("putos", events)
         if (events.length === 0) return [];
 
         const matrix = []
