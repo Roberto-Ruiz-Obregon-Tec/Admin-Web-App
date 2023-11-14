@@ -40,3 +40,23 @@
 .row:hover {
     background-color: #ffeded !important;
 }
+
+.redbutton {
+    background-color: #CF2B2A;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.whitebutton {
+    background-color: #FFF;
+    color: #CF2B2A;
+    border: 1px solid #CF2B2A;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
