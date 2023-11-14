@@ -31,3 +31,29 @@ function padZero(str, len) {
     var zeros = new Array(len).join("0");
     return (zeros + str).slice(-len);
 }
+
+function ASCIISuma(array) {
+    let suma = 0;
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array[i].length; j++) {
+            let char_code = array[i].charCodeAt(j);
+            suma += char_code;
+        }
+    }
+    return suma;
+}
+
+export const stringToColour = (str) => {
+    // 15 -> 85
+    const COLORS = [
+        "#783037",
+        "#A12530",
+        "#CC0A1B",
+        "#CF2A38",
+        "#E3646F"
+    ]
+
+    const asci = ASCIISuma(str);
+    const validIndex = asci % COLORS.length;
+    return COLORS[validIndex];
+}

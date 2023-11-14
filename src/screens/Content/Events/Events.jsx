@@ -9,6 +9,7 @@ import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
 import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
+import styles from "./Events.module.css";
 
 function EventsTable() {
 
@@ -83,9 +84,7 @@ function EventsTable() {
             });
         } catch { };
     };
-}
 
-function EventsCalendar() {
     return (
         <div>
             <NavHistory>
@@ -114,7 +113,23 @@ function EventsCalendar() {
                     />
                 </>
             )}
-            <Calendar />
+        </div>
+    );
+}
+
+function EventsCalendar() {
+    return (
+        <div>
+            <NavHistory>
+                Gestión de contenido / Eventos
+            </NavHistory>
+            <Title>
+                {Icons.events()}
+                Calendario de eventos
+            </Title>
+            <div className={styles.calendar}>
+                <Calendar />
+            </div>
         </div>
     );
 }

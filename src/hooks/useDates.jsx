@@ -43,8 +43,8 @@ export const useDates = () => {
         if (!allTasks) return [];
         for (let i = 0; i < allTasks.length; i++) {
             if (
-                allTasks[i].startDate <= fromDate &&
-                fromDate <= allTasks[i].endDate
+                new Date(allTasks[i].startDate).getTime() <= fromDate &&
+                fromDate <= new Date(allTasks[i].endDate).getTime()
             ) {
                 res.push(allTasks[i]);
             }

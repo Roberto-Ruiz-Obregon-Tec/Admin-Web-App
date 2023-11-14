@@ -29,7 +29,7 @@ export const RowHeader = ({
                     {calendarView == "Month" && (
                         <div
                             onClick={click}
-                            title={`${calendarStretchRow == "20vh" ? "Shrink rows" : "Expand rows"
+                            title={`${calendarStretchRow == "20vh" ? "Ajustar filas" : "Expandir filas"
                                 }`}
                             className={`${styles.row_header_svg} ${calendarStretchRow ==
                                 "20vh" && styles.row_header_svg_rotate}`}

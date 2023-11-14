@@ -22,8 +22,7 @@ const Day = ({ day, isToday, matrixDates, setMatrixDates }) => {
         isResizing,
         setToTaskResizing,
         setFromTaskResizing,
-        isResizingFromRight,
-        setDayClick
+        isResizingFromRight
     } = useContext(CalendarContext);
 
     const isAnotherMonth = useCallback(
@@ -47,7 +46,7 @@ const Day = ({ day, isToday, matrixDates, setMatrixDates }) => {
     );
 
     const createTask = () => {
-        alert("crear")
+        
     };
 
     const createReplicas = (

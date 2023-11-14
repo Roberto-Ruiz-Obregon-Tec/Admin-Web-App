@@ -85,7 +85,7 @@ const Grid = () => {
                         setCalendarStretchRow(prev => (prev == "20vh" ? "1fr" : "20vh"));
                 }}
                 calendarStretchRow={calendarStretchRow}
-                daysOfWeek={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
+                daysOfWeek={["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]}
             />
             {[...Array(getNumberOfRows())].map((_, index) => {
                 return (

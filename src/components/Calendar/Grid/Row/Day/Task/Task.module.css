@@ -1,14 +1,15 @@
 .task {
-    overflow: hidden;
     width: 100%;
-    min-height: 25px;
-    border-radius: 5px;
+    height: 25px;
     background-color: #CF2B2A;
     color: #FFF;
     padding: 0 7.5px;
-    overflow: hidden;
+    display: inline-block;
+    
     text-overflow: ellipsis;
     white-space: nowrap;
+    overflow: hidden;
+    
     cursor: pointer;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -29,7 +30,6 @@
 
 .task_all {
     position: relative;
-    margin: 5px;
 }
 
 .task_all_intermediate {
@@ -61,7 +61,7 @@
 
 @media (hover: hover) and (pointer: fine) {
     .task:hover {
-        background-color: #CF2B2A;
+        opacity: .8;
     }
 }
 
@@ -83,4 +83,23 @@
     height: 100%;
     cursor: col-resize;
     z-index: 1;
+}
+.terminal_left {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.terminal_right {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.hidden {
+    visibility: hidden !important;
+}
+.text {
+    height: 25px;
+    line-height: 25px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

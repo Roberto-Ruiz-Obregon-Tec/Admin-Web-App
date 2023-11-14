@@ -31,7 +31,7 @@
 .row_header_svg svg {
     width: 15px;
     height: 20px;
-    fill: #CCC;
+    fill: #535353;
 }
 
 .row_header_svg_rotate {
@@ -55,8 +55,7 @@
     align-items: center;
     justify-content: center;
     cursor: default;
-    background-color: #CCC;
-
+    background-color: #ebebeb;
 }
 
 .row_header_div_all {
