@@ -1,0 +1,51 @@
+.calendar {
+    height: calc(100vh - 250px);
+}
+
+.top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.top h1 {
+    margin: 0;
+    width: fit-content;
+}
+
+.modes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #a1a1a1;
+    border-radius: 5px;
+
+}
+.modes button {
+    border: none;
+    cursor: pointer;
+    background-color: #e4e4e4;
+    width: 95px;
+    height: 25px;
+    font-size: 14px;
+    text-align: center;
+}
+.modes button:nth-child(1) {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+    border-right: 1px solid #a1a1a1;
+}
+.modes button:nth-child(2) {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.choosen {
+    background-color: #c7c7c7 !important;
+}
+.modes button:hover {
+    opacity: .8;
+}

@@ -1,0 +1,32 @@
+.calendar {
+    height: 100%;
+    position: relative;
+}
+
+.calendar_container {
+    background-color: #FFF;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+    .calendar_container {
+        height: calc(100vh - 200px);
+    }
+}
+
+@media screen and (max-width: 589px) {
+    .calendar h1 {
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .calendar h1 {
+        font-size: 10vw;
+    }
+}

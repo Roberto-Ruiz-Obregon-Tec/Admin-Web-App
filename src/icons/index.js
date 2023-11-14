@@ -21,6 +21,9 @@ import tiktok from "./tiktok"
 import link from "./link"
 import map from "./map"
 import postal from "./postal"
+import chevronLeft from "./chevron-left"
+import chevronRight from "./chevron-right"
+import chevronDown from "./chevron-down"
 
 const icons = {
     announce,
@@ -39,13 +42,16 @@ const icons = {
     info,
     telephone,
     location,
-    facebook, 
+    facebook,
     instagram,
     twitter,
     tiktok,
     link,
     map,
-    postal
+    postal,
+    chevronLeft,
+    chevronRight,
+    chevronDown
 }
 
 export default icons;
