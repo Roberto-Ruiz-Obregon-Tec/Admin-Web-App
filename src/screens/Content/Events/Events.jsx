@@ -1,12 +1,9 @@
 import React, {useState, useEffect, useContext} from "react";
-
 import { FireError } from '../../../utils/alertHandler';
 import LoaderPages from './Loader/LoaderPages';
 import { getEvent } from '../../../client/events';
 import { ContentContext } from "../Content";
 import { OPEN_EVENT } from "../store/modalReducer";
-
-
 import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
 import Icons from "../../../icons/index";
