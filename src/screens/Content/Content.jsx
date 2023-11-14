@@ -9,6 +9,7 @@ import Aside from "../../components/AsideContent/AsideContent";
 
 // Modals
 import ModalProject from "./Modals/Proyects/Proyects";
+import ModalPost from "./Modals/Posts/Posts";
 
 // Pages
 import ConsultProjects from "./Projects/Projects";
@@ -73,6 +74,7 @@ export default function ContentDashboard() {
 			modalDispatch
 		}}>
 			<ModalProject />
+			<ModalPost />
 			<div className={styles.container}>
 				<Aside />
 				<div className={styles.body}>

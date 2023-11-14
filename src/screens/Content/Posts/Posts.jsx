@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FireError } from '../../../utils/alertHandler';
+import { ContentContext } from "../Content";
 import { Link } from "react-router-dom";
 import { getPublications } from '../../../client/publications';
 import LoaderPages from './Loader/LoaderPages';
@@ -9,9 +10,10 @@ import { PATH_CREATE_POSTS } from "../../../config/paths";
 import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
 import styles from "./Posts.module.css";
+import { OPEN_POST } from "../store/modalReducer";
 
 function Posts() {
-
+    const { modalDispatch } = useContext(ContentContext);
     const [avaliablePosts, setavailablePosts] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
@@ -70,6 +72,17 @@ function Posts() {
         return matrix;
     };
 
+    const openInfo = (i) => {
+        try {
+            if (i < 0 || i >= avaliablePosts.length) return;
+            const post = avaliablePosts[i];
+            modalDispatch({
+                type: OPEN_POST,
+                payload: post
+            });
+        } catch { };
+    };
+
     return (
         <div>
             <NavHistory>
@@ -93,6 +106,7 @@ function Posts() {
                             "Fecha de creación"
                         ]}
                         percentages={[25, 60, 10, 15]}
+                        clickOnCell={openInfo}
                     />
                     <Link title="Añadir una publicación" to={PATH_CREATE_POSTS} className={styles.add}>
                         {Icons.cross()}
