@@ -1,7 +1,9 @@
 .table {
-    display: flex;
+    display: flex;    
     flex-direction: column;
     margin-bottom: 50px;
+    max-width: 100%;
+    overflow-x: auto; 
 }
 
 .header {

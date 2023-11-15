@@ -80,6 +80,7 @@ function Certifications() {
               'Descripción',
               'Fecha de adquisición',
             ]}
+            percentages={[25, 55, 14]}
           />
           <Link
             title="Añadir una Acreditación"

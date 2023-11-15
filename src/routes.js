@@ -12,6 +12,7 @@ import Dashboard from './screens/Dashboard/Dashboard';
 import Content from './screens/Content/Content';
 import Usuarios from './screens/Users/Users';
 import Informacion from './screens/Information/Information';
+import CreateCertifications from './screens/Content/Certifications/CreateCertifications/CreateCertifications';
 
 import {
   PATH_HOME,
@@ -30,12 +31,12 @@ import {
   PATH_INFO,
   PATH_CREATE_CERTIFICATION,
 } from './config/paths';
-import CreateCertifications from './screens/Certifications/CreateCertifications/CreateCertifications';
 
 const routesContent = () => {
   const keysRoutes = [
     PATH_CONTENT_DASHBOARD,
     PATH_CREATE_PROJECTS,
+    PATH_CREATE_CERTIFICATION,
     PATH_PROJECTS,
     PATH_CERTIFICATIONS,
     PATH_POSTS,

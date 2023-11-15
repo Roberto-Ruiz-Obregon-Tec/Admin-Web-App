@@ -23,4 +23,4 @@ export const PATH_CREATE_COURSE = '/contenido/cursos/crear';
 export const PATH_CERTIFICATIONS = '/contenido/acreditaciones';
 
 export const PATH_INFO = '/informacion';
-export const PATH_CREATE_CERTIFICATION = '/certificaciones/crear';
+export const PATH_CREATE_CERTIFICATION = '/contenido/acreditaciones/crear';

@@ -52,8 +52,8 @@ function Table({
             </div>
           );
         })}
-        <div style={{ width: '20%' }} className={styles.header}>
-          Actions
+        <div style={{ width: '6%' }} className={styles.header}>
+          ...
         </div>
       </div>
       {matrixData.length === 0 && (
@@ -87,14 +87,16 @@ function Table({
                 </div>
               );
             })}
-            <div style={{ width: '20%' }} className={styles.element}>
+            <div style={{ width: '6%' }} className={styles.col}>
               <button
+                style={{ width: '80%' }}
                 className={styles.whitebutton}
                 onClick={() => handleEditClick(i)}
               >
                 Edit
               </button>
               <button
+                style={{ width: '80%' }}
                 className={styles.redbutton}
                 onClick={() => handleDeleteClick(i)}
               >
