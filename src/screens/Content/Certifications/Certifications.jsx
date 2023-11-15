@@ -6,9 +6,9 @@ import Title from '../../../components/Title/Title';
 import LoaderPages from './Loader/LoaderPages';
 import styles from './Certifications.module.css';
 import Icons from '../../../icons/index';
-import Table from '../../components/Table/Table';
+import Table from '../../../components/Table/Table';
 import { Link } from 'react-router-dom';
-import { PATH_CREATE_CERTIFICATION } from '../../config/paths';
+import { PATH_CREATE_CERTIFICATION } from '../../../config/paths';
 
 function Certifications() {
   const [certifications, setCertifications] = useState([]);
