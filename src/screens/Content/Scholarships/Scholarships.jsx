@@ -78,7 +78,7 @@ function Scholarships() {
             <NavHistory>
                 Gestión de contenido / Becas
             </NavHistory>
-            <Title>|
+            <Title>
                 {Icons.becas()}
                 Lista de Becas
             </Title>
