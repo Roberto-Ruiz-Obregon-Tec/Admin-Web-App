@@ -103,7 +103,7 @@ function Courses() {
                             "Valuación", // 7.5
                             "Costo" // 5
                         ]}
-                        percentages={[20, 22.5, 10, 10, 10, 7.5, 7.5, 7.5, 5]}
+                        percentages={[16, 18, 10, 10, 10, 7.5, 7.5, 8.5, 7]}
                     />
                     <Link title="Añadir un curso" to={PATH_CREATE_COURSE} className={styles.add}>
                         {Icons.cross()}
