@@ -9,8 +9,12 @@ import Icons from '../../../icons/index';
 import Table from '../../../components/Table/Table';
 import { Link } from 'react-router-dom';
 import { PATH_CREATE_CERTIFICATION } from '../../../config/paths';
+import { DELETE_CERTIFICATION, EDIT_CERTIFICATION } from '../store/modalReducer';
+import { useContext } from 'react';
+import { ContentContext } from '../Content';
 
 function Certifications() {
+  const { modalDispatch } = useContext(ContentContext);
   const [certifications, setCertifications] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -57,8 +61,26 @@ function Certifications() {
     return matrix;
   };
 
-  const handleTest = () => {
-    console.log('test');
+  const handleDelete = (i) => {
+    try {
+      if (i < 0 || i >= certifications.length) return;
+      const post = certifications[i];
+      modalDispatch({
+          type: DELETE_CERTIFICATION,
+          payload: post
+      });
+  } catch { };
+  };
+
+  const handleEdit = (i) => {
+    try {
+      if (i < 0 || i >= certifications.length) return;
+      const post = certifications[i];
+      modalDispatch({
+        type: EDIT_CERTIFICATION,
+          payload: post
+      });
+  } catch { };
   };
 
   return (
@@ -72,8 +94,8 @@ function Certifications() {
       {!isLoading && (
         <>
           <Table
-            handleEdit={handleTest}
-            handleDelete={handleTest}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
             matrixData={getMatrix()}
             arrayHeaders={[
               'Nombre',

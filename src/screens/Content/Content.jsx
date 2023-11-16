@@ -25,6 +25,10 @@ import CreateCertifications from "./Certifications/CreateCertifications/CreateCe
 import Courses from "./Courses/Courses";
 import CreateCourses from "./Courses/CreateCourse/CreateCourses";
 
+// PopUps
+import PopUpEditCertification from "./Modals/Certifications/EditCertification";
+import PopUpDeleteCertification from "./Modals/Certifications/DeleteCertification";
+
 // Routes
 import {
 	PATH_CONTENT_DASHBOARD,
@@ -36,7 +40,7 @@ import {
 	PATH_POSTS,
 	PATH_CREATE_POSTS,
 	PATH_COURSES,
-	PATH_CREATE_COURSE
+	PATH_CREATE_COURSE,
 } from "../../config/paths";
 import { useEffect } from "react";
 
@@ -72,8 +76,11 @@ export default function ContentDashboard() {
 			modalState,
 			modalDispatch
 		}}>
+
 			<ModalProject />
 			<ModalPost />
+			<PopUpEditCertification />
+			<PopUpDeleteCertification />
 			<div className={styles.container}>
 				<Aside />
 				<div className={styles.body}>

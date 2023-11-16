@@ -20,20 +20,15 @@ function Table({
 
   const gotAClick = (i = null) => {
     if (clickOnCell === null) return;
-
     clickOnCell(i);
   };
 
-  const handleEditClick = () => {
-    if (handleEdit) {
-      handleEdit();
-    }
+  const handleEditClick = (i) => {
+      handleEdit(i);
   };
 
-  const handleDeleteClick = () => {
-    if (handleDelete) {
-      handleDelete();
-    }
+  const handleDeleteClick = (i = null) => {
+      handleDelete(i);
   };
 
   return (

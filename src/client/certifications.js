@@ -13,8 +13,7 @@ export async function getCertifications() {
 }
 
 export async function createACertification(data) {
-    const endpoint = `${baseApiEndpoint}/certification/create`;
-
+    const endpoint = `${baseApiEndpoint}/certifications/`;
     const response = await axios.post(endpoint, data);
     return response.data;
 } 

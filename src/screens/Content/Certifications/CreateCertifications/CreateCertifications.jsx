@@ -4,7 +4,6 @@ import {
   FireError,
   FireSucess,
 } from '../../../../utils/alertHandler';
-import { createAProject } from '../../../../client/availableProj';
 import NavHistory from '../../../../components/NavHistory/NavHistory';
 import Card from '../../../../components/ShadowCard/ShadowCard';
 import { PATH_CERTIFICATIONS } from '../../../../config/paths';
@@ -16,6 +15,7 @@ import Button from '../../../../components/Form/Button/Button';
 
 import { useNavigate } from 'react-router-dom';
 import styles from './CreateCertifications.module.css';
+import { createACertification } from '../../../../client/certifications';
 
 const CreateCertifications = () => {
   const navigate = useNavigate();
@@ -23,9 +23,7 @@ const CreateCertifications = () => {
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-
   const [acredDate, setAcredDate] = useState(new Date());
-
 
   /**
    * Handles the form submission for admin to create a project
@@ -37,11 +35,13 @@ const CreateCertifications = () => {
     try {
       const data = {
         name: name,
-        acredDate: new Date(acredDate),
         description: description,
+        adquisitionDate: new Date(acredDate),
+        createdAt : '',
+        updatedAt : '',
       };
       setIsLoading(true);
-      const response = await createAProject(data);
+      const response = await createACertification(data);
       setIsLoading(false);
 
       if (response.status === 'success') {
@@ -77,7 +77,7 @@ const CreateCertifications = () => {
               />
               <InputDate
                 currDate={acredDate}
-                setCurrDate={setAcredDate }
+                setCurrDate={setAcredDate}
                 text="Fecha de adquisición"
                 id="acred-date"
               />

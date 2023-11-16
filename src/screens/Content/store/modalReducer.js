@@ -4,8 +4,12 @@ export const KEYS_MODAL = {
 	COURSE: "course",
 	EVENT: "event",
 	CERTIFICATION: "certification",
+    DELETE_CERTIFICATION: "delete-certification",
+    EDIT_CERTIFICATION: "edit-certification",
 }
 
+export const EDIT_CERTIFICATION = "edit-certification";
+export const DELETE_CERTIFICATION = "delete-certification";
 export const CLEAR_MODALS = "clear-modals";
 export const OPEN_PROJECT =  "open-project";
 export const OPEN_POST =  "open-post";
@@ -58,6 +62,22 @@ export function modalReducer(state, action){
 
             return {
                 modalOpened: KEYS_MODAL.CERTIFICATION,
+                documentJSON: action.payload
+            }
+        }
+        case DELETE_CERTIFICATION: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.DELETE_CERTIFICATION,
+                documentJSON: action.payload
+            }
+        }
+        case EDIT_CERTIFICATION: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.EDIT_CERTIFICATION,
                 documentJSON: action.payload
             }
         }
