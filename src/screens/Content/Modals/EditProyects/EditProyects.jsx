@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { FireError, FireSucess } from '../../../../utils/alertHandler';
 import { editProject } from '../../../../client/availableProj';
 
@@ -19,15 +19,15 @@ export default function PopUpProyect() {
     const [isLoading, setIsLoading] = useState(false);
 
     const [name, setName] = useState('');
-    const [postalCode, setPostalCode] = useState('');
-    const [description, setDescription] = useState('');
+    const [postalCode , setPostalCode] = useState('');
+    const [description , setDescription] = useState('');
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-    const [limitDate, setLimitDate] = useState(new Date());
+    const [startDate , setStartDate] = useState(new Date());
+    const [endDate , setEndDate] = useState(new Date());
+    const [deadlineDate , setLimitDate] = useState(new Date());
 
-    const [file, setFile] = useState(null);
-
+    const [_id , setId] = useState(0);
+    const [file , setFile] = useState(null);            
 
     const {
         modalState,
@@ -46,10 +46,11 @@ export default function PopUpProyect() {
             "0" + dataMonth.toString() :
             dataMonth
             
-        const day = dateObject.getDate() <= 9 ? 
-            "0" + dateObject.getDate().toString() :
-            dateObject.getDate()        
-
+        const dataDay = dateObject.getDate() + 1        
+        const day = dataDay <= 9 ? 
+            "0" + dataDay.toString() :
+            dataDay
+        
         return dateObject.getFullYear() + "-" + month + "-" + day;
     };
 
@@ -58,9 +59,9 @@ export default function PopUpProyect() {
             type: CLEAR_MODALS
         });
     }
-
-    const getState = () => {
-        return {
+    
+    useEffect( () => {       
+        const stateFromModal = {
             "name": modalState.documentJSON["name"] ? modalState.documentJSON["name"] : "-----",
             "startDate": modalState.documentJSON["startDate"] ? modalState.documentJSON["startDate"] : "dd/mm/yyyy",
             "endDate": modalState.documentJSON["endDate"] ? modalState.documentJSON["endDate"] : "dd/mm/yyyy",
@@ -72,16 +73,25 @@ export default function PopUpProyect() {
             "updatedAt": modalState.documentJSON["updatedAt"] ? modalState.documentJSON["updatedAt"] : "dd/mm/yyyy",
             "focus": modalState.documentJSON["focus"] ? modalState.documentJSON["focus"] : [],
         };
-    };
+
+        setName(stateFromModal.name);
+        setPostalCode(stateFromModal.postalCode);
+        setDescription(stateFromModal.description);
+        setStartDate(stateFromModal.startDate);
+        setEndDate(stateFromModal.endDate);
+        setLimitDate(stateFromModal.deadlineDate);
+        setId(stateFromModal._id)
+        setFile(stateFromModal.file)
+      }, [modalState.documentJSON])
 
     const clearState = () => {
         setIsOpen();
     };
 
-    const validateDates = () => {
+    const validateDates = () => {                
         const c1 = new Date(startDate).getTime() <= new Date(endDate).getTime();
-        const c2 = new Date(limitDate).getTime() <= new Date(endDate).getTime();
-        const c3 = new Date(startDate).getTime() <= new Date(limitDate).getTime();
+        const c2 = new Date(deadlineDate).getTime() <= new Date(endDate).getTime();
+        const c3 = new Date(startDate).getTime() <= new Date(deadlineDate).getTime();
 
         return c1 && c2 && c3;
     }
@@ -91,18 +101,18 @@ export default function PopUpProyect() {
         if (!validateDates()) {
             FireError('Las fecha de inicio debe de ser antes que la de fin. Y el límite debe de ser antes que termine.');
             return;
-        }
+        }                
 
         if (
             name.trim() === "" ||
-            postalCode.trim() === "" ||
+            postalCode.toString().trim() === "" ||
             description.trim() === ""
         ) {
             FireError('No puedes dejar los campos vacíos.');
             return;
         }
 
-        if (postalCode.length !== 5) {
+        if (postalCode.toString().length !== 5) {
             FireError('El código postal debe de ser de 5 números.');
             return;
         }
@@ -117,20 +127,21 @@ export default function PopUpProyect() {
         }
         try {
             const data = {
+                _id: _id,
                 name: name,
                 startDate: new Date(startDate),
                 endDate: new Date(endDate),
-                deadlineDate: new Date(limitDate),
+                deadlineDate: new Date(deadlineDate),
                 programImage: "https://ejemplo.com",
                 postalCode: postalCode,
                 description: description
             };
             setIsLoading(true);
-            const response = await editProject(data);
+            const response = await editProject(data);            
             setIsLoading(false);
 
             if (response.status === 'success') {
-                FireSucess('Has creado un proyecto exitosamente.');                
+                FireSucess('Has editado el proyecto exitosamente.');                
             } else {
                 FireError('Ha habido un error.');
             }
@@ -155,24 +166,24 @@ export default function PopUpProyect() {
                         <InputText
                             id="new-project-name"
                             text="Nombre"
-                            value={getState().name}
+                            value={name}
                             setValue={setName}
                         />
                         <div className={styles.dates}>                        
                             <InputDate
-                                currDate={getFormatedDate(getState().startDate)}                            
+                                currDate={getFormatedDate(startDate)}                            
                                 setCurrDate={setStartDate}
                                 text="Fecha inicio"
                                 id="start-date-project"
                             />
                             <InputDate
-                                currDate={getFormatedDate(getState().endDate)}
+                                currDate={getFormatedDate(endDate)}
                                 setCurrDate={setEndDate}
                                 text="Fecha fin"
                                 id="end-date-project"
                             />
                             <InputDate
-                                currDate={getFormatedDate(getState().deadlineDate)}
+                                currDate={getFormatedDate(deadlineDate)}
                                 setCurrDate={setLimitDate}
                                 text="Fecha límite"
                                 id="limit-date-project"
@@ -181,17 +192,16 @@ export default function PopUpProyect() {
                         <InputText
                             id="new-project-postal-code"
                             text="Código postal"
-                            value={getState().postalCode}
+                            value={postalCode}
                             setValue={setPostalCode}
                         />
                         <InputTextArea
                             id="new-project-description"
                             text="Descripción"
-                            value={getState().description}
+                            value={description}
                             setValue={setDescription}
                             className={styles.textarea}
-                        />
-                        
+                        />                        
                         
                         <Button isAnimationLoading isLoading={isLoading} type='submit'>
                             Editar proyecto
@@ -200,7 +210,7 @@ export default function PopUpProyect() {
                     <div className={styles.form__item} >
                         <div className={styles.img}>
                             <Image
-                                alt={getState().name}
+                                alt={name}
                                 src={modalState.documentJSON["programImage"]}
                             />
                         </div>    
@@ -209,10 +219,9 @@ export default function PopUpProyect() {
                             setFile={(file) => {
                                 setFile(file);
                             }}
-                            file={getState().file}
+                            file={file}
                         />
                     </div>                    
-
                     
                 </form>
 
