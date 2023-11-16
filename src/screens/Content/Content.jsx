@@ -25,6 +25,8 @@ import CreateCertifications from "./Certifications/CreateCertifications/CreateCe
 import Courses from "./Courses/Courses";
 import CreateCourses from "./Courses/CreateCourse/CreateCourses";
 
+import Scholarship from './Scholarships/Scholarships';
+
 // Routes
 import {
 	PATH_CONTENT_DASHBOARD,
@@ -36,7 +38,8 @@ import {
 	PATH_POSTS,
 	PATH_CREATE_POSTS,
 	PATH_COURSES,
-	PATH_CREATE_COURSE
+	PATH_CREATE_COURSE,
+	PATH_SCHOLARSHIP
 } from "../../config/paths";
 import { useEffect } from "react";
 
@@ -59,7 +62,9 @@ export default function ContentDashboard() {
 		keys.add(PATH_POSTS);
 		keys.add(PATH_CREATE_POSTS);
 		keys.add(PATH_CREATE_COURSE);
+		keys.add(PATH_SCHOLARSHIP);
 		keys.add(PATH_CREATE_CERTIFICATION);
+
 		if (keys.has(pathname)) return;
 
 		navigate(PATH_PROJECTS); // Default
@@ -88,7 +93,9 @@ export default function ContentDashboard() {
 					{pathname === PATH_POSTS && <Posts />}
 					{pathname === PATH_CREATE_POSTS && <CreatePosts />}
 					{pathname === PATH_CREATE_COURSE && <CreateCourses />}
+					{pathname === PATH_SCHOLARSHIP && <Scholarship />}
 					{pathname === PATH_CREATE_CERTIFICATION && <CreateCertifications />}
+          
 				</div>
 			</div>
 		</ContentContext.Provider>
