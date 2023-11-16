@@ -30,6 +30,7 @@ import {
   PATH_CREATE_COURSE,
   PATH_INFO,
   PATH_CREATE_CERTIFICATION,
+  PATH_ESR,
 } from './config/paths';
 
 const routesContent = () => {
@@ -44,6 +45,7 @@ const routesContent = () => {
     PATH_EVENTS,
     PATH_COURSES,
     PATH_CREATE_COURSE,
+    PATH_ESR,
   ];
   const arrayJSON = [];
 

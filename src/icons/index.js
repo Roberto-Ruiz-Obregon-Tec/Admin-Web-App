@@ -24,6 +24,7 @@ import postal from "./postal"
 import chevronLeft from "./chevron-left"
 import chevronRight from "./chevron-right"
 import chevronDown from "./chevron-down"
+import esr from './companiesesr'
 
 const icons = {
     announce,
@@ -51,7 +52,8 @@ const icons = {
     postal,
     chevronLeft,
     chevronRight,
-    chevronDown
+    chevronDown,
+    esr
 }
 
 export default icons;
