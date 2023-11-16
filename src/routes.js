@@ -46,8 +46,12 @@ const routesContent = () => {
     PATH_COURSES,
     PATH_CREATE_COURSE,
     PATH_ESR,
+    PATH_INFO,
+    PATH_SCHOLARSHIP
   ];
   const arrayJSON = [];
+} from "./config/paths";
+
 
   for (let i = 0; i < keysRoutes.length; i++) {
     const keyRouter = keysRoutes[i];

@@ -8,6 +8,7 @@ import {
 	PATH_EVENTS,
 	PATH_POSTS,
 	PATH_ESR,
+	PATH_SCHOLARSHIP
 } from "../../config/paths";
 
 export default function Aside() {
@@ -39,6 +40,9 @@ export default function Aside() {
 				</Link>
 				<Link text="Certificación ESR" href={PATH_ESR}>
 					{Icons.esr()}
+        </Link>
+				<Link text="Becas" href={PATH_SCHOLARSHIP}>
+					{Icons.becas()}
 				</Link>
 			</div>
 		</aside>
