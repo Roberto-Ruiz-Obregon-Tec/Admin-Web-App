@@ -25,11 +25,11 @@ export async function createAProject(data) {
 } 
 
 /**
- * It makes a POST request to the endpoint `/program/create` and returns the response data.
+ * It makes a PUT request to the endpoint `/program/update`
  */
 export async function editProject(data) {
-    const endpoint = `${baseApiEndpoint}/program/edit`;
+    const endpoint = `${baseApiEndpoint}/program/update`;
 
-    const response = await axios.post(endpoint, data);
+    const response = await axios.put(endpoint, data);
     return response.data;
 } 
