@@ -6,7 +6,8 @@ import {
 	PATH_CERTIFICATIONS,
 	PATH_COURSES,
 	PATH_EVENTS,
-	PATH_POSTS
+	PATH_POSTS,
+	PATH_SCHOLARSHIP
 } from "../../config/paths";
 
 export default function Aside() {
@@ -35,6 +36,9 @@ export default function Aside() {
 				</Link>
 				<Link text="Acreditaciones" href={PATH_CERTIFICATIONS}>
 					{Icons.certify()}
+				</Link>
+				<Link text="Becas" href={PATH_SCHOLARSHIP}>
+					{Icons.becas()}
 				</Link>
 			</div>
 		</aside>
