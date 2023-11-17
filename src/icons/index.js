@@ -24,6 +24,7 @@ import postal from "./postal"
 import chevronLeft from "./chevron-left"
 import chevronRight from "./chevron-right"
 import chevronDown from "./chevron-down"
+import esr from './companiesesr'
 import becas from "./scholarships"
 
 const icons = {
@@ -53,6 +54,7 @@ const icons = {
     chevronLeft,
     chevronRight,
     chevronDown,
+    esr,
     becas
 }
 
