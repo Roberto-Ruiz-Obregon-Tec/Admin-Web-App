@@ -24,10 +24,9 @@ function Table({
     clickOnCell(i);
   };
 
-  const handleEditClick = () => {
-    if (handleEdit) {
-      handleEdit();
-    }
+  const handleEditClick = (i = null) => {
+    if (clickOnCell === null) return;
+    handleEdit(i);    
   };
 
   const handleDeleteClick = () => {

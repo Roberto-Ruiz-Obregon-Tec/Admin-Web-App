@@ -6,6 +6,7 @@ import Title from "../../components/Title/Title";
 import Icons from "../../icons/index";
 import ListItem from '../../components/ListItem/ListItem';
 import GenericLink from '../../components/Links/Generic/Generic';
+import LoaderPages from './Loader/LoaderPages'
 
 import styles from "./Information.module.css";
 
@@ -13,11 +14,14 @@ import styles from "./Information.module.css";
 export default function Information() {
 
   const [info, setInfo] = useState([])
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect( () => {
     (async () => {
       try {
+        setIsLoading(true);
         const infoData = await getInformation();                
+        setIsLoading(false);
         setInfo(infoData);
       } catch ( error ){
         FireError(error.response.data.message);
@@ -36,6 +40,9 @@ export default function Information() {
       </div>
 
       <div className={` ${styles.wrapper_detail} `} >
+      {isLoading && <LoaderPages />}
+          {!isLoading && (
+            <>
         <h2>Informacion sobre nosotros</h2>
 
         <div>
@@ -54,6 +61,7 @@ export default function Information() {
         </div>    
 
         <div>
+          
           <h3>Numeros de telefono de contacto</h3>          
 
           {info.map((info, index) => {
@@ -126,7 +134,9 @@ export default function Information() {
             )
           })}
           
-        </div>      
+        </div> 
+        </>
+        )}     
       </div>
 
        
