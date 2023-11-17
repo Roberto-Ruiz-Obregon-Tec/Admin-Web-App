@@ -22,3 +22,13 @@ export async function createScholarships(data) {
     const response = await axios.post(endpoint, data);
     return response.data;
 } 
+
+/**
+ * It makes a PUT request to the endpoint `/scholarships/update` and returns the response data.
+ */
+export async function editScholarships(data) {
+    const endpoint = `${baseApiEndpoint}/scholarships/update`;
+
+    const response = await axios.put(endpoint, data);
+    return response.data;
+} 

@@ -10,6 +10,7 @@ import Aside from "../../components/AsideContent/AsideContent";
 // Modals
 import ModalProject from "./Modals/Proyects/Proyects";
 import ModalPost from "./Modals/Posts/Posts";
+import ModalEditScholarship from "./Modals/EditScholarship/EditScholarship"
 
 // Pages
 import ConsultProjects from "./Projects/Projects";
@@ -27,6 +28,8 @@ import CreateCourses from "./Courses/CreateCourse/CreateCourses";
 
 import Scholarship from './Scholarships/Scholarships';
 import CreateScholarship from "./Scholarships/CreateScholarship/CreateScholarship";
+
+
 
 // Routes
 import {
@@ -82,6 +85,7 @@ export default function ContentDashboard() {
 		}}>
 			<ModalProject />
 			<ModalPost />
+			<ModalEditScholarship />
 			<div className={styles.container}>
 				<Aside />
 				<div className={styles.body}>

@@ -1,7 +1,9 @@
-import React, {useState, useEffect } from "react";
+import React, {useState, useEffect,  useContext } from "react";
 import { FireError } from '../../../utils/alertHandler';
+import { ContentContext } from "../Content";    
 import LoaderPages from './Loader/LoaderPages';
 import { PATH_CREATE_SCHOLARSHIP } from "../../../config/paths";
+import { EDIT_SCHOLARSHIP } from "../store/modalReducer";
 import { Link } from "react-router-dom";
 
 import { getScholarships } from '../../../client/scholarships'; 
@@ -13,6 +15,8 @@ import Table from "../../../components/Table/Table";
 import styles from "./Scholarships.module.css";
 
 function Scholarships() {
+
+    const { modalDispatch } = useContext(ContentContext);
     
     const [scholarships, setscholar] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -77,6 +81,17 @@ function Scholarships() {
         return matrix;
     };
 
+    const openEdit = (i) => {
+        try {
+            if (i < 0 || i >= scholarships.length) return;
+            const scholar = scholarships[i];
+            modalDispatch({
+                type: EDIT_SCHOLARSHIP,
+                payload: scholar
+            });
+        }catch{ }
+    }
+
     return (
         <div>
 
@@ -104,7 +119,8 @@ function Scholarships() {
                             "Fecha fin",
                             "Descripción"
                         ]}
-                        percentages={[30, 10, 10, 10, 20, 10, 10, 40]}
+                        percentages={[30, 15, 15, 20, 25, 15, 15, 40]}
+                        handleEdit = { openEdit }
                     />
                     <Link title="Dar de alta beca" to={PATH_CREATE_SCHOLARSHIP} className={styles.add}>
                         {Icons.cross()}
