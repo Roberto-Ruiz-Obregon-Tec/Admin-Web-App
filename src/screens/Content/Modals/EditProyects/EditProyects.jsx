@@ -35,7 +35,8 @@ export default function PopUpProyect() {
 
     const {
         modalState,
-        modalDispatch
+        modalDispatch,
+        setNeedsToDoRefresh
     } = useContext(ContentContext);
 
     const isOpen = () => {
@@ -146,7 +147,9 @@ export default function PopUpProyect() {
 
             if (response.status === 'success') {
                 FireSucess('Has editado el proyecto exitosamente.');  
-                navigate(PATH_PROJECTS);              
+                navigate(PATH_PROJECTS);
+                clearState();
+                setNeedsToDoRefresh(true);
             } else {
                 FireError('Ha habido un error.');
             }

@@ -13,24 +13,34 @@ import Table from "../../../components/Table/Table";
 import styles from "./Projects.module.css";
 
 function Proyectos() {
-    const { modalDispatch } = useContext(ContentContext);
+    const { modalDispatch, needsToDoRefresh, setNeedsToDoRefresh } = useContext(ContentContext);
     const [avaliableP, setavailableP] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
 
+    const fetchForData = async () => {
+        try {
+            setIsLoading(true);
+            const proj = await getProgram();
+            setIsLoading(false);
+            setavailableP(proj);
+        } catch (error) {
+            setIsLoading(false);
+            FireError(error.response.data.message);
+        }
+    }
+
     useEffect(() => {
-        (async () => {
-            try {
-                setIsLoading(true);
-                const proj = await getProgram();
-                setIsLoading(false);
-                setavailableP(proj);
-            } catch (error) {
-                setIsLoading(false);
-                FireError(error.response.data.message);
-            }
-        })();
+        // eslint-disable-next-line
+        fetchForData();
     }, []);
+
+    useEffect(() => {
+        if (needsToDoRefresh) {
+            fetchForData();
+            setNeedsToDoRefresh(false);
+        };
+    }, [needsToDoRefresh]);
 
     const getFormatedDate = (date) => {
         const dateObject = new Date(date);
@@ -94,7 +104,7 @@ function Proyectos() {
                 type: EDIT_PROJECT,
                 payload: project
             });
-        }catch{ }
+        } catch { }
     }
 
     return (
@@ -122,7 +132,7 @@ function Proyectos() {
                         ]}
                         percentages={[30, 10, 10, 10, 40]}
                         clickOnCell={openInfo}
-                        handleEdit = { openEdit }
+                        handleEdit={openEdit}
                     />
                     <Link title="Añadir un proyecto" to={PATH_CREATE_PROJECTS} className={styles.add}>
                         {Icons.cross()}
