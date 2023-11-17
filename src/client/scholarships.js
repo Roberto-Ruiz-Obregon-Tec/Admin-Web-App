@@ -10,7 +10,7 @@ export async function getScholarships() {
     const endpoint = `${baseApiEndpoint}/scholarships`;
 
     const response = await axios.get(endpoint);
-    return response.data.data.becas;
+    return response.data.data.documents;
 }
 
 /**

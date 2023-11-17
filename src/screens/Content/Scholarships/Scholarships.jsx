@@ -13,6 +13,7 @@ import Table from "../../../components/Table/Table";
 import styles from "./Scholarships.module.css";
 
 function Scholarships() {
+    
     const [scholarships, setscholar] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -38,6 +39,7 @@ function Scholarships() {
 
     const getMatrix = () => {
         if (scholarships.length === 0) return [];
+
 
         const matrix = []
 
