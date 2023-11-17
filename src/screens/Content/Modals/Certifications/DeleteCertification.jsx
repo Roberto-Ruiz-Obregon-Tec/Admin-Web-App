@@ -27,6 +27,11 @@ export default function PopUpDeleteCertification() {
         });
     }
 
+    const DeleteCertification = () => {
+        console.log("Eliminando Certificación");
+        setIsOpen();
+    }
+
 
     const getState = () => {
         return {
@@ -72,7 +77,7 @@ export default function PopUpDeleteCertification() {
                 </div>
                 <div className={styles.botons}>
                     <button className={styles.whiteBoton} onClick={clearState}>Cancelar</button>
-                    <button className={styles.redBoton} onClick={clearState}>Eliminar</button>
+                    <button className={styles.redBoton} onClick={DeleteCertification}>Eliminar</button>
                 </div>
             </div>
         </PopUpModal>
