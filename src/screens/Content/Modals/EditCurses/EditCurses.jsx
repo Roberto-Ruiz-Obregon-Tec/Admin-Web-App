@@ -49,7 +49,8 @@ export default function PopUpCurses() {
 
     const {
         modalState,
-        modalDispatch
+        modalDispatch,
+        setNeedsToDoRefresh
     } = useContext(ContentContext);
 
     const isOpen = () => {
@@ -190,6 +191,8 @@ export default function PopUpCurses() {
             if (response.status === 'success') {
                 FireSucess('Has editado un curso exitosamente.');
                 navigate(PATH_COURSES);
+                clearState();
+                setNeedsToDoRefresh(true);
             } else {
                 FireError('Ha habido un error.');
             }
