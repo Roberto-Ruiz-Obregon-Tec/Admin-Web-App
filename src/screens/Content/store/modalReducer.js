@@ -14,7 +14,7 @@ export const OPEN_POST =  "open-post";
 export const OPEN_COURSE =  "open-course";
 export const OPEN_EVENT =  "open-event";
 export const OPEN_CERTIFICATION =  "open-certification";
-export const EDIT_SCHOLARSHIP = "edit_scholarship"
+export const EDIT_SCHOLARSHIP = "edit-scholarship"
 export const EDIT_PROJECT =  "edit-project";
 
 export function modalReducer(state, action){

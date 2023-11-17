@@ -23,12 +23,13 @@ export default function PopUpScholarship() {
     const [location, setLocation] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
+    const [sector, setSector] = useState('');
     const [description, setDescription] = useState('');
 
     const [startDate , setStartDate] = useState(new Date());
     const [endDate , setEndDate] = useState(new Date());
 
-    const [id , setId] = useState(0);
+    const [_id , setId] = useState(0);
     const [file , setFile] = useState(null);            
 
     const {
@@ -73,8 +74,7 @@ export default function PopUpScholarship() {
             "location": modalState.documentJSON["location"] ? modalState.documentJSON["location"] : "-----",
             "email": modalState.documentJSON["email"] ? modalState.documentJSON["email"] : "-----",
             "description": modalState.documentJSON["description"] ? modalState.documentJSON["description"] : "-----",
-            "id": modalState.documentJSON["id"] ? modalState.documentJSON["id"] : "-",
-            "focus": modalState.documentJSON["focus"] ? modalState.documentJSON["focus"] : [],
+            "_id": modalState.documentJSON["_id"] ? modalState.documentJSON["_id"] : "-",
         };
 
         setName(stateFromModal.name);
@@ -85,7 +85,8 @@ export default function PopUpScholarship() {
         setPhone(stateFromModal.phone);
         setEmail(stateFromModal.email);
         setDescription(stateFromModal.description);
-        setId(stateFromModal.id)
+        setSector(stateFromModal.sector);
+        setId(stateFromModal._id)
         setFile(stateFromModal.file)
       }, [modalState.documentJSON])
 
@@ -111,7 +112,8 @@ export default function PopUpScholarship() {
             location.trim() === "" ||
             phone.trim() === "" ||
             email.trim() === "" ||
-            description.trim() === ""
+            description.trim() === ""||
+            sector.trim() === ""
         ) {
             FireError('No puedes dejar los campos vacíos.');
             return;
@@ -140,7 +142,7 @@ export default function PopUpScholarship() {
     
         try {
             const data = {
-                id: id,
+                _id: _id,
                 name: name,
                 organization: organization,
                 startDate: new Date(startDate),
@@ -149,7 +151,8 @@ export default function PopUpScholarship() {
                 location: location,
                 email: email,
                 phone: phone,
-                description: description
+                description: description,
+                sector: sector
             };
             setIsLoading(true);
             const response = await editScholarships(data);            
@@ -222,6 +225,7 @@ export default function PopUpScholarship() {
                             value={email}
                             setValue={setEmail}
                         />
+    
                         <InputTextArea
                             id="new-project-description"
                             text="Descripción"

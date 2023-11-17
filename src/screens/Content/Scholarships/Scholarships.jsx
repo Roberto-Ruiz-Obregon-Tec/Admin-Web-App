@@ -120,6 +120,7 @@ function Scholarships() {
                             "Descripción"
                         ]}
                         percentages={[30, 15, 15, 20, 25, 15, 15, 40]}
+                        clickOnCell = {() => (console.log("clickOnCell"))}
                         handleEdit = { openEdit }
                     />
                     <Link title="Dar de alta beca" to={PATH_CREATE_SCHOLARSHIP} className={styles.add}>

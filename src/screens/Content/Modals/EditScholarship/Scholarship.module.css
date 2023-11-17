@@ -1,5 +1,15 @@
+.form {
+    display: flex;    
+}
+
+.form__item {
+    margin: 0 2em;
+    margin-bottom: 2em;
+}
+
 .card {
-    width: 450px;
+    width: fit-content;
+    padding: 0 5em;    
     padding-top: 50px;
 }
 
