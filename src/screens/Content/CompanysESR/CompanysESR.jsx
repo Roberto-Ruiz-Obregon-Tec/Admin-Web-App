@@ -1,31 +1,24 @@
-import React from "react";
-
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FireError } from '../../../utils/alertHandler';
 import LoaderPages from './Loader/LoaderPages';
-import { PATH_CREATE_SCHOLARSHIP } from "../../../config/paths";
-import { Link } from "react-router-dom";
-
-import { getScholarships } from '../../../client/scholarships'; 
-
+import { getESR } from '../../../client/esr';
 import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
-import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
-import styles from "./Scholarships.module.css";
+import Icons from "../../../icons/index";
 
-function Scholarships() {
-    
-    const [scholarships, setscholar] = useState([]);
+function CompaniesESR() {
+
+    const [companies, setcompaniesESR] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-
+    
     useEffect(() => {
         (async () => {
             try {
                 setIsLoading(true);
-                const scholarsh = await getScholarships();
+                const esr = await getESR();
                 setIsLoading(false);
-                setscholar(scholarsh);
+                setcompaniesESR(esr);
             } catch (error) {
                 setIsLoading(false);
                 FireError(error.response.data.message);
@@ -40,37 +33,33 @@ function Scholarships() {
     };
 
     const getMatrix = () => {
-        if (scholarships.length === 0) return [];
-
+        if (companies.length === 0) return [];
 
         const matrix = []
 
         // El orden impora
         const possibleKeys = [
             "name",
-            "organization",
-            "location", 
-            "phone", 
-            "email",
-            "startDate",
-            "endDate",
-            "description"
+            "phone",
+            "postalCode",
+            "description",
         ]
 
         const needsTransformation = new Set();
         needsTransformation.add("startDate");
         needsTransformation.add("endDate");
+        needsTransformation.add("deadlineDate");
 
-        for (let i = 0; i < scholarships.length; i++) {
+        for (let i = 0; i < companies.length; i++) {
             const row = [];
-            const evento = scholarships[i];
+            const project = companies[i];
 
             for (let j = 0; j < possibleKeys.length; j++) {
                 const key = possibleKeys[j];
                 if (needsTransformation.has(key)) {
-                    row.push(evento[key] ? getFormatedDate(evento[key]) : "dd/mm/yyyy");
+                    row.push(project[key] ? getFormatedDate(project[key]) : "dd/mm/yyyy");
                 } else {
-                    row.push(evento[key] !== "" ? evento[key] : "");
+                    row.push(project[key] !== "" ? project[key] : "");
                 }
             }
 
@@ -79,15 +68,13 @@ function Scholarships() {
         return matrix;
     };
 
-    return (
-        <div>
-
-            <NavHistory>
-                Gestión de contenido / Becas
+    return (<div>
+        <NavHistory>
+                Gestión de contenido / Certificación ESR 
             </NavHistory>
             <Title>
-                {Icons.becas()}
-                Lista de Becas
+                {Icons.esr()}
+                Lista de Empresas con certificación ESR
             </Title>
             {isLoading && (
                 <LoaderPages />
@@ -98,25 +85,16 @@ function Scholarships() {
                         matrixData={getMatrix()}
                         arrayHeaders={[
                             "Nombre",
-                            "Organización",
-                            "Ubicación",
                             "Telefono",
-                            "Correo", 
-                            "Fecha de inicio",
-                            "Fecha fin",
+                            "Codigo Postal",
                             "Descripción"
                         ]}
-                        percentages={[30, 10, 10, 10, 20, 10, 10, 40]}
+                        percentages={[30, 20, 10, 40]}
                     />
-                    <Link title="Dar de alta beca" to={PATH_CREATE_SCHOLARSHIP} className={styles.add}>
-                        {Icons.cross()}
-                    </Link>
                 </>
             )}
-
-        </div>
-    )
+    </div>)
 
 };
 
-export default Scholarships;
+export default CompaniesESR

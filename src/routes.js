@@ -32,23 +32,28 @@ import {
   PATH_CREATE_CERTIFICATION,
   PATH_SCHOLARSHIP,
   PATH_CREATE_SCHOLARSHIP
+  PATH_ESR,
 } from './config/paths';
 
 const routesContent = () => {
-    const keysRoutes = [
-        PATH_CONTENT_DASHBOARD,
-        PATH_CREATE_PROJECTS,
-        PATH_PROJECTS,
-        PATH_CERTIFICATIONS,
-        PATH_POSTS,
-        PATH_CREATE_POSTS,
-        PATH_EVENTS,
-        PATH_COURSES,
-        PATH_CREATE_COURSE,
-        PATH_SCHOLARSHIP,
-        PATH_CREATE_SCHOLARSHIP,
-    ];
-    const arrayJSON = [];
+  const keysRoutes = [
+    PATH_CONTENT_DASHBOARD,
+    PATH_CREATE_PROJECTS,
+    PATH_CREATE_CERTIFICATION,
+    PATH_PROJECTS,
+    PATH_CERTIFICATIONS,
+    PATH_POSTS,
+    PATH_CREATE_POSTS,
+    PATH_EVENTS,
+    PATH_COURSES,
+    PATH_CREATE_COURSE,
+    PATH_ESR,
+    PATH_INFO,
+    PATH_SCHOLARSHIP,
+    PATH_CREATE_SCHOLARSHIP
+  ];
+  const arrayJSON = [];
+} from "./config/paths";
 
   for (let i = 0; i < keysRoutes.length; i++) {
     const keyRouter = keysRoutes[i];

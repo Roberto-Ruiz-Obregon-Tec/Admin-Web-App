@@ -29,3 +29,4 @@ export const PATH_CREATE_SCHOLARSHIP = "/contenido/becas/crear";
 
 export const PATH_CREATE_CERTIFICATION = '/contenido/acreditaciones/crear';
 
+export const PATH_ESR = '/contenido/empresasesr';
