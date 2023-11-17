@@ -48,7 +48,6 @@ const routesContent = () => {
     PATH_COURSES,
     PATH_CREATE_COURSE,
     PATH_ESR,
-    PATH_INFO,
     PATH_SCHOLARSHIP,
     PATH_CREATE_SCHOLARSHIP
   ];
