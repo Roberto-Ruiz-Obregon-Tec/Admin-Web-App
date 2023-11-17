@@ -10,5 +10,15 @@ export async function getScholarships() {
     const endpoint = `${baseApiEndpoint}/scholarships`;
 
     const response = await axios.get(endpoint);
-    return response.data.data.becas;
+    return response.data.data.documents;
 }
+
+/**
+ * It makes a POST request to the endpoint `/scholarships/create` and returns the response data.
+ */
+export async function createScholarships(data) {
+    const endpoint = `${baseApiEndpoint}/scholarships/create`;
+
+    const response = await axios.post(endpoint, data);
+    return response.data;
+} 

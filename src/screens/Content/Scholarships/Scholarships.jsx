@@ -1,6 +1,8 @@
 import React, {useState, useEffect } from "react";
 import { FireError } from '../../../utils/alertHandler';
 import LoaderPages from './Loader/LoaderPages';
+import { PATH_CREATE_SCHOLARSHIP } from "../../../config/paths";
+import { Link } from "react-router-dom";
 
 import { getScholarships } from '../../../client/scholarships'; 
 
@@ -8,8 +10,10 @@ import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
 import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
+import styles from "./Scholarships.module.css";
 
 function Scholarships() {
+    
     const [scholarships, setscholar] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -35,6 +39,7 @@ function Scholarships() {
 
     const getMatrix = () => {
         if (scholarships.length === 0) return [];
+
 
         const matrix = []
 
@@ -101,6 +106,9 @@ function Scholarships() {
                         ]}
                         percentages={[30, 10, 10, 10, 20, 10, 10, 40]}
                     />
+                    <Link title="Dar de alta beca" to={PATH_CREATE_SCHOLARSHIP} className={styles.add}>
+                        {Icons.cross()}
+                    </Link>
                 </>
             )}
 

@@ -25,5 +25,7 @@ export const PATH_CERTIFICATIONS = "/contenido/acreditaciones";
 export const PATH_INFO = "/informacion";
 
 export const PATH_SCHOLARSHIP = "/contenido/becas";
+export const PATH_CREATE_SCHOLARSHIP = "/contenido/becas/crear";
+
 export const PATH_CREATE_CERTIFICATION = '/contenido/acreditaciones/crear';
 
