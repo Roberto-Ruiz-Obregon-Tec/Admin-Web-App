@@ -47,7 +47,7 @@ const routesContent = () => {
     PATH_EVENTS,
     PATH_COURSES,
     PATH_CREATE_COURSE,
-    PATH_ESR,
+    PATH_ESR,    
     PATH_SCHOLARSHIP,
     PATH_CREATE_SCHOLARSHIP
   ];
@@ -120,6 +120,8 @@ const routes = [
     inNavbar: true,
     svg: 'info',
   },
+  
+  
 
   // {
   //     path: PATH_ANNOUNCES,
