@@ -96,13 +96,6 @@ const routes = [
     inNavbar: false,
   },
   {
-    path: PATH_CREATE_CERTIFICATION,
-    name: 'Crear certificaciones',
-    Component: CreateCertifications,
-    isPrivate: true,
-    inNavbar: false,
-  },
-  {
     path: PATH_NEW_ADMIN,
     name: 'Añadir administradores',
     Component: SignupForm,

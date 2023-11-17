@@ -142,17 +142,17 @@ export default function PopUpScholarship() {
     
         try {
             const data = {
-                _id: _id,
-                name: name,
-                organization: organization,
+                _id,
+                name,
+                organization,
                 startDate: new Date(startDate),
                 endDate: new Date(endDate),
                 image: "https://imagen",
-                location: location,
-                email: email,
-                phone: phone,
-                description: description,
-                sector: sector
+                location,
+                email,
+                phone,
+                description,
+                sector
             };
             setIsLoading(true);
             const response = await editScholarships(data);            

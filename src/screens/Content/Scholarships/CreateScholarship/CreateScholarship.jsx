@@ -84,15 +84,15 @@ const CreateScholarships = () => {
     
         try {
             const data = {
-                name: name,
-                organization: organization,
+                name,
+                organization,
                 startDate: new Date(startDate),
                 endDate: new Date(endDate),
                 image: "https://imagen",
-                location: location,
-                email: email,
-                phone: phone,
-                description: description
+                location,
+                email,
+                phone,
+                description
             };
             setIsLoading(true);
             const response = await createScholarships(data);

@@ -92,14 +92,14 @@ function Table({
                 className={styles.whitebutton}
                 onClick={() => handleEditClick(i)}
               >
-                Edit
+                Editar
               </button>
               <button
                 style={{ width: '80%' }}
                 className={styles.redbutton}
                 onClick={() => handleDeleteClick(i)}
               >
-                Delete
+                Eliminar
               </button>
             </div>
           </div>
