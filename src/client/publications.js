@@ -10,7 +10,7 @@ export async function getPublications() {
     const endpoint = `${baseApiEndpoint}/publication`;
 
     const response = await axios.get(endpoint);
-    return response.data.data.publications;
+    return response.data.data;
 }
 
 /**
