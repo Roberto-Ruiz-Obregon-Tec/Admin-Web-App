@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ContentContext } from "../Content";
-import { OPEN_PROJECT } from "../store/modalReducer";
+import { OPEN_PROJECT, EDIT_PROJECT } from "../store/modalReducer";
 import { FireError } from '../../../utils/alertHandler';
 import { Link } from "react-router-dom";
 import { getProgram } from '../../../client/availableProj'
@@ -13,24 +13,34 @@ import Table from "../../../components/Table/Table";
 import styles from "./Projects.module.css";
 
 function Proyectos() {
-    const { modalDispatch } = useContext(ContentContext);
+    const { modalDispatch, needsToDoRefresh, setNeedsToDoRefresh } = useContext(ContentContext);
     const [avaliableP, setavailableP] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
 
+    const fetchForData = async () => {
+        try {
+            setIsLoading(true);
+            const proj = await getProgram();
+            setIsLoading(false);
+            setavailableP(proj);
+        } catch (error) {
+            setIsLoading(false);
+            FireError(error.response.data.message);
+        }
+    }
+
     useEffect(() => {
-        (async () => {
-            try {
-                setIsLoading(true);
-                const proj = await getProgram();
-                setIsLoading(false);
-                setavailableP(proj);
-            } catch (error) {
-                setIsLoading(false);
-                FireError(error.response.data.message);
-            }
-        })();
+        // eslint-disable-next-line
+        fetchForData();
     }, []);
+
+    useEffect(() => {
+        if (needsToDoRefresh) {
+            fetchForData();
+            setNeedsToDoRefresh(false);
+        };
+    }, [needsToDoRefresh]);
 
     const getFormatedDate = (date) => {
         const dateObject = new Date(date);
@@ -86,6 +96,17 @@ function Proyectos() {
         } catch { };
     };
 
+    const openEdit = (i) => {
+        try {
+            if (i < 0 || i >= avaliableP.length) return;
+            const project = avaliableP[i];
+            modalDispatch({
+                type: EDIT_PROJECT,
+                payload: project
+            });
+        } catch { }
+    }
+
     return (
         <div>
             <NavHistory>
@@ -111,6 +132,7 @@ function Proyectos() {
                         ]}
                         percentages={[30, 10, 10, 10, 40]}
                         clickOnCell={openInfo}
+                        handleEdit={openEdit}
                     />
                     <Link title="Añadir un proyecto" to={PATH_CREATE_PROJECTS} className={styles.add}>
                         {Icons.cross()}

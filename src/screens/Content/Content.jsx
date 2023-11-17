@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 import { modalReducer, initialState } from "./store/modalReducer";
 import Redirect from "../../components/Redirect/Redirect";
 import styles from "./Content.module.css";
@@ -10,6 +10,8 @@ import Aside from "../../components/AsideContent/AsideContent";
 // Modals
 import ModalProject from "./Modals/Proyects/Proyects";
 import ModalPost from "./Modals/Posts/Posts";
+import ModalEditProject from "./Modals/EditProyects/EditProyects";
+import ModalEditCourse from "./Modals/EditCurses/EditCurses"
 
 // Pages
 import ConsultProjects from "./Projects/Projects";
@@ -21,23 +23,29 @@ import Posts from "./Posts/Posts";
 import CreatePosts from "./Posts/CreatePosts/CreatePosts";
 
 import Events from "./Events/Events";
-
+import CreateCertifications from "./Certifications/CreateCertifications/CreateCertifications";
 import Courses from "./Courses/Courses";
 import CreateCourses from "./Courses/CreateCourse/CreateCourses";
+
+import ESR from './CompanysESR/CompanysESR';
+import Scholarship from './Scholarships/Scholarships';
+import CreateScholarship from "./Scholarships/CreateScholarship/CreateScholarship";
 
 // Routes
 import {
 	PATH_CONTENT_DASHBOARD,
 	PATH_CREATE_PROJECTS,
 	PATH_PROJECTS,
-
+	PATH_CREATE_CERTIFICATION,
 	PATH_CERTIFICATIONS,
 	PATH_EVENTS,
 	PATH_POSTS,
 	PATH_CREATE_POSTS,
-
 	PATH_COURSES,
-	PATH_CREATE_COURSE
+	PATH_CREATE_COURSE,
+	PATH_ESR,
+	PATH_SCHOLARSHIP,
+	PATH_CREATE_SCHOLARSHIP
 } from "../../config/paths";
 import { useEffect } from "react";
 
@@ -48,6 +56,8 @@ export default function ContentDashboard() {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const { pathname } = location;
+
+	const [needsToDoRefresh, setNeedsToDoRefresh] = useState(false);
 
 	const checkIfNeedsToRedirect = () => {
 		const keys = new Set();
@@ -60,26 +70,35 @@ export default function ContentDashboard() {
 		keys.add(PATH_POSTS);
 		keys.add(PATH_CREATE_POSTS);
 		keys.add(PATH_CREATE_COURSE);
+		keys.add(PATH_SCHOLARSHIP);
+		keys.add(PATH_CREATE_CERTIFICATION);
+		keys.add(PATH_ESR);
+		keys.add(PATH_CREATE_SCHOLARSHIP);
 
 		if (keys.has(pathname)) return;
 
-		navigate(PATH_PROJECTS); // Default
+		navigate(PATH_CERTIFICATIONS); // Default
 	};
 
-	useEffect(checkIfNeedsToRedirect, [pathname]);
+	useEffect(checkIfNeedsToRedirect, [pathname, navigate]);
 
 	return (
 		<ContentContext.Provider value={{
 			modalState,
-			modalDispatch
+			needsToDoRefresh,
+
+			modalDispatch,
+			setNeedsToDoRefresh
 		}}>
 			<ModalProject />
 			<ModalPost />
+			<ModalEditProject />
+			<ModalEditCourse />
 			<div className={styles.container}>
 				<Aside />
 				<div className={styles.body}>
 					{/* Default */}
-					{pathname === PATH_CONTENT_DASHBOARD && <Redirect to={PATH_PROJECTS} />}
+					{pathname === PATH_CONTENT_DASHBOARD && <Redirect to={PATH_CERTIFICATIONS} />}
 
 					{pathname === PATH_PROJECTS && <ConsultProjects />}
 					{pathname === PATH_CREATE_PROJECTS && <CreateProjects />}
@@ -89,6 +108,10 @@ export default function ContentDashboard() {
 					{pathname === PATH_POSTS && <Posts />}
 					{pathname === PATH_CREATE_POSTS && <CreatePosts />}
 					{pathname === PATH_CREATE_COURSE && <CreateCourses />}
+					{pathname === PATH_SCHOLARSHIP && <Scholarship />}
+					{pathname === PATH_CREATE_SCHOLARSHIP && <CreateScholarship />}
+					{pathname === PATH_CREATE_CERTIFICATION && <CreateCertifications />}
+					{pathname === PATH_ESR && <ESR />}
 				</div>
 			</div>
 		</ContentContext.Provider>

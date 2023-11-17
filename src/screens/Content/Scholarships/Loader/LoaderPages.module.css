@@ -1,0 +1,14 @@
+.wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+
+    gap: 30px;
+}
+.skeleton {
+    width: 300px;
+    height: 150px;
+    background-color: #e3e3e3;
+}

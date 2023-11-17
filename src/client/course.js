@@ -73,3 +73,13 @@ export async function patchCourse(id, form) {
     });
     return response.data.data.document;
 }
+
+/**
+ * It makes a PUT request to the endpoint `/program/update`
+ */
+export async function editCourse(data) {
+    const endpoint = `${baseApiEndpoint}/course/update`;
+
+    const response = await axios.put(endpoint, data);
+    return response.data;    
+} 
