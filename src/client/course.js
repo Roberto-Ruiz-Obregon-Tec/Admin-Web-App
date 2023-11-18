@@ -6,25 +6,9 @@ const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
  * It makes a GET request to the endpoint `/course` and returns the response data.
  * @returns An array of objects.
  */
-export async function getCourses(
-    name = '',
-    page = 1,
-    limit = 8,
-    topic = 'none',
-    postalCode = '',
-    status = '',
-    modality = ''
-) {
-    let endpoint = '';
-
-    if (topic === 'none' || topic === '') {
-        endpoint = `${baseApiEndpoint}/course?courseName[regex]=${name}&page=${page}&limit=${limit}&postalCode[regex]=${postalCode}&status[regex]=${status}&modality[regex]=${modality}`;
-    } else {
-        endpoint = `${baseApiEndpoint}/course?courseName[regex]=${name}&page=${page}&limit=${limit}&topics[in]=${topic}&postalCode[regex]=${postalCode}&status[regex]=${status}&modality[regex]=${modality}`;
-    }
-
-    const response = await axios.get(endpoint);
-    return response.data.data.documents;
+export async function getCourses() {
+    const response = await axios.get(`${baseApiEndpoint}/course`);
+    return response.data.data;
 }
 
 /**
@@ -45,13 +29,11 @@ export async function getCourseInscriptions(courseId) {
  * @returns An array of topics.
  */
 export async function postCourse(courseForm) {
-    const endpoint = `${baseApiEndpoint}/course`;
+    const endpoint = `${baseApiEndpoint}/course/create`;
 
-    const response = await axios.post(endpoint, courseForm, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    const response = await axios.post(endpoint, courseForm);
 
-    return response.data.data.document;
+    return response.data;
 }
 
 /**
@@ -91,3 +73,13 @@ export async function patchCourse(id, form) {
     });
     return response.data.data.document;
 }
+
+/**
+ * It makes a PUT request to the endpoint `/program/update`
+ */
+export async function editCourse(data) {
+    const endpoint = `${baseApiEndpoint}/course/update`;
+
+    const response = await axios.put(endpoint, data);
+    return response.data;    
+} 

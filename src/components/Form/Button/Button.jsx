@@ -7,7 +7,9 @@ export default function Button({
     onClick: onClickHandler,
     attr = "",
     role = "",
-    type = "button"
+    type = "button",
+    title = "",
+    isDisabled = false
 }) {
 
     const onClick = () => {
@@ -19,8 +21,10 @@ export default function Button({
     return (
         <button
             attr-css={attr}
+            disabled={isDisabled}
             role={role}
             type={type}
+            title={title}
             className={styles.btn}
             onClick={onClick}
         >

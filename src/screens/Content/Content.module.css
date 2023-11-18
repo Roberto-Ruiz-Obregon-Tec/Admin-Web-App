@@ -1,0 +1,10 @@
+.container {
+    position: relative;
+    width: 100%;
+}
+.body {
+    position: relative;
+    left: 280px;
+    width: calc(100vw - 280px);
+    padding: 0 35px;
+}

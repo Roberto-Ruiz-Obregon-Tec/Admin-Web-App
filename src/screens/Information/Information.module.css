@@ -1,0 +1,20 @@
+.wrapper_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;   
+  padding-left: 4em;
+}
+
+.wrapper_info h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.wrapper_detail {
+  flex-grow: 1;
+  display: flex;
+  padding: 2em 4em;
+  align-items: flex-start;
+  flex-direction: column;
+}

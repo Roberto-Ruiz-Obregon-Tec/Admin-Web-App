@@ -1,0 +1,52 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.75);
+    visibility: hidden;
+    opacity: 0;
+
+    transition: visibility ease-out 300ms, opacity ease-out 300ms;
+}
+
+.open {
+    visibility: visible;
+    opacity: 1;
+}
+.xmark {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+}
+.xmark:focus {
+    outline: none;
+}
+.xmark svg {
+    fill: #575757;
+    width: 25px;
+    height: 25px;
+}
+.xmark svg:hover {
+    fill: #777777;
+}
+.card {
+    position: relative;
+}
+.body {
+    width: 100%;
+}

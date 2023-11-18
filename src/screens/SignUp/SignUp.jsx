@@ -136,7 +136,7 @@ const SignupForm = () => {
                                 type='email'
                             />
                             <InputText
-                                id="new-admin-age"
+                                id="new-admin-gender"
                                 text="Género"
                                 value={gender}
                                 setValue={setGender}
