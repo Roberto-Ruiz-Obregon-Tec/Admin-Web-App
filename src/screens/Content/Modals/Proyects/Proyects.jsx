@@ -28,6 +28,21 @@ export default function PopUpProyect() {
     }
 
     const getState = () => {
+
+        if (!isOpen()) return {
+            "name": "-----",
+            "startDate": "dd/mm/yyyy",
+            "endDate": "dd/mm/yyyy",
+            "deadlineDate": "dd/mm/yyyy",
+            "postalCode": "-----",
+            "description": "-----",
+            "_id": "-",
+            "createdAt": "dd/mm/yyyy",
+            "updatedAt": "dd/mm/yyyy",
+            "focus": [],
+        };;
+
+
         return {
             "name": modalState.documentJSON["name"] ? modalState.documentJSON["name"] : "-----",
             "startDate": modalState.documentJSON["startDate"] ? modalState.documentJSON["startDate"] : "dd/mm/yyyy",

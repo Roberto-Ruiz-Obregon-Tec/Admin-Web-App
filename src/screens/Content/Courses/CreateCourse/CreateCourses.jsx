@@ -258,8 +258,9 @@ const CreateCourses = () => {
                             </div>
                             <div className={styles.bottom}>
                                 <InputImage
-                                    id="image-post-new"
+                                    id="image-course-new"
                                     setFile={(file) => {
+                                        console.log("file:", file);
                                         setCourseImage(file);
                                     }}
                                     file={courseImage}
