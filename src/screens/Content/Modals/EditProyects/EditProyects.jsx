@@ -65,7 +65,9 @@ export default function PopUpProyect() {
         });
     }
     
-    useEffect( () => {       
+    useEffect( () => {
+        if (!isOpen()) return;
+        
         const stateFromModal = {
             "name": modalState.documentJSON["name"] ? modalState.documentJSON["name"] : "-----",
             "startDate": modalState.documentJSON["startDate"] ? modalState.documentJSON["startDate"] : "dd/mm/yyyy",

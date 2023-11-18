@@ -8,8 +8,8 @@ function Table({
   percentages = null,
   clickOnCell = null,
 
-  handleEdit,
-  handleDelete,
+  handleEdit = null,
+  handleDelete = null,
 }) {
   const getPercentage = (i = null) => {
     if (percentages === null || i === null)
@@ -25,14 +25,13 @@ function Table({
   };
 
   const handleEditClick = (i = null) => {
-    if (clickOnCell === null) return;
+    if (handleEdit === null) return;
     handleEdit(i);    
   };
 
   const handleDeleteClick = () => {
-    if (handleDelete) {
-      handleDelete();
-    }
+    if (handleDelete === null) return;
+    handleDelete();
   };
 
   return (
