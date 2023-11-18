@@ -34,7 +34,6 @@ import {
   PATH_ESR,
 } from './config/paths';
 
-
 const routesContent = () => {
   const keysRoutes = [
     PATH_CONTENT_DASHBOARD,
@@ -49,9 +48,11 @@ const routesContent = () => {
     PATH_CREATE_COURSE,
     PATH_ESR,    
     PATH_SCHOLARSHIP,
-    PATH_CREATE_SCHOLARSHIP
-  ];
-  const arrayJSON = [];
+    PATH_CREATE_SCHOLARSHIP,
+    PATH_INFO,
+    PATH_SCHOLARSHIP
+    ];
+    const arrayJSON = [];
 
   for (let i = 0; i < keysRoutes.length; i++) {
     const keyRouter = keysRoutes[i];
