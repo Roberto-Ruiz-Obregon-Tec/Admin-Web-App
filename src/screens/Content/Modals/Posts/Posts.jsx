@@ -28,6 +28,15 @@ export default function PopUpProyect() {
     }
 
     const getState = () => {
+
+        if (!isOpen()) return {
+            "title": "-----",
+            "description": "-----",
+            "likes": "0",
+            "createdAt": "dd/mm/yyyy",
+            "comments": []
+        };
+
         return {
             "title": modalState.documentJSON["title"] ? modalState.documentJSON["title"] : "-----",
             "description": modalState.documentJSON["description"] ? modalState.documentJSON["description"] : "-----",
