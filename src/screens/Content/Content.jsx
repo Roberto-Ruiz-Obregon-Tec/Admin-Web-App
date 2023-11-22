@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 import { modalReducer, initialState } from "./store/modalReducer";
 import Redirect from "../../components/Redirect/Redirect";
 import styles from "./Content.module.css";
@@ -60,6 +60,8 @@ export default function ContentDashboard() {
 	const navigate = useNavigate();
 	const { pathname } = location;
 
+	const [needsToDoRefresh, setNeedsToDoRefresh] = useState(false);
+
 	const checkIfNeedsToRedirect = () => {
 		const keys = new Set();
 		keys.add(PATH_CONTENT_DASHBOARD);
@@ -78,7 +80,7 @@ export default function ContentDashboard() {
 
 		if (keys.has(pathname)) return;
 
-		navigate(PATH_PROJECTS); // Default
+		navigate(PATH_CERTIFICATIONS); // Default
 	};
 
 	useEffect(checkIfNeedsToRedirect, [pathname, navigate]);
@@ -86,7 +88,10 @@ export default function ContentDashboard() {
 	return (
 		<ContentContext.Provider value={{
 			modalState,
-			modalDispatch
+			needsToDoRefresh,
+
+			modalDispatch,
+			setNeedsToDoRefresh
 		}}>
 
 			<ModalProject />
@@ -99,7 +104,7 @@ export default function ContentDashboard() {
 				<Aside />
 				<div className={styles.body}>
 					{/* Default */}
-					{pathname === PATH_CONTENT_DASHBOARD && <Redirect to={PATH_PROJECTS} />}
+					{pathname === PATH_CONTENT_DASHBOARD && <Redirect to={PATH_CERTIFICATIONS} />}
 
 					{pathname === PATH_PROJECTS && <ConsultProjects />}
 					{pathname === PATH_CREATE_PROJECTS && <CreateProjects />}

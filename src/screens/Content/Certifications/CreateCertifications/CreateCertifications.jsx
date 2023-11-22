@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ReturnLink from '../../../../components/Links/Return/Return';
 import {
-  FireError,
-  FireSucess,
+	FireError,
+	FireSucess,
 } from '../../../../utils/alertHandler';
 import NavHistory from '../../../../components/NavHistory/NavHistory';
 import Card from '../../../../components/ShadowCard/ShadowCard';
@@ -18,8 +18,8 @@ import styles from './CreateCertifications.module.css';
 import { createACertification } from '../../../../client/certifications';
 
 const CreateCertifications = () => {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+	const navigate = useNavigate();
+	const [isLoading, setIsLoading] = useState(false);
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -44,19 +44,19 @@ const CreateCertifications = () => {
       const response = await createACertification(data);
       setIsLoading(false);
 
-      if (response.status === 'success') {
-        FireSucess('Has creado una acreditación exitosamente.');
-        navigate(PATH_CERTIFICATIONS);
-      } else {
-        FireError('Ha habido un error.');
-      }
-    } catch (error) {
-      setIsLoading(false);
-      if ([400, 401].includes(error.response.status))
-        FireError(error.response.data.message);
-      else FireError('Ocurrió un error. Por favor intenta de nuevo.');
-    }
-  };
+			if (response.status === 'success') {
+				FireSucess('Has creado una acreditación exitosamente.');
+				navigate(PATH_CERTIFICATIONS);
+			} else {
+				FireError('Ha habido un error.');
+			}
+		} catch (error) {
+			setIsLoading(false);
+			if ([400, 401].includes(error.response.status))
+				FireError(error.response.data.message);
+			else FireError('Ocurrió un error. Por favor intenta de nuevo.');
+		}
+	};
 
   return (
     <div>
