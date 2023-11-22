@@ -51,7 +51,7 @@ import {
 	PATH_CREATE_COURSE,
 	PATH_ESR,
 	PATH_SCHOLARSHIP,
-	PATH_CREATE_SCHOLARSHIP
+	PATH_CREATE_SCHOLARSHIP,
 } from "../../config/paths";
 import { useEffect } from "react";
 
@@ -80,6 +80,7 @@ export default function ContentDashboard() {
 		keys.add(PATH_ESR);
 		keys.add(PATH_SCHOLARSHIP);
 		keys.add(PATH_CREATE_SCHOLARSHIP);
+		keys.add(PATH_SCHOLARSHIP);
 
 		if (keys.has(pathname)) return;
 

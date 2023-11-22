@@ -44,6 +44,9 @@ export default function Aside() {
 				<Link text="Becas" href={PATH_SCHOLARSHIP}>
 					{Icons.becas()}
 				</Link>
+				<Link text="Becas" href={PATH_SCHOLARSHIP}>
+					{Icons.becas()}
+				</Link>
 			</div>
 		</aside>
 	)

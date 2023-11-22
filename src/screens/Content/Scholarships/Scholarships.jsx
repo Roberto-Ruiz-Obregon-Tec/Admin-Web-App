@@ -10,10 +10,9 @@ import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
 import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
-import styles from "./Scholarships.module.css";
+import styles from "./Scholarships.module.css";    
 
 function Scholarships() {
-    
     const [scholarships, setscholar] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -39,7 +38,6 @@ function Scholarships() {
 
     const getMatrix = () => {
         if (scholarships.length === 0) return [];
-
 
         const matrix = []
 
