@@ -46,31 +46,31 @@ function Certifications() {
     const formattedDay = day < 10 ? `0${day}` : day;
     const formattedMonth = month < 10 ? `0${month}` : month;
 
-    return `${formattedDay}/${formattedMonth}/${year}`;
+    return `${year}-${formattedMonth}-${formattedDay}`;
   };
 
   const getMatrix = () => {
     const matrix = [];
-    certifications.forEach((certification) => {
-      matrix.push([
-        certification.name,
-        certification.description,
-        getFormattedDate(certification.adquisitionDate),
-      ]);
-    });
+    if (certifications) {
+      certifications.forEach((certification) => {
+        matrix.push([
+          certification.name,
+          certification.description,
+          getFormattedDate(certification.adquisitionDate),
+        ]);
+      });
+    }
     return matrix;
   };
+  
 
   const handleDelete = (i) => {
-    try {
-      if (i < 0 || i >= certifications.length) return;
       const post = certifications[i];
       modalDispatch({
-          type: DELETE_CERTIFICATION,
-          payload: post
+        type: DELETE_CERTIFICATION,
+        payload: post,
       });
-  } catch { };
-  };
+  }
 
   const handleEdit = (i) => {
     try {
@@ -102,7 +102,7 @@ function Certifications() {
               'Descripción',
               'Fecha de adquisición',
             ]}
-            percentages={[25, 55, 14]}
+            percentages={[25, 50, 19]}
           />
           <Link
             title="Añadir una Acreditación"

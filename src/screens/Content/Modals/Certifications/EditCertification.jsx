@@ -3,30 +3,44 @@ import PopUpModal from '../PopUp/PopUp';
 import { ContentContext } from '../../Content';
 import { CLEAR_MODALS, KEYS_MODAL } from '../../store/modalReducer';
 import styles from './DeleteCertification.module.css';
+import { updateACertification } from '../../../../client/certifications';
+import {
+  FireError,
+  FireSucess,
+} from '../../../../utils/alertHandler';
+import { PATH_CERTIFICATIONS } from '../../../../config/paths';
+import { useNavigate } from 'react-router-dom';
+import InputText from '../../../../components/Form/Input/Text/Text';
+import InputTextArea from '../../../../components/Form/Input/TextArea/TextArea';
+import InputDate from '../../../../components/Form/Input/Date/Date';
+import Button from '../../../../components/Form/Button/Button';
 
 export default function PopUpEditCertification() {
-  const { modalState, modalDispatch } = useContext(ContentContext);
-  const [formData, setFormData] = useState({
-    name: '-----',
-    description: '-----',
-    adquisitionDate: 'yyyy-mm-dd', // Initialize with a valid date format
-    createdAt: 'dd/mm/yyyy',
-    updatedAt: 'dd/mm/yyyy',
-  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [adquisitionDate, setAquisitionDate] = useState(new Date());
+  const [_id, setId] = useState(0);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    // Set initial formData based on modalState.documentJSON when the component mounts
-    setFormData({
-      name: modalState.documentJSON.name || '-----',
-      description: modalState.documentJSON.description || '-----',
-      adquisitionDate: modalState.documentJSON.adquisitionDate || 'yyyy-mm-dd',
-      createdAt: modalState.documentJSON.createdAt || 'dd/mm/yyyy',
-      updatedAt: modalState.documentJSON.updatedAt || 'dd/mm/yyyy',
-    });
-  }, [modalState.documentJSON]);
+  const { modalState, modalDispatch, setNeedsToDoRefresh } =
+    useContext(ContentContext);
 
   const isOpen = () => {
     return modalState.modalOpened === KEYS_MODAL.EDIT_CERTIFICATION;
+  };
+
+  const getFormatedDate = (date) => {
+    const dateObject = new Date(date);
+
+    const dataMonth = dateObject.getMonth() + 1;
+    const month =
+      dataMonth <= 9 ? '0' + dataMonth.toString() : dataMonth;
+
+    const dataDay = dateObject.getDate() + 1;
+    const day = dataDay <= 9 ? '0' + dataDay.toString() : dataDay;
+
+    return dateObject.getFullYear() + '-' + month + '-' + day;
   };
 
   const setIsOpen = () => {
@@ -35,27 +49,71 @@ export default function PopUpEditCertification() {
     });
   };
 
-  const getFormattedDate = (date) => {
-    const dateObject = new Date(date);
-    const year = dateObject.getFullYear();
-    const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
-    const day = dateObject.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
+  useEffect(() => {
+    if (!isOpen()) return;
+    const stateFromModal = {
+      name: modalState.documentJSON['name']
+        ? modalState.documentJSON['name']
+        : '-----',
+      adquisitionDate: modalState.documentJSON['adquisitionDate']
+        ? modalState.documentJSON['adquisitionDate']
+        : 'dd/mm/yyyy',
+      description: modalState.documentJSON['description']
+        ? modalState.documentJSON['description']
+        : '-----',
+      _id: modalState.documentJSON['_id']
+        ? modalState.documentJSON['_id']
+        : '-',
+      createdAt: modalState.documentJSON['createdAt']
+        ? modalState.documentJSON['createdAt']
+        : 'dd/mm/yyyy',
+      updatedAt: modalState.documentJSON['updatedAt']
+        ? modalState.documentJSON['updatedAt']
+        : 'dd/mm/yyyy',
+    };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleUpdate = () => {
-    // Implement your update logic here
-    console.log('Updated data:', formData);
-    clearState();
-  };
+    setName(stateFromModal.name);
+    setDescription(stateFromModal.description);
+    setAquisitionDate(stateFromModal.adquisitionDate);
+    setId(stateFromModal._id);
+  }, [modalState.documentJSON]);
 
   const clearState = () => {
     setIsOpen();
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (name.trim() === '' || description.trim() === '') {
+      FireError('No puedes dejar los campos vacíos.');
+      return;
+    }
+    try {
+      const data = {
+        _id: _id,
+        name: name,
+        adquisitionDate: new Date(adquisitionDate),
+        description: description,
+      };
+      setIsLoading(true);
+      const response = await updateACertification(data);
+      setIsLoading(false);
+
+      if (response.status === 'success') {
+        FireSucess('Has editado la Acreditación exitosamente.');
+        navigate(PATH_CERTIFICATIONS);
+        clearState();
+        setNeedsToDoRefresh(true);
+      } else {
+        FireError('Ha habido un error.');
+      }
+    } catch (error) {
+      setIsLoading(false);
+      if ([400, 401].includes(error.response.status))
+        FireError(error.response.data.message);
+      else FireError('Ocurrió un error. Por favor intenta de nuevo.');
+    }
   };
 
   return (
@@ -63,64 +121,42 @@ export default function PopUpEditCertification() {
       isOpen={isOpen()}
       setIsOpen={clearState}
       classNameCard={styles.card}
-      classNameBody={styles.card_body}
     >
-      <div className={styles.left}>
-        <form>
-          <div>
-            <h2>Editar Acreditación</h2>
+      <h1>Editar proyecto</h1>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.form__item}>
+          <InputText
+            id="new-acreditacion-name"
+            text="Nombre"
+            value={name}
+            setValue={setName}
+          />
+          <div className={styles.dates}>
+            <InputDate
+              currDate={getFormatedDate(adquisitionDate)}
+              setCurrDate={setAquisitionDate}
+              text="Fecha inicio"
+              id="adqusitiondate-acreditacion"
+            />
           </div>
-          <div>
-            <label>
-              Name:
-              <input
-                className={styles.input}
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Description:
-              <textarea
-                className={styles.input}
-                type="text"
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Adquisition Date:
-              <input
-                className={styles.input}
-                type="date"
-                name="adquisitionDate"
-                value={getFormattedDate(formData.adquisitionDate)}
-                onChange={handleInputChange}
-              />
-            </label>
-            {/* Add other form fields as needed */}
-            <div className={styles.botons}>
-              <button
-                type="button"
-                className={styles.whiteBoton}
-                onClick={clearState}
-              >
-                Cancelar
-              </button>
-              <button
-                type="button"
-                className={styles.redBoton}
-                onClick={handleUpdate}
-              >
-                Actualizar
-              </button>
-            </div>
+          <InputTextArea
+            id="new-acreditacion-description"
+            text="Descripción"
+            value={description}
+            setValue={setDescription}
+            className={styles.textarea}
+          />
+          <div className={styles.botons}>
+          <Button
+            isAnimationLoading
+            isLoading={isLoading}
+            type="submit"
+          >
+            Editar Acreditación
+          </Button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </PopUpModal>
   );
 }

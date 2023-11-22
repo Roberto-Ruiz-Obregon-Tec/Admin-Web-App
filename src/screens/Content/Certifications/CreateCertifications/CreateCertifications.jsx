@@ -18,8 +18,8 @@ import styles from './CreateCertifications.module.css';
 import { createACertification } from '../../../../client/certifications';
 
 const CreateCertifications = () => {
-	const navigate = useNavigate();
-	const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
