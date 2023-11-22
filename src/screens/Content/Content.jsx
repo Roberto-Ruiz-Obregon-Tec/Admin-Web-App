@@ -29,6 +29,7 @@ import CreateCourses from "./Courses/CreateCourse/CreateCourses";
 import PopUpEditCertification from "./Modals/Certifications/EditCertification";
 import PopUpDeleteCertification from "./Modals/Certifications/DeleteCertification";
 import ESR from './CompanysESR/CompanysESR';
+import Scholarship from './Scholarships/Scholarships';
 
 // Routes
 import {
@@ -43,6 +44,7 @@ import {
 	PATH_COURSES,
 	PATH_CREATE_COURSE,
 	PATH_ESR,
+	PATH_SCHOLARSHIP
 } from "../../config/paths";
 import { useEffect } from "react";
 
@@ -67,6 +69,7 @@ export default function ContentDashboard() {
 		keys.add(PATH_CREATE_COURSE);
 		keys.add(PATH_CREATE_CERTIFICATION);
 		keys.add(PATH_ESR);
+		keys.add(PATH_SCHOLARSHIP);
 		if (keys.has(pathname)) return;
 
 		navigate(PATH_PROJECTS); // Default
@@ -100,6 +103,7 @@ export default function ContentDashboard() {
 					{pathname === PATH_CREATE_COURSE && <CreateCourses />}
 					{pathname === PATH_CREATE_CERTIFICATION && <CreateCertifications />}
 					{pathname === PATH_ESR && <ESR />}
+					{pathname === PATH_SCHOLARSHIP && <Scholarship />}
 				</div>
 			</div>
 		</ContentContext.Provider>

@@ -15,39 +15,39 @@ import Informacion from './screens/Information/Information';
 import CreateCertifications from './screens/Content/Certifications/CreateCertifications/CreateCertifications';
 
 import {
-  PATH_HOME,
-  PATH_USERS,
-  PATH_PROJECTS,
-  PATH_LOGIN,
-  PATH_CREATE_PROJECTS,
-  PATH_NEW_ADMIN,
-  PATH_CONTENT_DASHBOARD,
-  PATH_CERTIFICATIONS,
-  PATH_POSTS,
-  PATH_EVENTS,
-  PATH_COURSES,
-  PATH_CREATE_POSTS,
-  PATH_CREATE_COURSE,
-  PATH_INFO,
-  PATH_CREATE_CERTIFICATION,
-  PATH_ESR,
-} from './config/paths';
-
-const routesContent = () => {
-  const keysRoutes = [
-    PATH_CONTENT_DASHBOARD,
-    PATH_CREATE_PROJECTS,
-    PATH_CREATE_CERTIFICATION,
+    PATH_HOME,
+    PATH_USERS,
     PATH_PROJECTS,
+    PATH_LOGIN,
+    PATH_CREATE_PROJECTS,
+    PATH_NEW_ADMIN,
+    PATH_CONTENT_DASHBOARD,
     PATH_CERTIFICATIONS,
     PATH_POSTS,
-    PATH_CREATE_POSTS,
     PATH_EVENTS,
     PATH_COURSES,
+    PATH_CREATE_POSTS,
     PATH_CREATE_COURSE,
-    PATH_ESR,
-  ];
-  const arrayJSON = [];
+    PATH_INFO,
+    PATH_SCHOLARSHIP,
+    PATH_CREATE_CERTIFICATION
+} from "./config/paths";
+
+const routesContent = () => {
+    const keysRoutes = [
+        PATH_CONTENT_DASHBOARD,
+        PATH_CREATE_PROJECTS,
+        PATH_PROJECTS,
+        PATH_CERTIFICATIONS,
+        PATH_POSTS,
+        PATH_CREATE_POSTS,
+        PATH_EVENTS,
+        PATH_COURSES,
+        PATH_CREATE_COURSE,
+        PATH_SCHOLARSHIP,
+        PATH_CREATE_CERTIFICATION
+    ];
+    const arrayJSON = [];
 
   for (let i = 0; i < keysRoutes.length; i++) {
     const keyRouter = keysRoutes[i];

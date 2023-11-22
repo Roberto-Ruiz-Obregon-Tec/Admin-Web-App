@@ -20,10 +20,10 @@ export const PATH_EVENTS = '/contenido/eventos';
 export const PATH_COURSES = '/contenido/cursos';
 export const PATH_CREATE_COURSE = '/contenido/cursos/crear';
 
-export const PATH_CERTIFICATIONS = '/contenido/acreditaciones';
-
 export const PATH_INFO = '/informacion';
 export const PATH_CREATE_CERTIFICATION = '/contenido/acreditaciones/crear';
 
-
 export const PATH_ESR = '/contenido/empresasesr';
+export const PATH_CERTIFICATIONS = "/contenido/acreditaciones";
+
+export const PATH_SCHOLARSHIP = "/contenido/becas";
