@@ -33,9 +33,6 @@ import PopUpDeleteCertification from "./Modals/Certifications/DeleteCertificatio
 import ESR from './CompanysESR/CompanysESR';
 import Scholarship from './Scholarships/Scholarships';
 import CreateScholarship from "./Scholarships/CreateScholarship/CreateScholarship";
-// PopUps
-import PopUpEditCertification from "./Modals/Certifications/EditCertification";
-import PopUpDeleteCertification from "./Modals/Certifications/DeleteCertification";
 
 // Routes
 import {
@@ -100,8 +97,6 @@ export default function ContentDashboard() {
 
 			<ModalProject />
 			<ModalPost />
-			<PopUpEditCertification />
-			<PopUpDeleteCertification />
 			<ModalEditProject />
 			<ModalEditCourse />
 			<PopUpEditCertification />
