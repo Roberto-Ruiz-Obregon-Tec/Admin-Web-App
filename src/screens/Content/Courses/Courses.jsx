@@ -128,7 +128,6 @@ function Courses() {
                             "Costo" // 5
                         ]}
                         percentages={[16, 18, 10, 10, 10, 7.5, 7.5, 8.5, 7]}
-                        clickOnCell={() => (console.log("clickOnCell"))}
                         handleEdit={openEdit}
                     />
                     <Link title="Añadir un curso" to={PATH_CREATE_COURSE} className={styles.add}>
