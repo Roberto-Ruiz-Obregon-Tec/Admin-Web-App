@@ -1,19 +1,21 @@
 import React, { useState , useEffect} from 'react';
 import { FireError, FireSucess } from '../../../../utils/alertHandler';
+import { useNavigate } from 'react-router-dom';
 import { editProject } from '../../../../client/availableProj';
 
 import PopUpModal from "../PopUp/PopUp";
 import { useContext } from "react";
 import { CLEAR_MODALS, KEYS_MODAL } from "../../store/modalReducer";
 import { ContentContext } from "../../Content";
+
 import Image from "../../../../components/Image/Image";
 import styles from "./EditProjects.module.css";
-
 import InputText from "../../../../components/Form/Input/Text/Text";
 import InputTextArea from "../../../../components/Form/Input/TextArea/TextArea";
 import InputImage from "../../../../components/Form/Input/Image/Image";
 import InputDate from "../../../../components/Form/Input/Date/Date";
 import Button from "../../../../components/Form/Button/Button";
+import { PATH_PROJECTS } from '../../../../config/paths';
 
 export default function PopUpProyect() {
     const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +29,9 @@ export default function PopUpProyect() {
     const [deadlineDate , setLimitDate] = useState(new Date());
 
     const [_id , setId] = useState(0);
-    const [file , setFile] = useState(null);            
+    const [file , setFile] = useState(null);       
+    
+    const navigate = useNavigate();
 
     const {
         modalState,
@@ -141,7 +145,8 @@ export default function PopUpProyect() {
             setIsLoading(false);
 
             if (response.status === 'success') {
-                FireSucess('Has editado el proyecto exitosamente.');                
+                FireSucess('Has editado el proyecto exitosamente.');  
+                navigate(PATH_PROJECTS);              
             } else {
                 FireError('Ha habido un error.');
             }
