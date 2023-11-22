@@ -10,6 +10,7 @@ import Aside from "../../components/AsideContent/AsideContent";
 // Modals
 import ModalProject from "./Modals/Proyects/Proyects";
 import ModalPost from "./Modals/Posts/Posts";
+import ModalEditProject from "./Modals/EditProyects/EditProyects";
 
 // Pages
 import ConsultProjects from "./Projects/Projects";
@@ -91,6 +92,7 @@ export default function ContentDashboard() {
 			<ModalPost />
 			<PopUpEditCertification />
 			<PopUpDeleteCertification />
+			<ModalEditProject />
 			<div className={styles.container}>
 				<Aside />
 				<div className={styles.body}>

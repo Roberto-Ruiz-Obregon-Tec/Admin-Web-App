@@ -23,3 +23,13 @@ export async function createAProject(data) {
     const response = await axios.post(endpoint, data);
     return response.data;
 } 
+
+/**
+ * It makes a POST request to the endpoint `/program/create` and returns the response data.
+ */
+export async function editProject(data) {
+    const endpoint = `${baseApiEndpoint}/program/edit`;
+
+    const response = await axios.post(endpoint, data);
+    return response.data;
+} 

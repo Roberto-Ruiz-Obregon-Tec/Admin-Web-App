@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ContentContext } from "../Content";
-import { OPEN_PROJECT } from "../store/modalReducer";
+import { OPEN_PROJECT, EDIT_PROJECT } from "../store/modalReducer";
 import { FireError } from '../../../utils/alertHandler';
 import { Link } from "react-router-dom";
 import { getProgram } from '../../../client/availableProj'
@@ -86,6 +86,17 @@ function Proyectos() {
         } catch { };
     };
 
+    const openEdit = (i) => {
+        try {
+            if (i < 0 || i >= avaliableP.length) return;
+            const project = avaliableP[i];
+            modalDispatch({
+                type: EDIT_PROJECT,
+                payload: project
+            });
+        }catch{ }
+    }
+
     return (
         <div>
             <NavHistory>
@@ -111,6 +122,7 @@ function Proyectos() {
                         ]}
                         percentages={[30, 10, 10, 10, 40]}
                         clickOnCell={openInfo}
+                        handleEdit = { openEdit }
                     />
                     <Link title="Añadir un proyecto" to={PATH_CREATE_PROJECTS} className={styles.add}>
                         {Icons.cross()}
