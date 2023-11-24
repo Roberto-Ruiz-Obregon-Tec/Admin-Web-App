@@ -2,6 +2,18 @@
     display: flex;    
 }
 
+
+.formi {
+    margin: 0 2em;
+    margin-bottom: 2em;
+}
+
+.botton {
+    margin: 0 2em;
+    margin-bottom: 2em;
+}
+
+
 .form__item {
     margin: 0 2em;
     margin-bottom: 2em;

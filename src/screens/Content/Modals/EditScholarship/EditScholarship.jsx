@@ -8,6 +8,7 @@ import { CLEAR_MODALS, KEYS_MODAL } from "../../store/modalReducer";
 import { ContentContext } from "../../Content";
 import Image from "../../../../components/Image/Image";
 import styles from "./Scholarship.module.css";
+import Icons from "../../../../icons/index";
 
 import InputText from "../../../../components/Form/Input/Text/Text";
 import InputTextArea from "../../../../components/Form/Input/TextArea/TextArea";
@@ -180,13 +181,33 @@ export default function PopUpScholarship() {
                     Editar Beca
                 </h1>
                 <form onSubmit={handleSubmit} className={styles.form}>
+
+                    <div className={styles.formi}> 
+                            <InputText
+                                id="new-scholarship-name"
+                                text="Nombre"
+                                value={name}
+                                setValue={setName}
+                            />
+                            <InputText
+                                id="new-scholariship-phone"
+                                text="Teléfono"
+                                value={phone}
+                                setValue={setPhone}
+                            >
+
+                            </InputText>
+                            <InputText
+                                id="new-scholariship-email"
+                                text="Correo electrónico"
+                                value={email}
+                                setValue={setEmail}
+                            >
+
+                            </InputText>
+                    </div>
+
                     <div className={styles.form__item} >
-                        <InputText
-                            id="new-scholarship-name"
-                            text="Nombre"
-                            value={name}
-                            setValue={setName}
-                        />
                         <InputText
                             id="new-scholariship-organization"
                             text="Organización"
@@ -208,22 +229,10 @@ export default function PopUpScholarship() {
                             />
                         </div>
                         <InputText
-                            id="new-scholariship-phone"
-                            text="Teléfono"
-                            value={phone}
-                            setValue={setPhone}
-                        />
-                        <InputText
                             id="new-scholariship-localization"
                             text="Ubicación"
                             value={location}
                             setValue={setLocation}
-                        />
-                        <InputText
-                            id="new-scholariship-email"
-                            text="Correo electrónico"
-                            value={email}
-                            setValue={setEmail}
                         />
     
                         <InputTextArea
