@@ -5,7 +5,7 @@ export const KEYS_MODAL = {
 	EVENT: "event",
 	CERTIFICATION: "certification",
     PROJECT_EDIT: "project_edit",
-    COURSE_EDIT: "course_edit"
+    COURSE_EDIT: "course_edit",
 }
 
 export const CLEAR_MODALS = "clear-modals";
