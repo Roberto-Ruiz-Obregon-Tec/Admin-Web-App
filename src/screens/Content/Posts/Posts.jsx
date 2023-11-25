@@ -10,7 +10,7 @@ import { PATH_CREATE_POSTS } from "../../../config/paths";
 import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
 import styles from "./Posts.module.css";
-import { OPEN_POST } from "../store/modalReducer";
+import { OPEN_POST, EDIT_POST } from "../store/modalReducer";
 
 function Posts() {
     const { modalDispatch } = useContext(ContentContext);
@@ -83,6 +83,17 @@ function Posts() {
         } catch { };
     };
 
+    const openEdit = (i) => {
+        try {
+            if (i < 0 || i >= avaliablePosts.length) return;
+            const post = avaliablePosts[i];
+            modalDispatch({
+                type: EDIT_POST,
+                payload: post
+            });
+        } catch { }
+    }
+
     return (
         <div>
             <NavHistory>
@@ -107,6 +118,7 @@ function Posts() {
                         ]}
                         percentages={[25, 60, 10, 15]}
                         clickOnCell={openInfo}
+                        handleEdit={openEdit}
                     />
                     <Link title="Añadir una publicación" to={PATH_CREATE_POSTS} className={styles.add}>
                         {Icons.cross()}
