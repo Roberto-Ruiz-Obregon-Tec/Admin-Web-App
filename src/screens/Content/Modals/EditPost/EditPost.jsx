@@ -141,7 +141,7 @@ export default function PopUpPost() {
                             setValue={setLikes}
                         />
                         <InputTextArea
-                            id="new-project-description"
+                            id="new-post-description"
                             text="Descripción"
                             value={description}
                             setValue={setDescription}
@@ -160,7 +160,7 @@ export default function PopUpPost() {
                             />
                         </div>    
                         <InputImage
-                            id="image-project-new"
+                            id="image-post-new"
                             setFile={(file) => {
                                 setFile(file);
                             }}
