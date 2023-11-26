@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import { FireError, FireSucess } from '../../../../utils/alertHandler';
 import { editScholarships } from '../../../../client/scholarships';
+import { useNavigate } from 'react-router-dom';
 
 import PopUpModal from "../PopUp/PopUp";
 import { useContext } from "react";
@@ -8,13 +9,13 @@ import { CLEAR_MODALS, KEYS_MODAL } from "../../store/modalReducer";
 import { ContentContext } from "../../Content";
 import Image from "../../../../components/Image/Image";
 import styles from "./Scholarship.module.css";
-import Icons from "../../../../icons/index";
 
 import InputText from "../../../../components/Form/Input/Text/Text";
 import InputTextArea from "../../../../components/Form/Input/TextArea/TextArea";
 import InputImage from "../../../../components/Form/Input/Image/Image";
 import InputDate from "../../../../components/Form/Input/Date/Date";
 import Button from "../../../../components/Form/Button/Button";
+import { PATH_SCHOLARSHIP } from '../../../../config/paths';
 
 export default function PopUpScholarship() {
     const [isLoading, setIsLoading] = useState(false);
@@ -31,11 +32,14 @@ export default function PopUpScholarship() {
     const [endDate , setEndDate] = useState(new Date());
 
     const [_id , setId] = useState(0);
-    const [file , setFile] = useState(null);            
+    const [file , setFile] = useState(null);  
+    
+    const navigate = useNavigate();
 
     const {
         modalState,
-        modalDispatch
+        modalDispatch,
+        setNeedsToDoRefresh
     } = useContext(ContentContext);
 
     const isOpen = () => {
@@ -160,7 +164,10 @@ export default function PopUpScholarship() {
             setIsLoading(false);
 
             if (response.status === 'success') {
-                FireSucess('Has editado la beca exitosamente.');                
+                FireSucess('Has editado la beca exitosamente.');    
+                navigate(PATH_SCHOLARSHIP);
+                clearState();
+                setNeedsToDoRefresh(true);            
             } else {
                 FireError('Ha habido un error.');
             }

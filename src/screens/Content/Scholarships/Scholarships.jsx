@@ -16,24 +16,34 @@ import styles from "./Scholarships.module.css";
 
 function Scholarships() {
 
-    const { modalDispatch } = useContext(ContentContext);
+    const { modalDispatch, needsToDoRefresh, setNeedsToDoRefresh } = useContext(ContentContext);
     
     const [scholarships, setscholar] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    const fetchForData = async () => {
+        try {
+            setIsLoading(true);
+            const scholarsh = await getScholarships();
+            setIsLoading(false);
+            setscholar(scholarsh);
+        } catch (error) {
+            setIsLoading(false);
+            FireError(error.response.data.message);
+        }
+    }
+
     useEffect(() => {
-        (async () => {
-            try {
-                setIsLoading(true);
-                const scholarsh = await getScholarships();
-                setIsLoading(false);
-                setscholar(scholarsh);
-            } catch (error) {
-                setIsLoading(false);
-                FireError(error.response.data.message);
-            }
-        })();
+        // eslint-disable-next-line
+        fetchForData();
     }, []);
+
+    useEffect(() => {
+        if (needsToDoRefresh) {
+            fetchForData();
+            setNeedsToDoRefresh(false);
+        };
+    }, [needsToDoRefresh]);
 
     const getFormatedDate = (date) => {
         const dateObject = new Date(date);
