@@ -66,7 +66,7 @@ export default function PopUpCertifications() {
                 {getState().description}
             </p>
             <div className={styles.date}>
-                <div>Fecha de inicio:</div>
+                <div>Fecha de adquisición:</div>
                 <div>{getFormatedDate(getState().adquisitionDate)}</div>
             </div>
         </PopUpModal>
