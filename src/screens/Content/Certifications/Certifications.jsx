@@ -1,7 +1,9 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { ContentContext } from "../Content";
 import { FireError } from '../../../utils/alertHandler';
 import { getCertifications } from '../../../client/certifications';
 import NavHistory from '../../../components/NavHistory/NavHistory';
+import { OPEN_CERTIFICATION } from "../store/modalReducer";
 import Title from '../../../components/Title/Title';
 import LoaderPages from './Loader/LoaderPages';
 import styles from './Certifications.module.css';
@@ -11,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { PATH_CREATE_CERTIFICATION } from '../../../config/paths';
 
 function Certifications() {
+  const { modalDispatch } = useContext(ContentContext);
   const [certifications, setCertifications] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -61,6 +64,17 @@ function Certifications() {
     console.log('test');
   };
 
+  const openInfo = (i) => {
+    try {
+        if (i < 0 || i >= certifications.length) return;
+        const certification = certifications[i];
+        modalDispatch({
+            type: OPEN_CERTIFICATION,
+            payload: certification
+        });
+    } catch { };
+};
+
   return (
     <div>
       <NavHistory>Gestión de contenido / Acreditaciones</NavHistory>
@@ -81,6 +95,7 @@ function Certifications() {
               'Fecha de adquisición',
             ]}
             percentages={[25, 55, 14]}
+            clickOnCell={openInfo}
           />
           <Link
             title="Añadir una Acreditación"
