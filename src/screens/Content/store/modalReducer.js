@@ -5,7 +5,10 @@ export const KEYS_MODAL = {
 	EVENT: "event",
 	CERTIFICATION: "certification",
     PROJECT_EDIT: "project_edit",
-    COURSE_EDIT: "course_edit"
+    COURSE_EDIT: "course_edit",
+    CERTIFICATION_EDIT: "certification_edit",
+    ESR_EDIT : "esr_edit",
+    EVENT_EDIT : "event_edit"
 }
 
 export const CLEAR_MODALS = "clear-modals";
@@ -15,7 +18,10 @@ export const OPEN_COURSE =  "open-course";
 export const OPEN_EVENT =  "open-event";
 export const OPEN_CERTIFICATION =  "open-certification";
 export const EDIT_PROJECT =  "edit-project";
-export const EDIT_COURSE = "edit-course"
+export const EDIT_COURSE = "edit-course";
+export const EDIT_CERTIFICATION = "edit-certification";
+export const EDIT_ESR = "edit-esr";
+export const EDIT_EVENT = "edit-event"
 
 export function modalReducer(state, action){
     switch (action.type) {
@@ -78,6 +84,30 @@ export function modalReducer(state, action){
 
             return {
                 modalOpened: KEYS_MODAL.COURSE_EDIT,
+                documentJSON: action.payload
+            }
+        }
+        case EDIT_CERTIFICATION: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.CERTIFICATION_EDIT,
+                documentJSON: action.payload
+            }
+        }
+        case EDIT_ESR: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.ESR_EDIT,
+                documentJSON: action.payload
+            }
+        }
+        case EDIT_EVENT: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.EVENT_EDIT,
                 documentJSON: action.payload
             }
         }

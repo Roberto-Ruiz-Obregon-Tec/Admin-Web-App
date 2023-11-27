@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Calendar from "../../../components/Calendar/Calendar";
 import { FireError } from '../../../utils/alertHandler';
 import LoaderPages from './Loader/LoaderPages';
@@ -8,14 +8,16 @@ import Title from "../../../components/Title/Title";
 import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
 import styles from "./Events.module.css";
+import { ContentContext } from "../Content";
+import { EDIT_EVENT } from "../store/modalReducer";
 
 function EventsTable() {
 
     const [events, setEvent] = useState([]);
+    const { modalDispatch, needsToDoRefresh, setNeedsToDoRefresh } = useContext(ContentContext);
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        (async () => {
+    const fetchForData = async () => {
             try {
                 setIsLoading(true);
                 const even = await getEvents();
@@ -25,8 +27,20 @@ function EventsTable() {
                 setIsLoading(false);
                 FireError(error.response.data.message);
             }
-        })();
+        };
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        fetchForData();
     }, []);
+
+    useEffect(() => {
+        if (needsToDoRefresh) {
+            fetchForData();
+            setNeedsToDoRefresh(false);
+        };
+        // eslint-disable-next-line
+    }, [needsToDoRefresh]);
 
 
     const getFormatedDate = (date) => {
@@ -70,6 +84,16 @@ function EventsTable() {
         }
         return matrix;
     };
+    const openEdit = (i) => {
+        try {
+            if (i < 0 || i >= events.length) return;
+            const event = events[i];
+            modalDispatch({
+                type: EDIT_EVENT,
+                payload: event
+            });
+        } catch { }
+    }
 
     return (
         <>
@@ -79,6 +103,7 @@ function EventsTable() {
             {!isLoading && (
                 <>
                     <Table
+                        handleEdit={openEdit}
                         matrixData={getMatrix()}
                         arrayHeaders={[
                             "Nombre evento",
