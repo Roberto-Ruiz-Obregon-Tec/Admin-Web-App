@@ -13,6 +13,7 @@ import ModalPost from "./Modals/Posts/Posts";
 import ModalEditProject from "./Modals/EditProyects/EditProyects";
 import ModalEditCourse from "./Modals/EditCurses/EditCurses"
 import ModalCertification from "./Modals/Certification/Certification"
+import ModalEditCertification from "./Modals/Certification/EditCertification";
 
 // Pages
 import ConsultProjects from "./Projects/Projects";
@@ -96,6 +97,7 @@ export default function ContentDashboard() {
 			<ModalCertification />
 			<ModalEditProject />
 			<ModalEditCourse />
+			<ModalEditCertification />
 			<div className={styles.container}>
 				<Aside />
 				<div className={styles.body}>

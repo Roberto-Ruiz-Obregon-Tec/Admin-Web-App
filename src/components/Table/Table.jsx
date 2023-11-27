@@ -29,9 +29,9 @@ function Table({
     handleEdit(i);    
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (i = null) => {
     if (handleDelete === null) return;
-    handleDelete();
+    handleDelete(i);
   };
 
   return (

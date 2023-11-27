@@ -1,9 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
-import { ContentContext } from "../Content";
+import { useState, useEffect, Fragment } from 'react';
 import { FireError } from '../../../utils/alertHandler';
 import { getCertifications } from '../../../client/certifications';
 import NavHistory from '../../../components/NavHistory/NavHistory';
-import { OPEN_CERTIFICATION } from "../store/modalReducer";
 import Title from '../../../components/Title/Title';
 import LoaderPages from './Loader/LoaderPages';
 import styles from './Certifications.module.css';
@@ -11,6 +9,9 @@ import Icons from '../../../icons/index';
 import Table from '../../../components/Table/Table';
 import { Link } from 'react-router-dom';
 import { PATH_CREATE_CERTIFICATION } from '../../../config/paths';
+import { EDIT_CERTIFICATION } from '../store/modalReducer';
+import { useContext } from 'react';
+import { ContentContext } from '../Content';
 
 function Certifications() {
   const { modalDispatch } = useContext(ContentContext);
@@ -45,35 +46,42 @@ function Certifications() {
     const formattedDay = day < 10 ? `0${day}` : day;
     const formattedMonth = month < 10 ? `0${month}` : month;
 
-    return `${formattedDay}/${formattedMonth}/${year}`;
+    return `${year}-${formattedMonth}-${formattedDay}`;
   };
 
   const getMatrix = () => {
     const matrix = [];
-    certifications.forEach((certification) => {
-      matrix.push([
-        certification.name,
-        certification.description,
-        getFormattedDate(certification.adquisitionDate),
-      ]);
-    });
+    if (certifications) {
+      certifications.forEach((certification) => {
+        matrix.push([
+          certification.name,
+          certification.description,
+          getFormattedDate(certification.adquisitionDate),
+        ]);
+      });
+    }
     return matrix;
   };
+  
 
-  const handleTest = () => {
-    console.log('test');
-  };
+/*   const handleDelete = (i) => {
+      const post = certifications[i];
+      modalDispatch({
+        type: DELETE_CERTIFICATION,
+        payload: post,
+      });
+  } */
 
-  const openInfo = (i) => {
+  const handleEdit = (i) => {
     try {
-        if (i < 0 || i >= certifications.length) return;
-        const certification = certifications[i];
-        modalDispatch({
-            type: OPEN_CERTIFICATION,
-            payload: certification
-        });
-    } catch { };
-};
+      if (i < 0 || i >= certifications.length) return;
+      const post = certifications[i];
+      modalDispatch({
+        type: EDIT_CERTIFICATION,
+          payload: post
+      });
+  } catch { };
+  };
 
   return (
     <div>
@@ -86,16 +94,15 @@ function Certifications() {
       {!isLoading && (
         <>
           <Table
-            handleEdit={handleTest}
-            handleDelete={handleTest}
+            handleEdit={handleEdit}
+            handleDelete={handleEdit}
             matrixData={getMatrix()}
             arrayHeaders={[
               'Nombre',
               'Descripción',
               'Fecha de adquisición',
             ]}
-            percentages={[25, 55, 14]}
-            clickOnCell={openInfo}
+            percentages={[25, 50, 19]}
           />
           <Link
             title="Añadir una Acreditación"

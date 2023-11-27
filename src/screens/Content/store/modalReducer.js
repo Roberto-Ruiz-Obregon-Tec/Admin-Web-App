@@ -5,9 +5,10 @@ export const KEYS_MODAL = {
 	EVENT: "event",
 	CERTIFICATION: "certification",
     PROJECT_EDIT: "project_edit",
-    COURSE_EDIT: "course_edit"
+    COURSE_EDIT: "course_edit",
 }
 
+export const EDIT_CERTIFICATION = "edit-certification";
 export const CLEAR_MODALS = "clear-modals";
 export const OPEN_PROJECT =  "open-project";
 export const OPEN_POST =  "open-post";
@@ -78,6 +79,14 @@ export function modalReducer(state, action){
 
             return {
                 modalOpened: KEYS_MODAL.COURSE_EDIT,
+                documentJSON: action.payload
+            }
+        }
+        case EDIT_CERTIFICATION: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.CERTIFICATION_EDIT,
                 documentJSON: action.payload
             }
         }
