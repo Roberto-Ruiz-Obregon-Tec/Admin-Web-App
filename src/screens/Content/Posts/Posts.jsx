@@ -13,24 +13,34 @@ import styles from "./Posts.module.css";
 import { OPEN_POST, EDIT_POST } from "../store/modalReducer";
 
 function Posts() {
-    const { modalDispatch } = useContext(ContentContext);
+    const { modalDispatch, needsToDoRefresh, setNeedsToDoRefresh } = useContext(ContentContext);
     const [avaliablePosts, setavailablePosts] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
 
+    const fetchForData = async () => {
+        try {
+            setIsLoading(true);
+            const posts = await getPublications();
+            setIsLoading(false);
+            setavailablePosts(posts);
+        } catch (error) {
+            setIsLoading(false);
+            FireError(error.response.data.message);
+        }
+    }
+
     useEffect(() => {
-        (async () => {
-            try {
-                setIsLoading(true);
-                const posts = await getPublications();
-                setIsLoading(false);
-                setavailablePosts(posts);
-            } catch (error) {
-                setIsLoading(false);
-                FireError(error.response.data.message);
-            }
-        })();
+        // eslint-disable-next-line
+        fetchForData();
     }, []);
+
+    useEffect(() => {
+        if (needsToDoRefresh) {
+            fetchForData();
+            setNeedsToDoRefresh(false);
+        };
+    }, [needsToDoRefresh]);
 
     const getFormatedDate = (date) => {
         const dateObject = new Date(date);
