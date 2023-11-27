@@ -14,7 +14,7 @@ import ModalEditProject from "./Modals/EditProyects/EditProyects";
 import ModalEditCourse from "./Modals/EditCurses/EditCurses"
 import ModalCertification from "./Modals/Certification/Certification"
 import ModalEditCertification from "./Modals/Certification/EditCertification";
-
+import ModelDeleteCertification from "./Modals/Certification/DeleteCertification";
 // Pages
 import ConsultProjects from "./Projects/Projects";
 import CreateProjects from "./Projects/CreateProjects/CreateProjects";
@@ -98,6 +98,7 @@ export default function ContentDashboard() {
 			<ModalEditProject />
 			<ModalEditCourse />
 			<ModalEditCertification />
+			<ModelDeleteCertification />
 			<div className={styles.container}>
 				<Aside />
 				<div className={styles.body}>

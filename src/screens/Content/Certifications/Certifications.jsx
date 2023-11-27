@@ -9,7 +9,10 @@ import Icons from '../../../icons/index';
 import Table from '../../../components/Table/Table';
 import { Link } from 'react-router-dom';
 import { PATH_CREATE_CERTIFICATION } from '../../../config/paths';
-import { EDIT_CERTIFICATION } from '../store/modalReducer';
+import {
+  EDIT_CERTIFICATION,
+  DELETE_CERTIFICATION,
+} from '../store/modalReducer';
 import { useContext } from 'react';
 import { ContentContext } from '../Content';
 
@@ -62,15 +65,14 @@ function Certifications() {
     }
     return matrix;
   };
-  
 
-/*   const handleDelete = (i) => {
-      const post = certifications[i];
-      modalDispatch({
-        type: DELETE_CERTIFICATION,
-        payload: post,
-      });
-  } */
+  const handleDelete = (i) => {
+    const post = certifications[i];
+    modalDispatch({
+      type: DELETE_CERTIFICATION,
+      payload: post,
+    });
+  };
 
   const handleEdit = (i) => {
     try {
@@ -78,9 +80,9 @@ function Certifications() {
       const post = certifications[i];
       modalDispatch({
         type: EDIT_CERTIFICATION,
-          payload: post
+        payload: post,
       });
-  } catch { };
+    } catch {}
   };
 
   return (
@@ -95,7 +97,7 @@ function Certifications() {
         <>
           <Table
             handleEdit={handleEdit}
-            handleDelete={handleEdit}
+            handleDelete={handleDelete}
             matrixData={getMatrix()}
             arrayHeaders={[
               'Nombre',

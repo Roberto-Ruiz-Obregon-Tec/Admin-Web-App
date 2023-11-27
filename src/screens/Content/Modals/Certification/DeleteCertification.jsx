@@ -1,34 +1,33 @@
-import { useState, useContext, useEffect, useCallback } from 'react';
 import PopUpModal from '../PopUp/PopUp';
-import { ContentContext } from '../../Content';
+import { useContext, useState, useEffect, useCallback } from 'react';
 import { CLEAR_MODALS, KEYS_MODAL } from '../../store/modalReducer';
+import { ContentContext } from '../../Content';
 import styles from './DeleteCertification.module.css';
-import { updateACertification } from '../../../../client/certifications';
 import {
   FireError,
   FireSucess,
 } from '../../../../utils/alertHandler';
 import { PATH_CERTIFICATIONS } from '../../../../config/paths';
-import { useNavigate } from 'react-router-dom';
-import InputText from '../../../../components/Form/Input/Text/Text';
-import InputTextArea from '../../../../components/Form/Input/TextArea/TextArea';
-import InputDate from '../../../../components/Form/Input/Date/Date';
+import { deleteCertification } from '../../../../client/certifications';
 import Button from '../../../../components/Form/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
-export default function ModalEditCertification() {
+export default function ModalDeleteCertification() {
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [adquisitionDate, setAquisitionDate] = useState(new Date());
   const [_id, setId] = useState(0);
   const navigate = useNavigate();
+  const [createdAt, setCreatedAt] = useState('');
+  const [updatedAt, setUpdatedAt] = useState('');
 
   const { modalState, modalDispatch, setNeedsToDoRefresh } =
     useContext(ContentContext);
 
-    const isOpen = useCallback(() => {
-        return modalState.modalOpened === KEYS_MODAL.EDIT_CERTIFICATION;
-      },[modalState.modalOpened])
+  const isOpen = useCallback(() => {
+    return modalState.modalOpened === KEYS_MODAL.DELETE_CERTIFICATION;
+  }, [modalState.modalOpened]);
 
   const getFormatedDate = (date) => {
     const dateObject = new Date(date);
@@ -71,42 +70,34 @@ export default function ModalEditCertification() {
         ? modalState.documentJSON['updatedAt']
         : 'dd/mm/yyyy',
     };
-  
+
     setName(stateFromModal.name);
     setDescription(stateFromModal.description);
     setAquisitionDate(stateFromModal.adquisitionDate);
     setId(stateFromModal._id);
+    setCreatedAt(stateFromModal.createdAt);
+    setUpdatedAt(stateFromModal.updatedAt);
   }, [modalState.documentJSON, isOpen]);
-  
 
   const clearState = () => {
     setIsOpen();
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (name.trim() === '' || description.trim() === '') {
-      FireError('No puedes dejar los campos vacíos.');
-      return;
-    }
+  const handleSubmit = async () => {
     try {
-      const data = {
-        _id: _id,
-        name: name,
-        adquisitionDate: new Date(adquisitionDate),
-        description: description,
+      const id = {
+        id: _id,
       };
       setIsLoading(true);
-      const response = await updateACertification(data);
+      const response = await deleteCertification(id.id);
+      console.log(response);
       setIsLoading(false);
-
-      if (response.status === 'success') {
-        FireSucess('Has editado la Acreditación exitosamente.');
+      if (response.status == null) {
+        FireSucess('Has eliminado la Acreditación exitosamente.');
         navigate(PATH_CERTIFICATIONS);
         clearState();
-        window.location.reload()
         setNeedsToDoRefresh(true);
+        window.location.reload();
       } else {
         FireError('Ha habido un error.');
       }
@@ -123,42 +114,36 @@ export default function ModalEditCertification() {
       isOpen={isOpen()}
       setIsOpen={clearState}
       classNameCard={styles.card}
+      classNameBody={styles.card_body}
     >
-      <h1>Editar proyecto</h1>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.form__item}>
-          <InputText
-            id="new-acreditacion-name"
-            text="Nombre"
-            value={name}
-            setValue={setName}
-          />
-          <div className={styles.dates}>
-            <InputDate
-              currDate={getFormatedDate(adquisitionDate)}
-              setCurrDate={setAquisitionDate}
-              text="Fecha inicio"
-              id="adqusitiondate-acreditacion"
-            />
+      <div className={styles.left}>
+        <div className={styles.title}>{name}</div>
+        <p className={styles.description}>{description}</p>
+        <div className={styles.fechas}>
+          <div className={styles.date}>
+            <div>Fecha de Adquisición:</div>
+            <div>{getFormatedDate(adquisitionDate)}</div>
           </div>
-          <InputTextArea
-            id="new-acreditacion-description"
-            text="Descripción"
-            value={description}
-            setValue={setDescription}
-            className={styles.textarea}
-          />
-          <div className={styles.botons}>
+          <div className={styles.date}>
+            <div>Fecha de Actualización:</div>
+            <div>{getFormatedDate(updatedAt)}</div>
+          </div>
+          <div className={styles.date}>
+            <div>Fecha de Creación:</div>
+            <div>{getFormatedDate(createdAt)}</div>
+          </div>
+        </div>
+        <div className={styles.botons}>
           <Button
             isAnimationLoading
             isLoading={isLoading}
             type="submit"
+            onClick={handleSubmit}
           >
-            Editar Acreditación
+            Eliminar Acreditación
           </Button>
-          </div>
         </div>
-      </form>
+      </div>
     </PopUpModal>
   );
 }
