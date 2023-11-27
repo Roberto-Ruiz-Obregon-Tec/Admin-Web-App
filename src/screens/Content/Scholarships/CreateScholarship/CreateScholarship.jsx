@@ -99,7 +99,7 @@ const CreateScholarships = () => {
             setIsLoading(false);
     
             if (response.status === 'success') {
-                FireSucess('Has creado un proyecto exitosamente.');
+                FireSucess('Has dado de alta una beca exitosamente.');
                 navigate(PATH_SCHOLARSHIP);
             } else {
                 FireError('Ha habido un error.');

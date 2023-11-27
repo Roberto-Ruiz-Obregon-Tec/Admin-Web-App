@@ -13,7 +13,6 @@ import styles from "./EditPost.module.css";
 import InputText from "../../../../components/Form/Input/Text/Text";
 import InputTextArea from "../../../../components/Form/Input/TextArea/TextArea";
 import InputImage from "../../../../components/Form/Input/Image/Image";
-import InputDate from "../../../../components/Form/Input/Date/Date";
 import Button from "../../../../components/Form/Button/Button";
 import { PATH_POSTS } from "../../../../config/paths";
 
@@ -94,7 +93,7 @@ export default function PopUpPost() {
             const data = {
                 _id: _id,
                 title: title,
-                programImage: "https://image",
+                image: "https://image",
                 likes: likes,
                 description: description
             };
@@ -103,7 +102,7 @@ export default function PopUpPost() {
             setIsLoading(false);
 
             if (response.status === 'success') {
-                FireSucess('Has editado el proyecto exitosamente.');  
+                FireSucess('Has editado la publicación exitosamente.');  
                 navigate(PATH_POSTS);
                 clearState();
                 setNeedsToDoRefresh(true);
@@ -149,14 +148,14 @@ export default function PopUpPost() {
                         />                        
                         
                         <Button isAnimationLoading isLoading={isLoading} type='submit'>
-                            Editar proyecto
+                            Editar Publicación
                         </Button>
                     </div>
                     <div className={styles.form__item} >
                         <div className={styles.img}>
                             <Image
                                 alt={title}
-                                src={modalState.documentJSON["programImage"]}
+                                src={modalState.documentJSON["image"]}
                             />
                         </div>    
                         <InputImage
