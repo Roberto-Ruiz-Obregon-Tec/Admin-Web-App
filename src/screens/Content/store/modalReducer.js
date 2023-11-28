@@ -133,6 +133,14 @@ export function modalReducer(state, action){
                 documentJSON: action.payload
             }
         }
+        case DELETE_CERTIFICATION: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.DELETE_CERTIFICATION,
+                documentJSON: action.payload
+            }
+        }
         default: {
             console.error("Unknown modal-reducer-type");
             return state;
