@@ -97,6 +97,14 @@ export function modalReducer(state, action){
                 documentJSON: action.payload
             }
         }
+        case EDIT_POST: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.POST_EDIT,
+                documentJSON: action.payload
+            }
+        }
         default: {
             console.error("Unknown modal-reducer-type");
             return state;
