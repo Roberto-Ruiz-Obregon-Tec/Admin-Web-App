@@ -12,7 +12,6 @@ import Dashboard from './screens/Dashboard/Dashboard';
 import Content from './screens/Content/Content';
 import Usuarios from './screens/Users/Users';
 import Informacion from './screens/Information/Information';
-import CreateCertifications from './screens/Content/Certifications/CreateCertifications/CreateCertifications';
 
 import {
   PATH_HOME,
