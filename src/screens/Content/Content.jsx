@@ -11,9 +11,12 @@ import Aside from "../../components/AsideContent/AsideContent";
 import ModalProject from "./Modals/Proyects/Proyects";
 import ModalPost from "./Modals/Posts/Posts";
 import ModalEditProject from "./Modals/EditProyects/EditProyects";
-import ModalEditCourse from "./Modals/EditCurses/EditCurses"
-import ModalCurses from "./Modals/Curses/Curses"
+import ModalEditCourse from "./Modals/EditCurses/EditCurses";
+import ModalCurses from "./Modals/Curses/Curses";
 
+import ModalCertification from "./Modals/Certification/Certification";
+import ModalEditCertification from "./Modals/Certification/EditCertification";
+import ModelDeleteCertification from "./Modals/Certification/DeleteCertification";
 // Pages
 import ConsultProjects from "./Projects/Projects";
 import CreateProjects from "./Projects/CreateProjects/CreateProjects";
@@ -94,8 +97,11 @@ export default function ContentDashboard() {
 			<ModalProject />
 			<ModalPost />
 			<ModalCurses />
+			<ModalCertification />
 			<ModalEditProject />
 			<ModalEditCourse />
+			<ModalEditCertification />
+			<ModelDeleteCertification />
 			<div className={styles.container}>
 				<Aside />
 				<div className={styles.body}>
