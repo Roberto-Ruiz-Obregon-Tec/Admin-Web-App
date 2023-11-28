@@ -14,7 +14,7 @@ import InputDate from "../../../../components/Form/Input/Date/Date";
 import InputImage from "../../../../components/Form/Input/Image/Image";
 import Button from "../../../../components/Form/Button/Button";
 import Image from '../../../../components/Image/Image';
-import { PATH_CERTIFICATIONS } from '../../../../config/paths'
+import { PATH_EVENTS } from '../../../../config/paths'
 import { editEvents } from '../../../../client/events';
 
 export default function PopUpCertifications() {
@@ -120,7 +120,7 @@ export default function PopUpCertifications() {
                 startDate,
                 endDate,
                 location,
-                imgUrl : "https://ejemplo.com"
+                imageUrl: "https://ejemplo.com"
             };
             setIsLoading(true);
             const response = await editEvents(data);
@@ -128,7 +128,7 @@ export default function PopUpCertifications() {
 
             if (response.status === 'success') {
                 FireSucess('Has editado una empresa ESR exitosamente.');
-                navigate(PATH_CERTIFICATIONS);
+                navigate(PATH_EVENTS);
                 clearState();
                 setNeedsToDoRefresh(true);
             } else {
@@ -196,8 +196,8 @@ export default function PopUpCertifications() {
 
                     <InputImage
                         id="image-post-edit"
-                        setFile={(imgUrl) => {
-                            setImgUrl(imgUrl);
+                        setFile={(file) => {
+                            setImgUrl(file);
                         }}
                         file={imgUrl}
                     />

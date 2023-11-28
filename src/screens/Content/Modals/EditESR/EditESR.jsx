@@ -99,8 +99,7 @@ export default function PopUpCertifications() {
                 phone,
                 postalCode        
             };
-            setIsLoading(true);
-            console.log(data)
+            setIsLoading(true);            
             const response = await editESR(data);
             setIsLoading(false);
 

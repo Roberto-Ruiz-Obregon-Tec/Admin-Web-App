@@ -16,6 +16,6 @@ export async function getESR() {
 export async function editESR(data) {
     const endpoint = `${baseApiEndpoint}/company-certifications/update`;
 
-    const response = await axios.put(endpoint, data);    
-    return response.status;
+    const response = await axios.put(endpoint, data);        
+    return response.data;
 }

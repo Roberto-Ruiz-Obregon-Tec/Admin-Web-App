@@ -14,8 +14,7 @@ export async function getEvents() {
 }
 
 export async function editEvents(data) {
-    const endpoint = `${baseApiEndpoint}/event/update`;
-
+    const endpoint = `${baseApiEndpoint}/event/update`;    
     const response = await axios.put(endpoint, data);
-    return response.status;
+    return response.data;
 }
