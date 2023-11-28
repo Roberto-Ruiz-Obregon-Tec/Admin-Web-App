@@ -8,21 +8,24 @@ const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
 export async function getCertifications() {
     const endpoint = `${baseApiEndpoint}/certifications`;
 
-    const response = await axios.get(endpoint);    
-    console.log(response)
+    const response = await axios.get(endpoint);
     return response.data.data;
 }
 
 export async function createACertification(data) {
-    const endpoint = `${baseApiEndpoint}/certification/create`;
-
+    const endpoint = `${baseApiEndpoint}/certifications/`;
     const response = await axios.post(endpoint, data);
     return response.data;
-}
+} 
 
 export async function editCertification(data) {
     const endpoint = `${baseApiEndpoint}/certifications/${data._id}`;
-
     const response = await axios.patch(endpoint, data);
     return response.data;
-} 
+}
+
+export async function deleteCertification(id) {
+    const endpoint = `${baseApiEndpoint}/certifications/${id}`;
+    const response = await axios.delete(endpoint);
+    return response.data;
+}

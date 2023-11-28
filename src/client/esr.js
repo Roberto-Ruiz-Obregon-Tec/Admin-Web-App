@@ -10,6 +10,7 @@ export async function getESR() {
     const endpoint = `${baseApiEndpoint}/company-certifications`;
 
     const response = await axios.get(endpoint);
+    console.log(response)
     return response.data.data.companies;
 }
 
