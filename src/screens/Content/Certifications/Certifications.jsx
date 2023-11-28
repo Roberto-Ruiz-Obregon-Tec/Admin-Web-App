@@ -12,6 +12,7 @@ import { PATH_CREATE_CERTIFICATION } from '../../../config/paths';
 import {
   EDIT_CERTIFICATION,
   DELETE_CERTIFICATION,
+  OPEN_CERTIFICATION
 } from '../store/modalReducer';
 import { useContext } from 'react';
 import { ContentContext } from '../Content';
@@ -85,6 +86,17 @@ function Certifications() {
     } catch {}
   };
 
+  const openInfo = (i) => {
+    try {
+        if (i < 0 || i >= certifications.length) return;
+        const certification = certifications[i];
+        modalDispatch({
+            type: OPEN_CERTIFICATION,
+            payload: certification
+        });
+    } catch { };
+};
+
   return (
     <div>
       <NavHistory>Gestión de contenido / Acreditaciones</NavHistory>
@@ -105,6 +117,7 @@ function Certifications() {
               'Fecha de adquisición',
             ]}
             percentages={[25, 50, 19]}
+            clickOnCell={openInfo}
           />
           <Link
             title="Añadir una Acreditación"

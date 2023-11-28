@@ -12,8 +12,10 @@ import ModalProject from "./Modals/Proyects/Proyects";
 import ModalPost from "./Modals/Posts/Posts";
 import ModalEditScholarship from "./Modals/EditScholarship/EditScholarship"
 import ModalEditProject from "./Modals/EditProyects/EditProyects";
-import ModalEditCourse from "./Modals/EditCurses/EditCurses"
-import ModalCertification from "./Modals/Certification/Certification"
+import ModalEditCourse from "./Modals/EditCurses/EditCurses";
+import ModalCurses from "./Modals/Curses/Curses";
+
+import ModalCertification from "./Modals/Certification/Certification";
 import ModalEditCertification from "./Modals/Certification/EditCertification";
 import ModelDeleteCertification from "./Modals/Certification/DeleteCertification";
 import ModalEditPost from "./Modals/EditPost/EditPost"
@@ -103,6 +105,7 @@ export default function ContentDashboard() {
 			<ModalEditProject />
 			<ModalEditCourse />
 			<ModalEditPost />
+			<ModalCurses />
 			<ModalCertification />
 			<ModalEditProject />
 			<ModalEditCourse />
