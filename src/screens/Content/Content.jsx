@@ -10,6 +10,7 @@ import Aside from "../../components/AsideContent/AsideContent";
 // Modals
 import ModalProject from "./Modals/Proyects/Proyects";
 import ModalPost from "./Modals/Posts/Posts";
+import ModalEditScholarship from "./Modals/EditScholarship/EditScholarship"
 import ModalEditProject from "./Modals/EditProyects/EditProyects";
 import ModalEditCourse from "./Modals/EditCurses/EditCurses";
 import ModalCurses from "./Modals/Curses/Curses";
@@ -17,6 +18,8 @@ import ModalCurses from "./Modals/Curses/Curses";
 import ModalCertification from "./Modals/Certification/Certification";
 import ModalEditCertification from "./Modals/Certification/EditCertification";
 import ModelDeleteCertification from "./Modals/Certification/DeleteCertification";
+import ModalEditPost from "./Modals/EditPost/EditPost"
+
 // Pages
 import ConsultProjects from "./Projects/Projects";
 import CreateProjects from "./Projects/CreateProjects/CreateProjects";
@@ -34,6 +37,8 @@ import CreateCourses from "./Courses/CreateCourse/CreateCourses";
 import ESR from './CompanysESR/CompanysESR';
 import Scholarship from './Scholarships/Scholarships';
 import CreateScholarship from "./Scholarships/CreateScholarship/CreateScholarship";
+
+
 
 // Routes
 import {
@@ -96,6 +101,10 @@ export default function ContentDashboard() {
 		}}>
 			<ModalProject />
 			<ModalPost />
+			<ModalEditScholarship />
+			<ModalEditProject />
+			<ModalEditCourse />
+			<ModalEditPost />
 			<ModalCurses />
 			<ModalCertification />
 			<ModalEditProject />

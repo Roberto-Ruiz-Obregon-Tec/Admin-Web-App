@@ -4,10 +4,12 @@ export const KEYS_MODAL = {
 	COURSE: "course",
 	EVENT: "event",
 	CERTIFICATION: "certification",
+    SCHOLARSHIP_EDIT: "scholarship_edit",
     PROJECT_EDIT: "project_edit",
     COURSE_EDIT: "course_edit",
     EDIT_CERTIFICATION: "edit_certification",
     DELETE_CERTIFICATION: "delete_certification",
+    POST_EDIT: "post_edit",
 }
 
 export const EDIT_CERTIFICATION = "edit-certification";
@@ -18,8 +20,10 @@ export const OPEN_POST =  "open-post";
 export const OPEN_COURSE =  "open-course";
 export const OPEN_EVENT =  "open-event";
 export const OPEN_CERTIFICATION =  "open-certification";
+export const EDIT_SCHOLARSHIP = "edit-scholarship"
 export const EDIT_PROJECT =  "edit-project";
 export const EDIT_COURSE = "edit-course"
+export const EDIT_POST = "edit-post"
 
 export function modalReducer(state, action){
     switch (action.type) {
@@ -69,6 +73,14 @@ export function modalReducer(state, action){
                 documentJSON: action.payload
             }
         }
+        case EDIT_SCHOLARSHIP: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.SCHOLARSHIP_EDIT,
+                documentJSON: action.payload
+            }
+        }
         case EDIT_PROJECT: {
             if (typeof action.payload !== "object") return state;
 
@@ -85,19 +97,11 @@ export function modalReducer(state, action){
                 documentJSON: action.payload
             }
         }
-        case EDIT_CERTIFICATION: {
+        case EDIT_POST: {
             if (typeof action.payload !== "object") return state;
 
             return {
-                modalOpened: KEYS_MODAL.EDIT_CERTIFICATION,
-                documentJSON: action.payload
-            }
-        }
-        case DELETE_CERTIFICATION: {
-            if (typeof action.payload !== "object") return state;
-
-            return {
-                modalOpened: KEYS_MODAL.DELETE_CERTIFICATION,
+                modalOpened: KEYS_MODAL.POST_EDIT,
                 documentJSON: action.payload
             }
         }
