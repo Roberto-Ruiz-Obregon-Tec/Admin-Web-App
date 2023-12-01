@@ -127,7 +127,7 @@ function Certifications() {
             arrayHeaders={[
               'Nombre',
               'Descripción',
-              'Fecha de adquisición',
+              'Fecha de convocatoria',
             ]}
             percentages={[25, 50, 19]}
             handleEdit={openEdit}

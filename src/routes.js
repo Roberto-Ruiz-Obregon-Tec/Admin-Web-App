@@ -108,7 +108,7 @@ const routes = [
   ...routesContent(),
   {
     path: PATH_INFO,
-    name: 'Informacion',
+    name: 'Información',
     Component: Informacion,
     isPrivate: true,
     inNavbar: true,

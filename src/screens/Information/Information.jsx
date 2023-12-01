@@ -80,9 +80,9 @@ export default function Information() {
 				{isLoading && <LoaderPages />}
 				{!isLoading && (
 					<>
-						<h2>Informacion sobre nosotros</h2>
+						<h2>Información sobre nosotros</h2>
 						<div>
-							<h3>Direccion</h3>
+							<h3>Dirección</h3>
 							<ListItem
 								onChangeCallback={changeValue}
 								submitUpdate={submitUpdate}
@@ -91,7 +91,7 @@ export default function Information() {
 								content={info.location} />
 						</div>
 						<div>
-							<h3>Numeros de telefono de contacto</h3>
+							<h3>Números de teléfono de contacto</h3>
 							<ListItem
 								onChangeCallback={changeValue}
 								submitUpdate={submitUpdate}
