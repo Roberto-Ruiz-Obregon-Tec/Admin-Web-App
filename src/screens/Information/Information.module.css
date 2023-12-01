@@ -12,9 +12,9 @@
 }
 
 .wrapper_detail {
-  flex-grow: 1;
   display: flex;
   padding: 2em 4em;
   align-items: flex-start;
   flex-direction: column;
+  flex-grow: 1;
 }
