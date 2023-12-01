@@ -61,13 +61,13 @@ const CreateCertifications = () => {
   return (
     <div>
       <NavHistory>
-        Gestión de contenido / Proyectos / Crear Proyecto
+        Gestión de contenido / Acreditaciones / Crear acreditación
       </NavHistory>
       <ReturnLink href={PATH_CERTIFICATIONS} />
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <Card>
-            <h1>Crear proyecto</h1>
+            <h1>Crear acreditación</h1>
             <form onSubmit={handleSubmit} className={styles.form}>
               <InputText
                 id="new-acred-name"

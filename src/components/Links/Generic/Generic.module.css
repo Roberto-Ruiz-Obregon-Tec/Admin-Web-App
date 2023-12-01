@@ -19,7 +19,3 @@
     bottom: -0.625em;
     transition: 0.3s;
 }
-
-.container:hover::after {
-    width: 100%;
-}
