@@ -7,7 +7,9 @@ export const KEYS_MODAL = {
     SCHOLARSHIP_EDIT: "scholarship_edit",
     PROJECT_EDIT: "project_edit",
     COURSE_EDIT: "course_edit",
-    EDIT_CERTIFICATION: "edit_certification",
+    CERTIFICATION_EDIT: "certification_edit",
+    ESR_EDIT : "esr_edit",
+    EVENT_EDIT : "event_edit",
     DELETE_CERTIFICATION: "delete_certification",
     POST_EDIT: "post_edit",
 }
@@ -22,7 +24,9 @@ export const OPEN_EVENT =  "open-event";
 export const OPEN_CERTIFICATION =  "open-certification";
 export const EDIT_SCHOLARSHIP = "edit-scholarship"
 export const EDIT_PROJECT =  "edit-project";
-export const EDIT_COURSE = "edit-course"
+export const EDIT_COURSE = "edit-course";
+export const EDIT_ESR = "edit-esr";
+export const EDIT_EVENT = "edit-event"
 export const EDIT_POST = "edit-post"
 
 export function modalReducer(state, action){
@@ -97,11 +101,43 @@ export function modalReducer(state, action){
                 documentJSON: action.payload
             }
         }
+        case EDIT_CERTIFICATION: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.CERTIFICATION_EDIT,
+                documentJSON: action.payload
+            }
+        }
+        case EDIT_ESR: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.ESR_EDIT,
+                documentJSON: action.payload
+            }
+        }
+        case EDIT_EVENT: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.EVENT_EDIT,
+                documentJSON: action.payload
+            }
+        }
         case EDIT_POST: {
             if (typeof action.payload !== "object") return state;
 
             return {
                 modalOpened: KEYS_MODAL.POST_EDIT,
+                documentJSON: action.payload
+            }
+        }
+        case DELETE_CERTIFICATION: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.DELETE_CERTIFICATION,
                 documentJSON: action.payload
             }
         }

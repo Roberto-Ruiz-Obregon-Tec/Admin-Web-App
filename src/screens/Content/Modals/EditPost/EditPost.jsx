@@ -54,6 +54,7 @@ export default function PopUpPost() {
             "likes": modalState.documentJSON["likes"] ? modalState.documentJSON["likes"] : "0",
             "createdAt": modalState.documentJSON["createdAt"] ? modalState.documentJSON["createdAt"] : "dd/mm/yyyy",
             "comments": modalState.documentJSON["comments"] ? modalState.documentJSON["comments"] : [],
+            "_id": modalState.documentJSON["_id"] ? modalState.documentJSON["_id"] : "-"
         };
 
         setTitle(stateFromModal.title);
@@ -61,6 +62,7 @@ export default function PopUpPost() {
         setDescription(stateFromModal.description);
         setId(stateFromModal._id)
         setFile(stateFromModal.file)
+        // eslint-disable-next-line
       }, [modalState.documentJSON])
 
     const clearState = () => {

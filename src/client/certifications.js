@@ -18,7 +18,7 @@ export async function createACertification(data) {
     return response.data;
 } 
 
-export async function updateACertification(data) {
+export async function editCertification(data) {
     const endpoint = `${baseApiEndpoint}/certifications/${data._id}`;
     const response = await axios.patch(endpoint, data);
     return response.data;

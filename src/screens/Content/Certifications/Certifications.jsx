@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect, Fragment, useContext } from 'react';
 import { FireError } from '../../../utils/alertHandler';
 import { getCertifications } from '../../../client/certifications';
 import NavHistory from '../../../components/NavHistory/NavHistory';
@@ -14,16 +14,17 @@ import {
   DELETE_CERTIFICATION,
   OPEN_CERTIFICATION
 } from '../store/modalReducer';
-import { useContext } from 'react';
 import { ContentContext } from '../Content';
 
-function Certifications() {
-  const { modalDispatch } = useContext(ContentContext);
+function Certifications() {  
   const [certifications, setCertifications] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    (async () => {
+  const { modalDispatch, needsToDoRefresh, setNeedsToDoRefresh } = useContext(ContentContext);
+
+
+  const fetchForData =   
+    async () => {
       try {
         setIsLoading(true);
         const certs = await getCertifications();
@@ -33,8 +34,20 @@ function Certifications() {
         setIsLoading(false);
         FireError(error.response.message);
       }
-    })();
+    };
+
+    useEffect(() => {
+      // eslint-disable-next-line
+      fetchForData();
   }, []);
+
+  useEffect(() => {
+      if (needsToDoRefresh) {
+          fetchForData();
+          setNeedsToDoRefresh(false);
+      };
+      // eslint-disable-next-line
+  }, [needsToDoRefresh]);
 
   const getFormattedDate = (dateString) => {
     if (!dateString) {
@@ -75,16 +88,6 @@ function Certifications() {
     });
   };
 
-  const handleEdit = (i) => {
-    try {
-      if (i < 0 || i >= certifications.length) return;
-      const post = certifications[i];
-      modalDispatch({
-        type: EDIT_CERTIFICATION,
-        payload: post,
-      });
-    } catch {}
-  };
 
   const openInfo = (i) => {
     try {
@@ -95,7 +98,18 @@ function Certifications() {
             payload: certification
         });
     } catch { };
-};
+  };
+
+  const openEdit = (i) => {
+    try {                  
+        if (i < 0 || i >= certifications.length) return;
+        const certification = certifications[i];        
+        modalDispatch({
+            type: EDIT_CERTIFICATION,
+            payload: certification
+        });
+    } catch { }
+}
 
   return (
     <div>
@@ -108,7 +122,6 @@ function Certifications() {
       {!isLoading && (
         <>
           <Table
-            handleEdit={handleEdit}
             handleDelete={handleDelete}
             matrixData={getMatrix()}
             arrayHeaders={[
@@ -117,6 +130,7 @@ function Certifications() {
               'Fecha de adquisición',
             ]}
             percentages={[25, 50, 19]}
+            handleEdit={openEdit}
             clickOnCell={openInfo}
           />
           <Link

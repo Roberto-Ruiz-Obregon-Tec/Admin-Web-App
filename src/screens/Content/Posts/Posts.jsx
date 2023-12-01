@@ -40,6 +40,7 @@ function Posts() {
             fetchForData();
             setNeedsToDoRefresh(false);
         };
+    // eslint-disable-next-line
     }, [needsToDoRefresh]);
 
     const getFormatedDate = (date) => {
@@ -85,7 +86,8 @@ function Posts() {
     const openInfo = (i) => {
         try {
             if (i < 0 || i >= avaliablePosts.length) return;
-            const post = avaliablePosts[i];
+            const post = avaliablePosts[i];  
+            console.log(post)          
             modalDispatch({
                 type: OPEN_POST,
                 payload: post
