@@ -1,15 +1,33 @@
 import styles from "./ListItem.module.css";
 
 function ListItem({
-    icon, content
+	icon,
+	content,
+	isLink = false,
+	href = "",
+	name,
+	onChangeCallback,
+	submitUpdate
 }) {
-    return (        
-        <div>
-          {icon}
-          <p className={styles.p} >
-            {content}
-          </p>          
-        </div>
-    )
+	return (
+		<form onSubmit={(e) => {
+			e.preventDefault();
+			submitUpdate();
+		}}>
+			{isLink && (
+				<a href={href} target="_blank">
+					{icon}
+				</a>
+			)}
+			{!isLink && (
+				<>
+					{icon}
+				</>
+			)}
+			<input type="text" onChange={(e) => {
+				onChangeCallback(name, e.target.value);
+			}} value={content} className={styles.input} />
+		</form>
+	)
 }
 export default ListItem;

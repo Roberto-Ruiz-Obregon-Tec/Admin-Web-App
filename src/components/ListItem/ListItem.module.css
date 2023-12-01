@@ -1,4 +1,6 @@
-p {
+.input {
   display: inline;
   margin-left: 1em;
+  border: none;
+  width: 500px;
 }

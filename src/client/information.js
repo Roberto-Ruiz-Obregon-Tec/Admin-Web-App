@@ -11,3 +11,13 @@ export async function getInformation() {
     const response = await axios.get(endpoint);
     return response.data.data.info;
 }
+
+/**
+ * This function updates the information
+ */
+export async function updateInformation(body) {
+    const endpoint = `${baseApiEndpoint}/informacion-fundacion/update`;
+
+    const response = await axios.put(endpoint, body);
+    return response.data;
+}
