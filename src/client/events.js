@@ -9,6 +9,12 @@ const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
 export async function getEvents() {
     const endpoint = `${baseApiEndpoint}/event`;
 
-    const response = await axios.get(endpoint);
-    return response.data.data.documents;
+    const response = await axios.get(endpoint);        
+    return response.data.data;
+}
+
+export async function editEvents(data) {
+    const endpoint = `${baseApiEndpoint}/event/update`;    
+    const response = await axios.put(endpoint, data);
+    return response.data;
 }

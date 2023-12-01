@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FireError } from '../../../utils/alertHandler';
 import LoaderPages from './Loader/LoaderPages';
 import { getESR } from '../../../client/esr';
@@ -7,13 +7,17 @@ import Title from "../../../components/Title/Title";
 import Table from "../../../components/Table/Table";
 import Icons from "../../../icons/index";
 
+import { ContentContext } from "../Content";
+import { EDIT_ESR } from "../store/modalReducer";
+
 function CompaniesESR() {
 
     const [companies, setcompaniesESR] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     
-    useEffect(() => {
-        (async () => {
+    const { modalDispatch, needsToDoRefresh, setNeedsToDoRefresh } = useContext(ContentContext);
+
+    const fetchForData = async () => {
             try {
                 setIsLoading(true);
                 const esr = await getESR();
@@ -23,8 +27,20 @@ function CompaniesESR() {
                 setIsLoading(false);
                 FireError(error.response.data.message);
             }
-        })();
+        };
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        fetchForData();
     }, []);
+
+    useEffect(() => {
+        if (needsToDoRefresh) {
+            fetchForData();
+            setNeedsToDoRefresh(false);
+        };
+        // eslint-disable-next-line
+    }, [needsToDoRefresh]);
 
     const getFormatedDate = (date) => {
         const dateObject = new Date(date);
@@ -68,6 +84,21 @@ function CompaniesESR() {
         return matrix;
     };
 
+    const handleTest = () => {
+        console.log('test');
+      };
+
+    const openEdit = (i) => {
+        try {            
+            if (i < 0 || i >= companies.length) return;
+            const company = companies[i];            
+            modalDispatch({
+                type: EDIT_ESR,
+                payload: company
+            });
+        } catch { }
+    }
+
     return (<div>
         <NavHistory>
                 Gestión de contenido / Certificación ESR 
@@ -82,6 +113,8 @@ function CompaniesESR() {
             {!isLoading && (
                 <>
                     <Table
+                        handleEdit={openEdit}
+                        handleDelete={handleTest}
                         matrixData={getMatrix()}
                         arrayHeaders={[
                             "Nombre",

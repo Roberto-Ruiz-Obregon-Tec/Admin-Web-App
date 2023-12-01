@@ -12,7 +12,6 @@ import Dashboard from './screens/Dashboard/Dashboard';
 import Content from './screens/Content/Content';
 import Usuarios from './screens/Users/Users';
 import Informacion from './screens/Information/Information';
-import CreateCertifications from './screens/Content/Certifications/CreateCertifications/CreateCertifications';
 
 import {
   PATH_HOME,
@@ -33,6 +32,7 @@ import {
   PATH_SCHOLARSHIP,
   PATH_CREATE_SCHOLARSHIP,
   PATH_ESR,
+
 } from './config/paths';
 
 const routesContent = () => {
@@ -49,7 +49,8 @@ const routesContent = () => {
     PATH_CREATE_COURSE,
     PATH_ESR,    
     PATH_SCHOLARSHIP,
-    PATH_CREATE_SCHOLARSHIP
+    PATH_CREATE_SCHOLARSHIP,
+    
   ];
   const arrayJSON = [];
 

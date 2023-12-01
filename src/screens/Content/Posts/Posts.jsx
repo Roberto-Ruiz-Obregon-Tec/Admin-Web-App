@@ -10,27 +10,38 @@ import { PATH_CREATE_POSTS } from "../../../config/paths";
 import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
 import styles from "./Posts.module.css";
-import { OPEN_POST } from "../store/modalReducer";
+import { OPEN_POST, EDIT_POST } from "../store/modalReducer";
 
 function Posts() {
-    const { modalDispatch } = useContext(ContentContext);
+    const { modalDispatch, needsToDoRefresh, setNeedsToDoRefresh } = useContext(ContentContext);
     const [avaliablePosts, setavailablePosts] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
 
+    const fetchForData = async () => {
+        try {
+            setIsLoading(true);
+            const posts = await getPublications();
+            setIsLoading(false);
+            setavailablePosts(posts);
+        } catch (error) {
+            setIsLoading(false);
+            FireError(error.response.data.message);
+        }
+    }
+
     useEffect(() => {
-        (async () => {
-            try {
-                setIsLoading(true);
-                const posts = await getPublications();
-                setIsLoading(false);
-                setavailablePosts(posts);
-            } catch (error) {
-                setIsLoading(false);
-                FireError(error.response.data.message);
-            }
-        })();
+        // eslint-disable-next-line
+        fetchForData();
     }, []);
+
+    useEffect(() => {
+        if (needsToDoRefresh) {
+            fetchForData();
+            setNeedsToDoRefresh(false);
+        };
+    // eslint-disable-next-line
+    }, [needsToDoRefresh]);
 
     const getFormatedDate = (date) => {
         const dateObject = new Date(date);
@@ -75,13 +86,25 @@ function Posts() {
     const openInfo = (i) => {
         try {
             if (i < 0 || i >= avaliablePosts.length) return;
-            const post = avaliablePosts[i];
+            const post = avaliablePosts[i];  
+            console.log(post)          
             modalDispatch({
                 type: OPEN_POST,
                 payload: post
             });
         } catch { };
     };
+
+    const openEdit = (i) => {
+        try {
+            if (i < 0 || i >= avaliablePosts.length) return;
+            const post = avaliablePosts[i];
+            modalDispatch({
+                type: EDIT_POST,
+                payload: post
+            });
+        } catch { }
+    }
 
     return (
         <div>
@@ -107,6 +130,7 @@ function Posts() {
                         ]}
                         percentages={[25, 60, 10, 15]}
                         clickOnCell={openInfo}
+                        handleEdit={openEdit}
                     />
                     <Link title="Añadir una publicación" to={PATH_CREATE_POSTS} className={styles.add}>
                         {Icons.cross()}

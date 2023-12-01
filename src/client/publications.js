@@ -22,3 +22,13 @@ export async function createPublications(body) {
     const response = await axios.post(endpoint, body);
     return response.data;
 }
+
+/**
+ * It makes a PUT request to the endpoint `/publication/update` to edit a publication
+ */
+export async function editPublications(body) {
+    const endpoint = `${baseApiEndpoint}/publication/update`;
+
+    const response = await axios.put(endpoint, body);
+    return response.data;
+}
