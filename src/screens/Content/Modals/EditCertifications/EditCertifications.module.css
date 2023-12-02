@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+.wrapper {
+    width: 500px;   
+}
+.form {
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3em;
+}
+.textarea textarea {
+    height: 100px;
+}
+.dates {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.form__item {
+    margin: 0 2em;
+    margin-bottom: 2em;
+
+}
+
+.card {
+    width: fit-content;
+    padding: 0 5em;    
+    padding-top: 50px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    max-height: 200px;
+    overflow-y: auto;
+}

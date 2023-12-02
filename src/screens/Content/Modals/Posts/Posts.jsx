@@ -89,7 +89,7 @@ export default function PopUpProyect() {
                     {getState().comments.map((comment, i) => {
                         return (
                             <div key={i}>
-                                {comment}
+                                {comment.user + ": "}{comment.comment}
                             </div>
                         )
                     })}
