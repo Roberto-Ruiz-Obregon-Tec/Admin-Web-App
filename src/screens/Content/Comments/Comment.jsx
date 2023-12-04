@@ -7,7 +7,7 @@ import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
 import { PATH_CREATE_COURSE } from "../../../config/paths";
 import Icons from "../../../icons/index";
-import Table from "../../../components/Table/Table";
+import Table from "../../../components/Table/CommentTable";
 import styles from "./Comments.module.css";
 import { ContentContext } from "../Content";
 
@@ -24,7 +24,8 @@ function Comment() {
             setIsLoading(true);
             const posts = await getComments();
             setIsLoading(false);
-            setavailableCourseComments(posts);
+            setavailableCourseComments(posts.cursos);
+            setavailablePublicationComments(posts.publicaciones);
         } catch (error) {
             setIsLoading(false);
             FireError(error.response.data.message);
@@ -49,7 +50,7 @@ function Comment() {
         return dateObject.getDate() + "/" + (dateObject.getMonth() + 1) + "/" + dateObject.getFullYear();
     };
 
-    const getPublicationMatrix = () => {
+    const getPublicationCommentMatrix = () => {
         if (availablePublicationComments.length === 0) return [];
 
         const publicationMatrix = []
@@ -61,35 +62,27 @@ function Comment() {
             "publication"
 
         ]
-
-        const needsTransformation = new Set();
-        needsTransformation.add("startDate");
-        needsTransformation.add("endDate");
-
         for (let i = 0; i < availablePublicationComments.length; i++) {
-            const row = [];
+            const row = {};
             const comment = availablePublicationComments[i];
 
-            for (let j = 0; j < possibleKeys.length; j++) {
-                const key = possibleKeys[j];
-                if (needsTransformation.has(key)) {
-                    row.push(comment[key] ? getFormatedDate(comment[key]) : "dd/mm/yyyy");
-                } else {
-                    row.push(comment[key] !== "" ? comment[key] : "");
-                }
-            }
+            row["user"] = availablePublicationComments[i].comment.user.firstName + availablePublicationComments[i].comment.user.lastName
+            row["comment"] = availablePublicationComments[i].comment.comment
+            row["publicacion"] = availablePublicationComments[i].publication.title
+
+            let mydate = new Date(availablePublicationComments[i].updatedAt);
+            row["fecha"] = mydate.toLocaleDateString("es")
 
             publicationMatrix.push(row);
         }
-        console.log("HOLAAA")
-        console.log(publicationMatrix)
+
         return publicationMatrix;
     };
 
-    const getCourseMatrix = () => {
+    const getCourseCommentMatrix = () => {
         if (availableCourseComments.length === 0) return [];
 
-        const courseMatrix = []
+        const courseCommentMatrix = []
 
         // El orden importa
         const possibleKeys = [
@@ -99,28 +92,23 @@ function Comment() {
 
         ]
 
-        const needsTransformation = new Set();
-        needsTransformation.add("startDate");
-        needsTransformation.add("endDate");
 
         for (let i = 0; i < availableCourseComments.length; i++) {
-            const row = [];
+            const row = {};
             const comment = availableCourseComments[i];
 
-            for (let j = 0; j < possibleKeys.length; j++) {
-                const key = possibleKeys[j];
-                if (needsTransformation.has(key)) {
-                    row.push(comment[key] ? getFormatedDate(comment[key]) : "dd/mm/yyyy");
-                } else {
-                    row.push(comment[key] !== "" ? comment[key] : "");
-                }
-            }
+            row["user"] = availableCourseComments[i].comment.user.firstName + " " + availableCourseComments[i].comment.user.lastName
+            row["comment"] = availableCourseComments[i].comment.comment
+            row["curso"] = availableCourseComments[i].course.name
+            
+            let mydate = new Date(availableCourseComments[i].updatedAt);
+            row["fecha"] = mydate.toLocaleDateString("es")
 
-            courseMatrix.push(row);
+
+            courseCommentMatrix.push(row);
         }
-        console.log("HOLAAA")
-        console.log(courseMatrix)
-        return courseMatrix;
+
+        return courseCommentMatrix;
     };
 
 
@@ -128,35 +116,48 @@ function Comment() {
     return (
         <div>
             <NavHistory>
-                Gestión de contenido / Cursos
+                Gestión de contenido / Comentarios
             </NavHistory>
             <Title>
                 {Icons.courses()}
-                Lista de cursos
+                Lista de comentarios pendientes
             </Title>
             {isLoading && (
                 <LoaderPages />
             )}
             {!isLoading && (
                 <>
+                    <h2>
+                        Cursos
+                    </h2>
                     <Table
-                        matrixData={getCourseMatrix()}
+                        matrixData={getCourseCommentMatrix()}
                         arrayHeaders={[
-                            "Nombre", // 20
-                            "Descripción", // 22.5
-                            "Ponente", // 10
-                            "Fecha de inicio", // 10
-                            "Fecha fin", // 10
-                            "Modalidad", // 7.5
-                            "Estatus", // 7.5
-                            "Valuación", // 7.5
-                            "Costo" // 5
+                            "Usuario", // 20
+                            "Comentario", // 22.5
+                            "Curso",
+                            "Fecha de publicación", // 10
+
                         ]}
-                        percentages={[16, 18, 10, 10, 10, 7.5, 7.5, 8.5, 7]}
+                        percentages={[20, 35, 30, 15]}
                     />
-                    <Link title="Añadir un curso" to={PATH_CREATE_COURSE} className={styles.add}>
-                        {Icons.cross()}
-                    </Link>
+
+                    <h2>
+                        Publicaciones
+                    </h2>
+
+                    <Table
+                        matrixData={getPublicationCommentMatrix()}
+                        arrayHeaders={[
+                            "Usuario", // 20
+                            "Comentario", // 22.5
+                            "Curso",
+                            "Fecha de publicación", // 10
+
+                        ]}
+                        percentages={[20, 35, 30, 15]}
+                    />
+
                 </>
             )}
         </div>

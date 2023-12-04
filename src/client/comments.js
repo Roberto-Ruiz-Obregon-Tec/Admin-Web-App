@@ -8,6 +8,5 @@ const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
  */
 export async function getComments() {
     const response = await axios.get(`${baseApiEndpoint}/comment`);
-    console.log(response.data.data)
     return response.data.data;
 }
