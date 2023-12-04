@@ -22,6 +22,9 @@ import ModalEditPost from "./Modals/EditPost/EditPost";
 import ModalEditESR from "./Modals/EditESR/EditESR";
 import ModalEditEvent from "./Modals/EditEvent/EditEvent";
 
+//Modals Delete
+import ModalDeleteCourse from "./Modals/Curses/DeleteCurses"
+
 // Pages
 import ConsultProjects from "./Projects/Projects";
 import CreateProjects from "./Projects/CreateProjects/CreateProjects";
@@ -115,6 +118,7 @@ export default function ContentDashboard() {
 			<ModalEditEvent/>
 			<ModelDeleteCertification />
 			<ModalEditCertification />
+			<ModalDeleteCourse />
 			<div className={styles.container}>
 				<Aside />
 				<div className={styles.body}>

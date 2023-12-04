@@ -43,7 +43,8 @@ export async function postCourse(courseForm) {
 export async function deleteCourse(id) {
     const endpoint = `${baseApiEndpoint}/course/${id}`;
 
-    await axios.delete(endpoint);
+    const response = await axios.delete(endpoint);
+    return response.data;
 }
 
 /**

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { FireError } from '../../../utils/alertHandler';
 import { Link } from "react-router-dom";
 import { getCourses } from '../../../client/course';
-import { OPEN_COURSE, EDIT_COURSE } from "../store/modalReducer";
+import { OPEN_COURSE, EDIT_COURSE, DELETE_COURSE } from "../store/modalReducer";
 import LoaderPages from './Loader/LoaderPages';
 import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
@@ -112,6 +112,14 @@ function Courses() {
         } catch { }
     }
 
+    const handleDelete = (i) => {
+        const post = avaliableCourses[i];
+        modalDispatch({
+          type: DELETE_COURSE,
+          payload: post,
+        });
+      };
+
     return (
         <div>
             <NavHistory>
@@ -142,6 +150,7 @@ function Courses() {
                         percentages={[16, 18, 10, 10, 10, 7.5, 7.5, 8.5, 7]}
                         clickOnCell={openInfo}
                         handleEdit={openEdit}
+                        handleDelete={handleDelete}
                     />
                     <Link title="Añadir un curso" to={PATH_CREATE_COURSE} className={styles.add}>
                         {Icons.cross()}
