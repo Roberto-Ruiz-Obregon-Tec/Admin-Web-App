@@ -42,6 +42,7 @@ import CreateCourses from "./Courses/CreateCourse/CreateCourses";
 import ESR from './CompanysESR/CompanysESR';
 import Scholarship from './Scholarships/Scholarships';
 import CreateScholarship from "./Scholarships/CreateScholarship/CreateScholarship";
+import Comment from "./Comments/Comment";
 
 
 
@@ -59,7 +60,8 @@ import {
 	PATH_CREATE_COURSE,
 	PATH_ESR,
 	PATH_SCHOLARSHIP,
-	PATH_CREATE_SCHOLARSHIP
+	PATH_CREATE_SCHOLARSHIP,
+	PATH_COMMENTS
 } from "../../config/paths";
 import { useEffect } from "react";
 
@@ -88,6 +90,7 @@ export default function ContentDashboard() {
 		keys.add(PATH_CREATE_CERTIFICATION);
 		keys.add(PATH_ESR);
 		keys.add(PATH_CREATE_SCHOLARSHIP);
+		keys.add(PATH_COMMENTS)
 
 		if (keys.has(pathname)) return;
 
@@ -137,6 +140,7 @@ export default function ContentDashboard() {
 					{pathname === PATH_CREATE_SCHOLARSHIP && <CreateScholarship />}
 					{pathname === PATH_CREATE_CERTIFICATION && <CreateCertifications />}
 					{pathname === PATH_ESR && <ESR />}
+					{pathname === PATH_COMMENTS && <Comment/>}
 				</div>
 			</div>
 		</ContentContext.Provider>

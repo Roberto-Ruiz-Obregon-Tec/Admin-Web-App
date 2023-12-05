@@ -27,6 +27,7 @@ import chevronDown from "./chevron-down"
 import esr from './companiesesr'
 import becas from "./scholarships"
 import email from "./email"
+import comentarios from "./comentarios"
 
 const icons = {
     announce,
@@ -57,7 +58,8 @@ const icons = {
     chevronDown,
     esr,
     becas,
-    email
+    email,
+    comentarios
 }
 
 export default icons;
