@@ -5,7 +5,7 @@ import LoaderPages from './Loader/LoaderPages';
 import NavHistory from "../../components/NavHistory/NavHistory";
 import Title from "../../components/Title/Title";
 import Icons from "../../icons/index";
-import Table from "../../components/Table/Table";
+import TableUsers from "../../components/Table/TableUsers/TableUsers";
 
 function Usuarios() {
 
@@ -68,7 +68,7 @@ function Usuarios() {
                 <LoaderPages />
             )}
             {!isLoading && (
-                <Table
+                <TableUsers
                     matrixData={getMatrix()}
                     arrayHeaders={[
                         "Primer nombre",
