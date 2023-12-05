@@ -57,17 +57,8 @@ export default function ModalDeleteCourse() {
             "_id": modalState.documentJSON["_id"] ? modalState.documentJSON["_id"] : "-",
             "name": modalState.documentJSON["name"] ? modalState.documentJSON["name"] : "-----",
             "description": modalState.documentJSON["description"] ? modalState.documentJSON["description"] : "-----",
-            "speaker": modalState.documentJSON["speaker"] ? modalState.documentJSON["speaker"] : "-----",
             "startDate": modalState.documentJSON["startDate"] ? modalState.documentJSON["startDate"] : "dd/mm/yyyy",
             "endDate": modalState.documentJSON["endDate"] ? modalState.documentJSON["endDate"] : "dd/mm/yyyy",
-            "cost": modalState.documentJSON["cost"] ? modalState.documentJSON["cost"] : "-----",
-            "capacity": modalState.documentJSON["capacity"] ? modalState.documentJSON["capacity"] : "-----",
-            "location": modalState.documentJSON["location"] ? modalState.documentJSON["location"] : "-----",
-            "postalCode": modalState.documentJSON["postalCode"] ? modalState.documentJSON["postalCode"] : "-----",
-            "meetingCode": modalState.documentJSON["meetingCode"] ? modalState.documentJSON["meetingCode"] : "-----",
-            "modality": modalState.documentJSON["modality"] ? modalState.documentJSON["modality"] : "-----",
-            "status": modalState.documentJSON["status"] ? modalState.documentJSON["status"] : "-----",
-            "courseImage": modalState.documentJSON["courseImage"] ? modalState.documentJSON["courseImage"] : "-----",
             "createdAt": modalState.documentJSON["createdAt"] ? modalState.documentJSON["createdAt"] : "dd/mm/yyyy",
             "updatedAt": modalState.documentJSON["updatedAt"] ? modalState.documentJSON["updatedAt"] : "dd/mm/yyyy"
         };
