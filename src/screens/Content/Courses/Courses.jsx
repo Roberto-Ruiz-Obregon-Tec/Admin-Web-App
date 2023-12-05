@@ -8,7 +8,7 @@ import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
 import { PATH_CREATE_COURSE } from "../../../config/paths";
 import Icons from "../../../icons/index";
-import Table from "../../../components/Table/Table";
+import CourseTable from "../../../components/Table/CourseTable";
 import styles from "./Courses.module.css";
 import { ContentContext } from "../Content";
 
@@ -100,7 +100,6 @@ function Courses() {
         } catch { };
     };
 
-
     const openEdit = (i) => {
         try {
             if (i < 0 || i >= avaliableCourses.length) return;
@@ -126,7 +125,7 @@ function Courses() {
             )}
             {!isLoading && (
                 <>
-                    <Table
+                    <CourseTable
                         matrixData={getMatrix()}
                         arrayHeaders={[
                             "Nombre", // 20
