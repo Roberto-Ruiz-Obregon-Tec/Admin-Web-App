@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { FireError } from '../../../utils/alertHandler';
 import { Link } from "react-router-dom";
 import { getCourses } from '../../../client/course';
-import { OPEN_COURSE, EDIT_COURSE } from "../store/modalReducer";
+import { OPEN_COURSE, EDIT_COURSE, OPEN_COURSE_USERS } from "../store/modalReducer";
 import LoaderPages from './Loader/LoaderPages';
 import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
@@ -100,6 +100,17 @@ function Courses() {
         } catch { };
     };
 
+    const openUsers = (i) => {
+        try {
+            if (i < 0 || i >= avaliableCourses.length) return;
+            const course = avaliableCourses[i];
+            modalDispatch({
+                type: OPEN_COURSE_USERS,
+                payload: course
+            });
+        } catch { }
+    }
+
     const openEdit = (i) => {
         try {
             if (i < 0 || i >= avaliableCourses.length) return;
@@ -140,6 +151,7 @@ function Courses() {
                         ]}
                         percentages={[16, 18, 10, 10, 10, 7.5, 7.5, 8.5, 7]}
                         clickOnCell={openInfo}
+                        handleUsers={openUsers}
                         handleEdit={openEdit}
                     />
                     <Link title="Añadir un curso" to={PATH_CREATE_COURSE} className={styles.add}>
