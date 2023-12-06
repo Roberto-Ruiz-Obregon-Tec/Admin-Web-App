@@ -8,6 +8,7 @@ function Table({
   percentages = null,
   clickOnCell = null,
 
+  handle = true,
   handleEdit = null,
   handleDelete = null,
 }) {
@@ -50,9 +51,9 @@ function Table({
             </div>
           );
         })}
-        <div style={{ width: '6%' }} className={styles.header}>
+        {handle && <div style={{ width: '6%' }} className={styles.header}>
           ...
-        </div>
+        </div>}
       </div>
       {matrixData.length === 0 && (
         <div className={styles.zero}>No hay ninguna entrada</div>
@@ -85,7 +86,7 @@ function Table({
                 </div>
               );
             })}
-            <div style={{ width: '6%' }} className={styles.col}>
+            {handle && <div style={{ width: '6%' }} className={styles.col}>
               <button
                 style={{ width: '80%' }}
                 className={styles.whitebutton}
@@ -100,7 +101,7 @@ function Table({
               >
                 Eliminar
               </button>
-            </div>
+            </div>}
           </div>
         );
       })}

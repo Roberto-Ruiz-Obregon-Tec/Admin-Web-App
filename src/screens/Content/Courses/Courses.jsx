@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { FireError } from '../../../utils/alertHandler';
 import { Link } from "react-router-dom";
-import { getCourses } from '../../../client/course';
+import { getCourses, getCourseInscriptions } from '../../../client/course';
 import { OPEN_COURSE, EDIT_COURSE, OPEN_COURSE_USERS } from "../store/modalReducer";
 import LoaderPages from './Loader/LoaderPages';
 import NavHistory from "../../../components/NavHistory/NavHistory";
@@ -100,13 +100,13 @@ function Courses() {
         } catch { };
     };
 
-    const openUsers = (i) => {
+    const openUsers = async (i) => {
         try {
             if (i < 0 || i >= avaliableCourses.length) return;
-            const course = avaliableCourses[i];
+            const users = await getCourseInscriptions(avaliableCourses[i]._id);
             modalDispatch({
                 type: OPEN_COURSE_USERS,
-                payload: course
+                payload: users.data
             });
         } catch { }
     }
