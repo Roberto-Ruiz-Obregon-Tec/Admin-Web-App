@@ -146,9 +146,7 @@ export function modalReducer(state, action){
         } 
 
         case UPDATE_COMMENT_STATUS: {
-            console.log (action.payload)
-            if (typeof action.payload !== "Object") return state;
-            console.log("f")
+            if (typeof action.payload !== "object") return state;
             return {
                 modalOpened: KEYS_MODAL.COMMENT_STATUS,
                 documentJSON: action.payload

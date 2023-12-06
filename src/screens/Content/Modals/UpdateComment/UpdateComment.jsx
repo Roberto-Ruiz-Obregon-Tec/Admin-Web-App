@@ -8,12 +8,7 @@ import { CLEAR_MODALS, KEYS_MODAL } from "../../store/modalReducer";
 import { ContentContext } from "../../Content";
 
 import styles from "./UpdateComment.module.css";
-import InputText from "../../../../components/Form/Input/Text/Text";
-import InputTextArea from "../../../../components/Form/Input/TextArea/TextArea";
-import InputDate from "../../../../components/Form/Input/Date/Date";
-import InputImage from "../../../../components/Form/Input/Image/Image";
 import Button from "../../../../components/Form/Button/Button";
-import Image from '../../../../components/Image/Image';
 import { PATH_COMMENTS } from '../../../../config/paths'
 import { updateStatus } from '../../../../client/comments';
 

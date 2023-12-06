@@ -70,7 +70,6 @@ function Comment() {
             const comment = availablePublicationComments[i];
 
             row["user"] = availablePublicationComments[i].comment.user.firstName + availablePublicationComments[i].comment.user.lastName
-            row["comment_id"] = availablePublicationComments[i].comment.id
             row["comment"] = {"id": availablePublicationComments[i].comment._id, "comment": availablePublicationComments[i].comment.comment}
             row["publicacion"] = availablePublicationComments[i].publication.title
 
