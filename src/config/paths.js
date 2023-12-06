@@ -32,4 +32,6 @@ export const PATH_CREATE_CERTIFICATION = '/contenido/acreditaciones/crear';
 export const PATH_ESR = '/contenido/empresasesr';
 
 export const PATH_PERFIL = '/miperfil';
+
 export const PATH_COMMENTS = '/comentarios';
+export const PATH_UPDATE_COMMENT_STATUS = "/comentarios/modificar-status"
