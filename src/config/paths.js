@@ -33,3 +33,4 @@ export const PATH_ESR = '/contenido/empresasesr';
 
 export const PATH_PERFIL = '/miperfil';
 export const PATH_COMMENTS = '/comentarios';
+export const PATH_INSCRIPTION = '/inscriptions';

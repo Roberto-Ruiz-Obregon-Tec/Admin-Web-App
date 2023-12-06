@@ -29,6 +29,7 @@ import becas from "./scholarships"
 import email from "./email"
 import perfil from "./perfil"
 import comentarios from "./comentarios"
+import Inscription from "./inscription"
 
 const icons = {
     announce,
@@ -61,7 +62,9 @@ const icons = {
     becas,
     email,
     perfil,
-    comentarios
+    comentarios,
+    Inscription
+
 }
 
 export default icons;

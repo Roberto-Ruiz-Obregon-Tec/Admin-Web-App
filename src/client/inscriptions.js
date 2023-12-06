@@ -11,3 +11,10 @@ export async function deleteInscription(id) {
 
     await axios.delete(endpoint);
 }
+
+export async function getInscription() {
+    const endpoint = `${baseApiEndpoint}/inscription/`;
+    const response = await axios.get(endpoint);
+    console.log(response)
+    return response.data.data;
+}
