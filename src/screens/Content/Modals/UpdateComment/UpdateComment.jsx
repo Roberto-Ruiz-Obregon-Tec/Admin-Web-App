@@ -93,9 +93,17 @@ export default function PopUpCertifications() {
             setIsOpen={clearState}
             classNameCard={styles.card}
         >
+
+        {status === "Aprobado" ?
             <h1>
-              Cambiar status del comentario  
+                Aprobar comentario  
+            </h1> :
+
+            <h1>
+                Rechazar comentario  
             </h1>
+        }
+
 
             <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.form__item}>

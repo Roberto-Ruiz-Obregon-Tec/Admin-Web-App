@@ -15,6 +15,6 @@ export async function updateStatus(data) {
     const body = {_id: data.id, status: data.status};
     
     const response = await axios.put(`${baseApiEndpoint}/comment/update-status`, body);
-    return response.status;
+    return response.data;
 
 }

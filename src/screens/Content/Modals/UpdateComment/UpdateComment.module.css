@@ -6,39 +6,20 @@
     width: 500px;   
 }
 .form {
-    gap: 30px;
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 3em;
-}
-.textarea textarea {
-    height: 100px;
-}
-.dates {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.form__item {
-    margin: 0 2em;
-    margin-bottom: 2em;
-    
-}
-.img {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    margin-top: 30px;
+    padding-bottom: 3em;
 }
-.img img {
-    width: 300px;
-    height: 200px;
-    object-fit: contain;
-    background-color: #d1d1d1;
-    cursor: pointer;
+
+
+.form__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
+
 .card {
     width: fit-content;
     padding: 0 5em;    
