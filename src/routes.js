@@ -33,6 +33,7 @@ import {
   PATH_SCHOLARSHIP,
   PATH_CREATE_SCHOLARSHIP,
   PATH_ESR,
+  PATH_COMMENTS,
   PATH_PERFIL
 
 } from './config/paths';
@@ -51,7 +52,8 @@ const routesContent = () => {
     PATH_CREATE_COURSE,
     PATH_ESR,    
     PATH_SCHOLARSHIP,
-    PATH_CREATE_SCHOLARSHIP,    
+    PATH_CREATE_SCHOLARSHIP,
+    PATH_COMMENTS
     
   ];
   const arrayJSON = [];
