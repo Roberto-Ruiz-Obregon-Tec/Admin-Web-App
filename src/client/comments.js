@@ -10,3 +10,11 @@ export async function getComments() {
     const response = await axios.get(`${baseApiEndpoint}/comment`);
     return response.data.data;
 }
+
+export async function updateStatus(data) {
+    const body = {_id: data.id, status: data.status};
+    
+    const response = await axios.put(`${baseApiEndpoint}/comment/update-status`, body);
+    return response.data;
+
+}

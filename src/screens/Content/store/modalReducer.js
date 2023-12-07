@@ -13,6 +13,7 @@ export const KEYS_MODAL = {
     EVENT_EDIT : "event_edit",
     DELETE_CERTIFICATION: "delete_certification",
     POST_EDIT: "post_edit",
+    COMMENT_STATUS: "status-comment-update"
 }
 
 export const EDIT_CERTIFICATION = "edit-certification";
@@ -30,6 +31,8 @@ export const EDIT_COURSE = "edit-course";
 export const EDIT_ESR = "edit-esr";
 export const EDIT_EVENT = "edit-event"
 export const EDIT_POST = "edit-post"
+export const UPDATE_COMMENT_STATUS = "update-comment-status"
+
 
 export function modalReducer(state, action){
     switch (action.type) {
@@ -150,7 +153,17 @@ export function modalReducer(state, action){
                 modalOpened: KEYS_MODAL.DELETE_CERTIFICATION,
                 documentJSON: action.payload
             }
+        } 
+
+        case UPDATE_COMMENT_STATUS: {
+            if (typeof action.payload !== "object") return state;
+            return {
+                modalOpened: KEYS_MODAL.COMMENT_STATUS,
+                documentJSON: action.payload
+            }
         }
+
+
         default: {
             console.error("Unknown modal-reducer-type");
             return state;

@@ -1,15 +1,16 @@
 import React from 'react';
 import styles from './Table.module.css';
 
+const APROBADO = "Aprobado"
+const RECHAZADO = "Rechazado"
 function Table({
   matrixData,
   arrayHeaders,
 
   percentages = null,
-  clickOnCell = null,
+  clickOnApprove = null,
+  clickOnReject = null,
 
-  handleEdit = null,
-  handleDelete = null,
 }) {
   const getPercentage = (i = null) => {
     if (percentages === null || i === null)
@@ -18,20 +19,16 @@ function Table({
     return percentages[i];
   };
 
-  const gotAClick = (i = null) => {
-    if (clickOnCell === null) return;
+  const AprobarComentario = (id = null, status = null) => {
+    if (clickOnApprove === null) return;
 
-    clickOnCell(i);
+    clickOnApprove(id, status);
   };
 
-  const handleEditClick = (i = null) => {
-    if (handleEdit === null) return;
-    handleEdit(i);    
-  };
+  const RechazarComentario = (id = null, status = null) => {
+    if (clickOnReject === null) return;
 
-  const handleDeleteClick = (i = null) => {
-    if (handleDelete === null) return;
-    handleDelete(i);
+    clickOnReject(id, status);
   };
 
   return (
@@ -59,6 +56,7 @@ function Table({
       )}
 
 {matrixData.map((row, i) => {
+
         return (
           <div
             key={i}
@@ -69,37 +67,50 @@ function Table({
           >
             {Object.keys(row).map((element, j) => {
               if (element != undefined)
-              return  (
-                <div
-                  onClick={() => {
-                    gotAClick(i);
-                  }}
-                  style={{
-                    width: `${getPercentage(j)}%`,
-                    cursor:
-                      clickOnCell === null ? 'default' : 'pointer',
-                  }}
-                  className={styles.element}
-                  key={`${i}-${j}`}
-                >
-                {row[element]}
-                </div>
-              );
+                if (element != "comment")
+                  return  (
+                    <div
+                      style={{
+                        width: `${getPercentage(j)}%`,
+                      }}
+                      className={styles.element}
+                      key={`${i}-${j}`}
+                    >
+                    {row[element]}
+                    </div>
+                  );
+                
+                else
+                  return  (
+                    <div
+                      style={{
+                        width: `${getPercentage(j)}%`,
+                      }}
+                      className={styles.element}
+                      key={`${i}-${j}`}
+                    >
+                    {row[element].comment}
+                    </div>
+                  ); 
+                      
             })}
+              
+
+                
 
             
             <div style={{ width: '6%' }} className={styles.col}>
               <button
                 style={{ width: '80%' }}
                 className={styles.whitebutton}
-                onClick={() => handleEditClick(i)}
+                onClick={() => AprobarComentario(row.comment.id, APROBADO)}
               >
                 Aceptar
               </button>
               <button
                 style={{ width: '80%' }}
                 className={styles.redbutton}
-                onClick={() => handleDeleteClick(i)}
+                onClick={() => RechazarComentario(row.comment.id, RECHAZADO)}
               >
                 Eliminar
               </button>
