@@ -17,10 +17,8 @@ export async function getCourses() {
  * @returns An array of objects.
  */
 export async function getCourseInscriptions(courseId) {
-    const endpoint = `${baseApiEndpoint}/course/getinscriptions/${courseId}`;
-
-    const response = await axios.get(endpoint);
-    return response.data.data.documents;
+    const response = await axios.get(`${baseApiEndpoint}/course/users/${courseId}`);
+    return response.data;
 }
 
 /**

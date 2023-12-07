@@ -8,9 +8,9 @@ function Table({
   percentages = null,
   clickOnCell = null,
 
-  handle = true,
+  handleUsers = null,
   handleEdit = null,
-  handleDelete = null,
+  handleDelete = null
 }) {
   const getPercentage = (i = null) => {
     if (percentages === null || i === null)
@@ -23,6 +23,11 @@ function Table({
     if (clickOnCell === null) return;
 
     clickOnCell(i);
+  };
+
+  const handleUsersClick = (i = null) => {
+    if (handleUsers === null) return;
+    handleUsers(i);    
   };
 
   const handleEditClick = (i = null) => {
@@ -51,9 +56,9 @@ function Table({
             </div>
           );
         })}
-        {handle && <div style={{ width: '6%' }} className={styles.header}>
+        <div style={{ width: '12%' }} className={styles.header}>
           ...
-        </div>}
+        </div>
       </div>
       {matrixData.length === 0 && (
         <div className={styles.zero}>No hay ninguna entrada</div>
@@ -86,7 +91,16 @@ function Table({
                 </div>
               );
             })}
-            {handle && <div style={{ width: '6%' }} className={styles.col}>
+            <div style={{ width: '6%' }} className={styles.col}>
+              <button
+                style={{ width: '80%' }}
+                className={styles.whitebutton}
+                onClick={() => handleUsersClick(i)}
+              >
+                Ver inscritos
+              </button>
+            </div>
+            <div style={{ width: '6%' }} className={styles.col}>
               <button
                 style={{ width: '80%' }}
                 className={styles.whitebutton}
@@ -101,7 +115,7 @@ function Table({
               >
                 Eliminar
               </button>
-            </div>}
+            </div>
           </div>
         );
       })}

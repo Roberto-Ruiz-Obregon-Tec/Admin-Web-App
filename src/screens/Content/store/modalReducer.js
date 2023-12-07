@@ -1,6 +1,7 @@
 export const KEYS_MODAL = {
 	PROJECT: "project",
 	POST: "post",
+    COURSE_USERS: "course_users",
 	COURSE: "course",
 	EVENT: "event",
 	CERTIFICATION: "certification",
@@ -21,6 +22,7 @@ export const CLEAR_MODALS = "clear-modals";
 export const OPEN_PROJECT =  "open-project";
 export const OPEN_POST =  "open-post";
 export const OPEN_COURSE =  "open-course";
+export const OPEN_COURSE_USERS =  "open-course-users";
 export const OPEN_EVENT =  "open-event";
 export const OPEN_CERTIFICATION =  "open-certification";
 export const EDIT_SCHOLARSHIP = "edit-scholarship"
@@ -53,6 +55,14 @@ export function modalReducer(state, action){
 
             return {
                 modalOpened: KEYS_MODAL.POST,
+                documentJSON: action.payload
+            }
+        }
+        case OPEN_COURSE_USERS: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.COURSE_USERS,
                 documentJSON: action.payload
             }
         }

@@ -1,0 +1,12 @@
+.card {
+    width: 60%; /*450px;*/
+    padding-top: 50px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    max-height: 200px;
+    overflow-y: auto;
+}

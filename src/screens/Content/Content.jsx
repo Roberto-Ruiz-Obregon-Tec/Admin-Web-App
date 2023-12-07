@@ -14,6 +14,7 @@ import ModalEditScholarship from "./Modals/EditScholarship/EditScholarship"
 import ModalEditProject from "./Modals/EditProyects/EditProyects";
 import ModalEditCourse from "./Modals/EditCurses/EditCurses";
 import ModalCurses from "./Modals/Curses/Curses";
+import ModalCourseUsers from "./Modals/Curses/CourseUsers";
 
 import ModalCertification from "./Modals/Certification/Certification";
 import ModalEditCertification from "./Modals/EditCertifications/EditCertifications";
@@ -115,6 +116,7 @@ export default function ContentDashboard() {
 			<ModalEditCourse />
 			<ModalEditPost />
 			<ModalCurses />
+			<ModalCourseUsers/>
 			<ModalCertification />
 			<ModalEditProject />
 			<ModalEditCourse />			
