@@ -12,6 +12,7 @@ import Dashboard from './screens/Dashboard/Dashboard';
 import Content from './screens/Content/Content';
 import Usuarios from './screens/Users/Users';
 import Informacion from './screens/Information/Information';
+import Perfil from './screens/Profile/profile';
 
 import {
   PATH_HOME,
@@ -32,6 +33,9 @@ import {
   PATH_SCHOLARSHIP,
   PATH_CREATE_SCHOLARSHIP,
   PATH_ESR,
+  PATH_COMMENTS,
+  PATH_PERFIL,
+  PATH_INSCRIPTION
 
 } from './config/paths';
 
@@ -50,6 +54,8 @@ const routesContent = () => {
     PATH_ESR,    
     PATH_SCHOLARSHIP,
     PATH_CREATE_SCHOLARSHIP,
+    PATH_COMMENTS,
+    PATH_INSCRIPTION
     
   ];
   const arrayJSON = [];
@@ -105,14 +111,22 @@ const routes = [
     withoutPadding: false,
     svg: 'newUser',
   },
-  ...routesContent(),
+  ...routesContent(),  
   {
     path: PATH_INFO,
-    name: 'Informacion',
+    name: 'Información',
     Component: Informacion,
     isPrivate: true,
     inNavbar: true,
     svg: 'info',
+  },
+  {
+    path: PATH_PERFIL,
+    name: 'Mi perfil',
+    Component: Perfil,
+    isPrivate: true,
+    inNavbar: true,
+    svg: 'perfil',
   },
   
   

@@ -31,3 +31,10 @@ export async function postSignup(data) {
     const response = await axios.post(endpoint, data);
     return response.data;
 }
+
+export async function getMe() {
+    const endpoint = `${baseApiEndpoint}/user/auth/me`;
+    const response = await axios.get(endpoint);
+    console.log("me", response.data.data.document)
+    return response.data.data.document;
+}

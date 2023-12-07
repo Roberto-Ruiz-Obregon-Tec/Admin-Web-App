@@ -8,7 +8,9 @@ import {
 	PATH_EVENTS,
 	PATH_POSTS,
 	PATH_ESR,
-	PATH_SCHOLARSHIP
+	PATH_SCHOLARSHIP,
+	PATH_COMMENTS,
+	PATH_INSCRIPTION
 } from "../../config/paths";
 
 export default function Aside() {
@@ -43,6 +45,12 @@ export default function Aside() {
 				</Link>
 				<Link text="Becas" href={PATH_SCHOLARSHIP}>
 					{Icons.becas()}
+				</Link>
+				<Link text= "Comentarios" href={PATH_COMMENTS}>
+				{Icons.comentarios()}
+				</Link>
+				<Link text= "Inscripciones" href={PATH_INSCRIPTION}>
+				{Icons.Inscription()}
 				</Link>
 			</div>
 		</aside>
