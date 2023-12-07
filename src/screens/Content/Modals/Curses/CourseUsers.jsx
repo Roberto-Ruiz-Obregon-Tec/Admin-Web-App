@@ -24,9 +24,7 @@ export default function PopUpCourseUsers() {
         });
     }
 
-    const getState = () => {
-        if (!isOpen()) return [];
-
+    useEffect(() => {
         // El orden importa
         const possibleKeys = [
             "firstName",
@@ -45,22 +43,19 @@ export default function PopUpCourseUsers() {
         for (let i = 0; i < modalState.documentJSON.length; i++) {
             const row = [];
             const user = modalState.documentJSON[i].user;
-
-            for (let j = 0; j < possibleKeys.length; j++) {
-                const key = possibleKeys[j];
-                row.push(user[key] !== "" ? user[key] : "");
+            
+            if(user != null) {
+                for (let j = 0; j < possibleKeys.length; j++) {
+                    const key = possibleKeys[j];
+                    row.push(user[key] !== "" ? user[key] : "");
+                }
             }
             
             matrix.push(row);
         }
 
         setCourseUsers(matrix);
-        return matrix
-    };
-
-    useEffect(() => {
-        getState();
-    }, [isOpen]);
+    }, [modalState.documentJSON]);
     
     const clearState = () => {
         setIsOpen();
