@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+.wrapper {
+    width: 500px;   
+}
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 3em;
+}
+
+
+.form__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.card {
+    width: fit-content;
+    padding: 0 5em;    
+    padding-top: 50px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    max-height: 200px;
+    overflow-y: auto;
+}
