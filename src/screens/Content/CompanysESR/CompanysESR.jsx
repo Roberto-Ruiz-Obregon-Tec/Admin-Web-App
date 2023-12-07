@@ -6,7 +6,7 @@ import NavHistory from "../../../components/NavHistory/NavHistory";
 import Title from "../../../components/Title/Title";
 import Table from "../../../components/Table/Table";
 import Icons from "../../../icons/index";
-
+import { DELETE_ESR } from '../store/modalReducer';
 import { ContentContext } from "../Content";
 import { EDIT_ESR } from "../store/modalReducer";
 
@@ -84,6 +84,14 @@ function CompaniesESR() {
         return matrix;
     };
 
+    const handleDelete = (i) => {
+        const esr = companies[i];
+        modalDispatch({
+          type: DELETE_ESR,
+          payload: esr,
+        });
+      };
+
     const handleTest = () => {
         console.log('test');
       };
@@ -114,7 +122,7 @@ function CompaniesESR() {
                 <>
                     <Table
                         handleEdit={openEdit}
-                        handleDelete={handleTest}
+                        handleDelete={handleDelete}
                         matrixData={getMatrix()}
                         arrayHeaders={[
                             "Nombre",

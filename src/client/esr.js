@@ -20,3 +20,13 @@ export async function editESR(data) {
     const response = await axios.put(endpoint, data);        
     return response.data;
 }
+
+/**
+ * It makes a DELETE request to the endpoint `/company-certifications/${id}` and returns the response data.
+ */
+export async function deleteESR(id) {
+    const endpoint = `${baseApiEndpoint}/company-certifications/${id}`;
+    
+    const response = await axios.delete(endpoint);
+    return response.data;
+}

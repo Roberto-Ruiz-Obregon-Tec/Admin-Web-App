@@ -3,7 +3,7 @@ import { FireError } from '../../../utils/alertHandler';
 import { ContentContext } from "../Content";    
 import LoaderPages from './Loader/LoaderPages';
 import { PATH_CREATE_SCHOLARSHIP } from "../../../config/paths";
-import { EDIT_SCHOLARSHIP } from "../store/modalReducer";
+import { EDIT_SCHOLARSHIP, DELETE_SCHOLARSHIP } from "../store/modalReducer";
 import { Link } from "react-router-dom";
 
 import { getScholarships } from '../../../client/scholarships'; 
@@ -102,6 +102,14 @@ function Scholarships() {
         }catch{ }
     }
 
+    const handleDelete = (i) => {
+        const becas = scholarships[i];
+        modalDispatch({
+          type: DELETE_SCHOLARSHIP,
+          payload: becas,
+        });
+    };
+
     return (
         <div>
 
@@ -118,6 +126,7 @@ function Scholarships() {
             {!isLoading && (
                 <>
                     <Table
+                        handleDelete={handleDelete}
                         matrixData={getMatrix()}
                         arrayHeaders={[
                             "Nombre",

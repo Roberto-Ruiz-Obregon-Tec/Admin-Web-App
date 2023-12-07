@@ -32,3 +32,13 @@ export async function editPublications(body) {
     const response = await axios.put(endpoint, body);
     return response.data;
 }
+
+/**
+ * It makes a DELETE request to the endpoint `/publication/${id}` and returns the response data.
+ */
+export async function deletePublicaction(id) {
+    const endpoint = `${baseApiEndpoint}/publication/${id}`;
+    
+    const response = await axios.delete(endpoint);
+    return response.data;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ContentContext } from "../Content";
-import { OPEN_PROJECT, EDIT_PROJECT } from "../store/modalReducer";
+import { OPEN_PROJECT, EDIT_PROJECT, DELETE_PROJECT } from "../store/modalReducer";
 import { FireError } from '../../../utils/alertHandler';
 import { Link } from "react-router-dom";
 import { getProgram } from '../../../client/availableProj'
@@ -85,6 +85,15 @@ function Proyectos() {
         return matrix;
     };
 
+    const handleDelete = (i) => {
+        const proj = avaliableP[i];
+        modalDispatch({
+          type: DELETE_PROJECT,
+          payload: proj,
+        });
+      };
+
+
     const openInfo = (i) => {
         try {
             if (i < 0 || i >= avaliableP.length) return;
@@ -107,6 +116,7 @@ function Proyectos() {
         } catch { }
     }
 
+    
     return (
         <div>
             <NavHistory>
@@ -122,6 +132,7 @@ function Proyectos() {
             {!isLoading && (
                 <>
                     <Table
+                        handleDelete={handleDelete}
                         matrixData={getMatrix()}
                         arrayHeaders={[
                             "Nombre",

@@ -12,6 +12,10 @@ export const KEYS_MODAL = {
     EVENT_EDIT : "event_edit",
     DELETE_CERTIFICATION: "delete_certification",
     POST_EDIT: "post_edit",
+    POST_DELETE: "post_delete",
+    PROJECT_DELETE: "project_delete",
+    ESR_DELETE: "esr_delete",
+    SCHOLARSHIP_DELETE: "scholarship_delete",
 }
 
 export const EDIT_CERTIFICATION = "edit-certification";
@@ -26,8 +30,12 @@ export const EDIT_SCHOLARSHIP = "edit-scholarship"
 export const EDIT_PROJECT =  "edit-project";
 export const EDIT_COURSE = "edit-course";
 export const EDIT_ESR = "edit-esr";
-export const EDIT_EVENT = "edit-event"
-export const EDIT_POST = "edit-post"
+export const EDIT_EVENT = "edit-event";
+export const EDIT_POST = "edit-post";
+export const DELETE_POST = "delete_post";
+export const DELETE_PROJECT = "delete_project";
+export const DELETE_ESR = "delete_esr";
+export const DELETE_SCHOLARSHIP = "delete_scholarship"
 
 export function modalReducer(state, action){
     switch (action.type) {
@@ -138,6 +146,38 @@ export function modalReducer(state, action){
 
             return {
                 modalOpened: KEYS_MODAL.DELETE_CERTIFICATION,
+                documentJSON: action.payload
+            }
+        }
+        case DELETE_POST: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.POST_DELETE,
+                documentJSON: action.payload
+            }
+        }
+        case DELETE_PROJECT: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.PROJECT_DELETE,
+                documentJSON: action.payload
+            }
+        }
+        case DELETE_ESR: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.ESR_DELETE,
+                documentJSON: action.payload
+            }
+        }
+        case DELETE_SCHOLARSHIP: {
+            if (typeof action.payload !== "object") return state;
+
+            return {
+                modalOpened: KEYS_MODAL.SCHOLARSHIP_DELETE,
                 documentJSON: action.payload
             }
         }

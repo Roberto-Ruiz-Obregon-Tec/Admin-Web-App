@@ -33,3 +33,13 @@ export async function editProject(data) {
     const response = await axios.put(endpoint, data);
     return response.data;
 } 
+
+/**
+ * It makes a DELETE request to the endpoint `/program/${id}` and returns the response data.
+ */
+export async function deleteProject(id) {
+    const endpoint = `${baseApiEndpoint}/program/${id}`;
+
+    const response = await axios.delete(endpoint);
+    return response.data;
+}

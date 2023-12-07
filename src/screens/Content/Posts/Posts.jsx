@@ -10,7 +10,7 @@ import { PATH_CREATE_POSTS } from "../../../config/paths";
 import Icons from "../../../icons/index";
 import Table from "../../../components/Table/Table";
 import styles from "./Posts.module.css";
-import { OPEN_POST, EDIT_POST } from "../store/modalReducer";
+import { OPEN_POST, EDIT_POST, DELETE_POST } from "../store/modalReducer";
 
 function Posts() {
     const { modalDispatch, needsToDoRefresh, setNeedsToDoRefresh } = useContext(ContentContext);
@@ -106,6 +106,14 @@ function Posts() {
         } catch { }
     }
 
+    const handleDelete = (i) => {
+        const post = avaliablePosts[i];
+        modalDispatch({
+          type: DELETE_POST,
+          payload: post,
+        });
+    };
+    
     return (
         <div>
             <NavHistory>
@@ -121,6 +129,7 @@ function Posts() {
             {!isLoading && (
                 <>
                     <Table
+                        handleDelete={handleDelete}
                         matrixData={getMatrix()}
                         arrayHeaders={[
                             "Título",

@@ -22,6 +22,12 @@ import ModalEditPost from "./Modals/EditPost/EditPost";
 import ModalEditESR from "./Modals/EditESR/EditESR";
 import ModalEditEvent from "./Modals/EditEvent/EditEvent";
 
+// Modals delete
+import ModalDeletePost from "./Modals/Posts/DeletePost";
+import ModalDeleteProject from "./Modals/Proyects/DeleteProjects";
+import ModalDeleteESR from "./Modals/ESR/DeleteESR"
+import ModalDeleteScholarship from "./Modals/Scholarship/DeleteScholarship"
+
 // Pages
 import ConsultProjects from "./Projects/Projects";
 import CreateProjects from "./Projects/CreateProjects/CreateProjects";
@@ -39,7 +45,6 @@ import CreateCourses from "./Courses/CreateCourse/CreateCourses";
 import ESR from './CompanysESR/CompanysESR';
 import Scholarship from './Scholarships/Scholarships';
 import CreateScholarship from "./Scholarships/CreateScholarship/CreateScholarship";
-
 
 
 // Routes
@@ -115,6 +120,10 @@ export default function ContentDashboard() {
 			<ModalEditEvent/>
 			<ModelDeleteCertification />
 			<ModalEditCertification />
+			<ModalDeletePost />
+			<ModalDeleteProject />
+			<ModalDeleteESR />
+			<ModalDeleteScholarship />
 			<div className={styles.container}>
 				<Aside />
 				<div className={styles.body}>

@@ -32,3 +32,13 @@ export async function editScholarships(data) {
     const response = await axios.put(endpoint, data);
     return response.data;
 } 
+
+/**
+ * It makes a DELETE request to the endpoint `/scholarships/${id}` and returns the response data.
+ */
+export async function deleteScholarships(id) {
+    const endpoint = `${baseApiEndpoint}/scholarships/${id}`;
+
+    const response = await axios.delete(endpoint);
+    return response.data;
+}
