@@ -56,7 +56,7 @@ function Table({
             </div>
           );
         })}
-        <div style={{ width: '6%' }} className={styles.header}>
+        <div style={{ width: '12%' }} className={styles.header}>
           ...
         </div>
       </div>
