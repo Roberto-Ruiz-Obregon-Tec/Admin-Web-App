@@ -13,3 +13,10 @@ export async function getUsers() {
     return response.data.data.users;    
 
 }
+
+export async function deleteUser(id) {
+    const endpoint = `${baseApiEndpoint}/user/${id}`;
+
+    const response = await axios.delete(endpoint);
+    return response.data;
+}
