@@ -112,7 +112,7 @@ export default function PopUpCertifications() {
                         isLoading={isLoading}
                         type="submit"
                     >
-                        Cambiar estatus
+                        Cambiar status
                     </Button>
                 </div>
                 
